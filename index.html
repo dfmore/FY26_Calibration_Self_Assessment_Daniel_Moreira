@@ -27,9 +27,8 @@
             --gradient-stat: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
             /* Focus states */
             --focus-ring: rgba(0, 166, 147, 0.4);
-            /* Easing curves */
+            /* Easing curve */
             --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-            --ease-in-out-expo: cubic-bezier(0.87, 0, 0.13, 1);
         }
         
         * {
@@ -120,19 +119,6 @@
         .reveal.visible {
             opacity: 1;
         }
-
-        /* Ensure uniform height when expanded */
-        #overview .initiative-card.expanded {
-            min-height: 320px;
-        }
-
-        #initiatives .initiative-card.expanded {
-            min-height: 620px; /* Locked height for Initiatives */
-        }
-
-        .orbit-card.expanded {
-            min-height: 480px; /* Locked height for ORBIT */
-        }
         
         /* Typography - Refined scale */
         .display-xl {
@@ -157,21 +143,21 @@
         }
         
         .body-lg {
-            font-size: clamp(1rem, 2vw, 1.125rem);
+            font-size: clamp(1.125rem, 2.2vw, 1.25rem);
             font-weight: 400;
             line-height: 1.7;
             color: var(--text-secondary);
         }
         
         .body-md {
-            font-size: 0.9375rem;
+            font-size: 1.0625rem;
             font-weight: 400;
             line-height: 1.7;
             color: var(--text-secondary);
         }
         
         .label {
-            font-size: 0.8125rem;
+            font-size: 0.875rem;
             font-weight: 500;
             letter-spacing: 0.03em;
             text-transform: uppercase;
@@ -229,7 +215,7 @@
         }
         
         .nav-link {
-            font-size: 0.875rem;
+            font-size: 0.9375rem;
             font-weight: 400;
             color: var(--text-secondary);
             transition: color 0.2s ease;
@@ -633,6 +619,16 @@
             opacity: 0;
         }
         
+        /* Crisis/alert callout */
+        .callout-danger {
+            border-left: 3px solid #ef4444;
+            background: linear-gradient(90deg, rgba(239, 68, 68, 0.08) 0%, transparent 100%);
+        }
+        
+        .callout-danger .callout-title {
+            color: #ef4444;
+        }
+        
         /* Section spacing - responsive */
         section {
             padding: clamp(60px, 8vw, 120px) 0;
@@ -688,13 +684,9 @@
             background: var(--text-tertiary);
         }
         
-        /* Hide all chart axis lines */
-        #calendarChart .domain,
-        #calendarChart .tick line {
-            display: none !important;
-            stroke: none !important;
-            opacity: 0 !important;
-        }
+        /* Global typography overrides for small text */
+        .text-sm { font-size: 0.9375rem !important; }
+        .text-xs { font-size: 0.8125rem !important; }
         
     </style>
 </head>
@@ -1074,8 +1066,8 @@
                                 </ul>
                             </div>
                             
-                            <div class="p-4 rounded-xl" style="border-left: 3px solid #ef4444; background: linear-gradient(90deg, rgba(239, 68, 68, 0.08) 0%, transparent 100%);">
-                                <p class="text-sm font-medium mb-2" style="color: #ef4444;">Artelia Crisis</p>
+                            <div class="p-4 rounded-xl callout-danger">
+                                <p class="text-sm font-medium mb-2 callout-title">Artelia Crisis</p>
                                 <p class="text-sm text-[var(--text-secondary)]">
                                     National Director escalation. All ICM users blocked. Resolved in 30 minutes. 
                                     Prevented huge financial consequences.
@@ -1758,51 +1750,28 @@
                 .domain([0, 130])
                 .range([chartHeight, 0]);
             
-            // X axis - no lines, just labels
-            chart.append('g')
+            // X axis - labels only, no lines
+            const xAxis = chart.append('g')
                 .attr('transform', `translate(0,${chartHeight})`)
-                .call(d3.axisBottom(xScale)
-                    .tickSize(0)
-                    .tickSizeOuter(0)
-                    .tickSizeInner(0))
-                .selectAll('text')
+                .call(d3.axisBottom(xScale).tickSize(0));
+            
+            xAxis.select('.domain').remove();
+            xAxis.selectAll('text')
                 .attr('fill', '#a1a1a6')
                 .attr('font-size', '11px')
                 .attr('font-weight', '500')
                 .attr('font-family', CHART_FONT);
             
-            // Y axis - no lines, just labels
-            chart.append('g')
-                .call(d3.axisLeft(yScale)
-                    .ticks(5)
-                    .tickSize(0)
-                    .tickSizeOuter(0)
-                    .tickSizeInner(0))
-                .selectAll('text')
+            // Y axis - labels only, no lines
+            const yAxis = chart.append('g')
+                .call(d3.axisLeft(yScale).ticks(5).tickSize(0));
+            
+            yAxis.select('.domain').remove();
+            yAxis.selectAll('text')
                 .attr('fill', '#8e8e93')
                 .attr('font-size', '10px')
                 .attr('font-weight', '500')
                 .attr('font-family', CHART_FONT);
-            
-            // Force remove all axis lines (domains), tick lines, and any borders
-            function removeAllLines() {
-                chart.selectAll('.domain').remove();
-                chart.selectAll('.tick line').remove();
-                svg.selectAll('.domain').remove();
-                svg.selectAll('.tick line').remove();
-                chart.selectAll('path.domain').remove();
-                svg.selectAll('path.domain').remove();
-                chart.selectAll('line').filter(function() {
-                    return this.getAttribute('class') === null || this.getAttribute('class').includes('tick');
-                }).remove();
-            }
-            
-            // Remove immediately
-            removeAllLines();
-            
-            // Remove again after a short delay to catch any lines created during transitions
-            setTimeout(removeAllLines, 100);
-            setTimeout(removeAllLines, 1000);
             
             // Define glow filter
             const defs = svg.append('defs');
@@ -1867,7 +1836,7 @@
                 }
                 
                 // Counter animations
-                if (el.dataset.target && el.textContent === '0') {
+                if (el.dataset.target && el.textContent.trim() === '0') {
                     animateCounter(el);
                 }
                 
