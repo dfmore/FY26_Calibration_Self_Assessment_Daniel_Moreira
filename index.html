@@ -3,27 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FY26 Review — Daniel Moreira</title>
+    <title>2025 Review — Daniel Moreira</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://d3js.org/d3.v7.min.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --accent: #0071e3;
-            --accent-hover: #0077ED;
+            --accent: #00a693;
+            --accent-hover: #00bfa9;
             --bg-primary: #000000;
             --bg-secondary: #0d0d0d;
             --bg-tertiary: #1d1d1f;
             --bg-card: rgba(28, 28, 30, 0.8);
             --bg-glass: rgba(255, 255, 255, 0.03);
             --text-primary: #f5f5f7;
-            --text-secondary: #86868b;
-            --text-tertiary: #6e6e73;
+            --text-secondary: #a1a1a6;
+            --text-tertiary: #8e8e93;
             --border-subtle: rgba(255, 255, 255, 0.08);
             --border-light: rgba(255, 255, 255, 0.12);
+            /* Gradients */
+            --gradient-accent: linear-gradient(135deg, #00a693 0%, #00d4aa 100%);
+            --gradient-accent-blue: linear-gradient(135deg, var(--accent) 0%, #4dd0c4 100%);
+            --gradient-stat: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
         }
         
         * {
@@ -32,16 +33,27 @@
         }
         
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.5;
             overflow-x: hidden;
         }
         
+        /* Background grain texture */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.025;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
         /* Gradient backgrounds */
         .hero-gradient {
-            background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0, 113, 227, 0.15), transparent);
+            background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0, 166, 147, 0.2), transparent);
         }
         
         .section-gradient {
@@ -71,48 +83,46 @@
         
         .glass-card:hover {
             border-color: var(--border-light);
-            transform: translateY(-2px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
         
-        /* Typography */
+        /* Typography - Normalized scale */
         .display-xl {
-            font-size: clamp(4rem, 12vw, 8rem);
+            font-size: clamp(3rem, 8vw, 5rem);
             font-weight: 600;
-            letter-spacing: -0.04em;
-            line-height: 0.95;
+            letter-spacing: -0.03em;
+            line-height: 1;
         }
         
         .display-lg {
-            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-size: clamp(2rem, 4vw, 3rem);
             font-weight: 600;
-            letter-spacing: -0.03em;
-            line-height: 1.1;
+            letter-spacing: -0.02em;
+            line-height: 1.15;
         }
         
         .display-md {
-            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-size: clamp(1.25rem, 2.5vw, 1.75rem);
             font-weight: 500;
-            letter-spacing: -0.02em;
-            line-height: 1.2;
+            letter-spacing: -0.01em;
+            line-height: 1.25;
         }
         
         .body-lg {
-            font-size: 1.25rem;
+            font-size: 1.125rem;
             font-weight: 400;
             line-height: 1.6;
             color: var(--text-secondary);
         }
         
         .body-md {
-            font-size: 1rem;
+            font-size: 0.9375rem;
             font-weight: 400;
-            line-height: 1.6;
+            line-height: 1.7;
             color: var(--text-secondary);
         }
         
         .label {
-            font-size: 0.75rem;
+            font-size: 0.875rem;
             font-weight: 500;
             letter-spacing: 0.02em;
             text-transform: uppercase;
@@ -121,10 +131,25 @@
         
         /* Accent text gradient */
         .gradient-text {
-            background: linear-gradient(135deg, #0071e3 0%, #34c759 100%);
+            background: var(--gradient-accent);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+        }
+        
+        /* Shimmer animation for AI Era headline */
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+        
+        .gradient-text.shimmer {
+            background: linear-gradient(90deg, #00a693 0%, #00d4aa 25%, #4dd0c4 50%, #00d4aa 75%, #00a693 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 4s ease-in-out infinite;
         }
         
         /* Navigation */
@@ -165,31 +190,37 @@
             color: var(--text-primary);
         }
         
+        .nav-link.active {
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 8px;
+        }
+        
         /* Scroll indicator */
         .scroll-indicator {
             position: fixed;
             top: 0;
             left: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--accent) 0%, #34c759 100%);
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent) 0%, #00d4aa 100%);
             z-index: 1001;
             transition: width 0.1s ease;
         }
         
-        /* Stats */
+        /* Stats - Normalized */
         .stat-value {
-            font-size: clamp(3rem, 8vw, 5rem);
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
             font-weight: 600;
-            letter-spacing: -0.04em;
+            letter-spacing: -0.03em;
             line-height: 1;
-            background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+            background: var(--gradient-stat);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
         
         .stat-value.accent {
-            background: linear-gradient(135deg, #0071e3 0%, #5ac8fa 100%);
+            background: var(--gradient-accent-blue);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -200,13 +231,16 @@
             position: relative;
             padding-left: 32px;
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
         
         .timeline-item.visible {
             opacity: 1;
-            transform: translateY(0);
+        }
+        
+        @keyframes pulse-dot {
+            0%, 100% { box-shadow: 0 0 20px rgba(0, 166, 147, 0.5); }
+            50% { box-shadow: 0 0 30px rgba(0, 166, 147, 0.8); }
         }
         
         .timeline-item::before {
@@ -218,7 +252,8 @@
             height: 8px;
             background: var(--accent);
             border-radius: 50%;
-            box-shadow: 0 0 20px rgba(0, 113, 227, 0.5);
+            box-shadow: 0 0 20px rgba(0, 166, 147, 0.5);
+            animation: pulse-dot 3s ease-in-out infinite;
         }
         
         .timeline-item::after {
@@ -301,7 +336,7 @@
         
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, var(--accent) 0%, #34c759 100%);
+            background: linear-gradient(90deg, var(--accent) 0%, #00d4aa 100%);
             border-radius: 2px;
             transition: width 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
@@ -319,7 +354,7 @@
             top: 0;
             bottom: 0;
             width: 3px;
-            background: linear-gradient(180deg, var(--accent) 0%, #34c759 100%);
+            background: var(--gradient-accent);
             border-radius: 3px;
         }
         
@@ -338,7 +373,7 @@
         }
         
         .avatar.accent {
-            background: linear-gradient(135deg, var(--accent) 0%, #5ac8fa 100%);
+            background: var(--gradient-accent-blue);
             color: white;
         }
         
@@ -364,7 +399,7 @@
             left: 0;
             right: 0;
             height: 3px;
-            background: linear-gradient(90deg, var(--accent) 0%, #34c759 100%);
+            background: var(--gradient-accent);
         }
         
         .orbit-card.growth::before {
@@ -388,14 +423,12 @@
         }
         
         /* Animations */
-        @keyframes fadeInUp {
+        @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateY(40px);
             }
             to {
                 opacity: 1;
-                transform: translateY(0);
             }
         }
         
@@ -405,38 +438,60 @@
         }
         
         .animate-in {
-            animation: fadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+            opacity: 0;
+            animation: fadeIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
         }
         
-        .delay-100 { animation-delay: 0.1s; }
-        .delay-200 { animation-delay: 0.2s; }
-        .delay-300 { animation-delay: 0.3s; }
-        .delay-400 { animation-delay: 0.4s; }
+        .delay-100 { animation-delay: 0.15s; }
+        .delay-200 { animation-delay: 0.3s; }
+        .delay-300 { animation-delay: 0.45s; }
+        .delay-400 { animation-delay: 0.6s; }
+        .delay-500 { animation-delay: 0.75s; }
+        
+        /* Utility classes */
+        .accent-border-left {
+            border-left: 3px solid var(--accent);
+        }
+        
+        .hidden-initial {
+            opacity: 0;
+        }
         
         /* Section spacing */
         section {
-            padding: 120px 0;
+            padding: 80px 0;
         }
         
         .section-header {
-            margin-bottom: 80px;
+            margin-bottom: 48px;
         }
         
         /* Scroll reveal */
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
         
         .reveal.visible {
             opacity: 1;
-            transform: translateY(0);
+            transform: none;
         }
         
         /* Footer */
         footer {
             border-top: 1px solid var(--border-subtle);
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: -120px;
+            left: 0;
+            right: 0;
+            height: 120px;
+            background: linear-gradient(to bottom, transparent, var(--bg-primary));
+            pointer-events: none;
         }
         
         /* Custom scrollbar */
@@ -457,10 +512,6 @@
             background: var(--text-tertiary);
         }
         
-        /* Radar chart fix */
-        #skillsChart {
-            max-height: 320px;
-        }
     </style>
 </head>
 <body>
@@ -470,7 +521,7 @@
     <!-- Navigation -->
     <nav>
         <div class="nav-inner">
-            <span class="text-sm font-medium text-white">FY26</span>
+            <span class="text-sm font-medium text-white">2025</span>
             <div class="hidden md:flex items-center gap-2">
                 <a href="#overview" class="nav-link">Overview</a>
                 <a href="#timeline" class="nav-link">Timeline</a>
@@ -484,12 +535,12 @@
     
     <!-- Hero Section -->
     <section class="min-h-screen flex items-center justify-center hero-gradient pt-20 px-6" id="overview">
-        <div class="max-w-5xl mx-auto text-center">
-            <div class="animate-in" style="opacity: 0;">
-                <p class="label mb-6">FY26 Calibration Review</p>
+        <div class="max-w-6xl mx-auto text-center">
+            <div class="animate-in">
+                <p class="label mb-6">2025 Calibration Review</p>
                 <h1 class="display-xl mb-6">
                     Building for the<br>
-                    <span class="gradient-text">AI Era</span>
+                    <span class="gradient-text shimmer">AI Era</span>
                 </h1>
                 <p class="body-lg max-w-2xl mx-auto mb-4">
                     Foundational investments in AI-enabled capabilities and infrastructure 
@@ -500,35 +551,35 @@
                 </p>
             </div>
             
-            <!-- Key Metrics -->
+            <!-- Key Metrics - Data-backed -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
-                <div class="glass-card p-8 animate-in delay-100" style="opacity: 0;">
-                    <div class="stat-value accent" data-target="16">0</div>
-                    <p class="text-sm text-[var(--text-secondary)] mt-3">Specialists Enabled</p>
-                    <p class="text-xs text-[var(--text-tertiary)] mt-1">Global A/O Team</p>
-                </div>
-                <div class="glass-card p-8 animate-in delay-200" style="opacity: 0;">
+                <div class="glass-card p-6 animate-in delay-100">
                     <div class="stat-value accent" data-target="215">0</div>
                     <p class="text-sm text-[var(--text-secondary)] mt-3">Cases Handled</p>
-                    <p class="text-xs text-[var(--text-tertiary)] mt-1">141 Activation + 74 Onboarding</p>
+                    <p class="text-sm text-[var(--text-tertiary)] mt-1">141 Activation + 74 Onboarding</p>
                 </div>
-                <div class="glass-card p-8 animate-in delay-300" style="opacity: 0;">
-                    <div class="stat-value accent" data-target="9">0</div>
-                    <p class="text-sm text-[var(--text-secondary)] mt-3">KCS Articles</p>
-                    <p class="text-xs text-[var(--text-tertiary)] mt-1">Knowledge Base</p>
+                <div class="glass-card p-6 animate-in delay-200">
+                    <div class="stat-value accent" data-target="859">0</div>
+                    <p class="text-sm text-[var(--text-secondary)] mt-3">Calendar Events</p>
+                    <p class="text-sm text-[var(--text-tertiary)] mt-1">Real Outlook Data</p>
                 </div>
-                <div class="glass-card p-8 animate-in delay-400" style="opacity: 0;">
-                    <div class="stat-value accent" data-target="75">0</div>
-                    <p class="text-sm text-[var(--text-secondary)] mt-3">% Efficiency Target</p>
-                    <p class="text-xs text-[var(--text-tertiary)] mt-1">False Positive Reduction</p>
+                <div class="glass-card p-6 animate-in delay-300">
+                    <div class="stat-value accent" data-target="5">0</div>
+                    <p class="text-sm text-[var(--text-secondary)] mt-3">AI Tools Built</p>
+                    <p class="text-sm text-[var(--text-tertiary)] mt-1">Production Ready</p>
+                </div>
+                <div class="glass-card p-6 animate-in delay-400">
+                    <div class="stat-value accent" data-target="16">0</div>
+                    <p class="text-sm text-[var(--text-secondary)] mt-3">Global Users</p>
+                    <p class="text-sm text-[var(--text-tertiary)] mt-1">Airtable System</p>
                 </div>
             </div>
             
             <!-- Executive Summary -->
-            <div class="glass-card p-10 mt-16 text-left animate-in" style="opacity: 0; animation-delay: 0.5s;">
+            <div class="glass-card p-10 mt-16 text-left animate-in delay-500">
                 <p class="label mb-4">Executive Summary</p>
                 <p class="body-md mb-6">
-                    FY26 focused on foundational investments in AI-enabled capabilities and infrastructure that will deliver 
+                    2025 focused on foundational investments in AI-enabled capabilities and infrastructure that will deliver 
                     compounding returns. I built the Airtable tracking system serving 16 global activation/onboarding specialists, 
                     developed ICM Prophet as a transformative AI vision for hydraulic modelling, and established proactive licensing 
                     risk mitigation that has significantly reduced customer disruption.
@@ -536,7 +587,7 @@
                 <p class="body-md">
                     These foundational efforts—though largely invisible in daily operations—position Customer Success to operate 
                     more efficiently in the AI era. Deep AI learning enabled building production tools, establishing frameworks 
-                    for FY27 vision of integrating multiple data sources to surface knowledge for CS teams.
+                    for 2026 vision of integrating multiple data sources to surface knowledge for CS teams.
                 </p>
             </div>
         </div>
@@ -544,10 +595,10 @@
     
     <!-- Timeline Section -->
     <section class="section-gradient px-6" id="timeline">
-        <div class="max-w-5xl mx-auto">
+        <div class="max-w-6xl mx-auto">
             <div class="section-header reveal">
                 <p class="label mb-4">Year in Review</p>
-                <h2 class="display-lg">FY26 Timeline</h2>
+                <h2 class="display-lg">2025 Timeline</h2>
             </div>
             
             <div class="grid md:grid-cols-2 gap-x-16 gap-y-12">
@@ -582,59 +633,63 @@
                 </div>
                 
                 <div class="timeline-item">
-                    <p class="label mb-2">September 2025</p>
-                    <h3 class="text-xl font-medium mb-3">Security Discovery</h3>
-                    <p class="body-md">Discovered critical security vulnerability in InfoWorks installer using AI analysis. Simulation engine logic risk identified and escalated.</p>
-                </div>
-                
-                <div class="timeline-item">
                     <p class="label mb-2">October 2025</p>
-                    <h3 class="text-xl font-medium mb-3">Prophet Demos</h3>
-                    <p class="body-md">Presented ICM Prophet at Mott MacDonald Newcastle office and to Boaz Brudner, who endorsed the approach.</p>
+                    <h3 class="text-xl font-medium mb-3">Barcelona EBCS & Prophet Demos</h3>
+                    <p class="body-md">In-person Emerging Business CS meeting in Barcelona for cross-team collaboration and AI brainstorming. Presented ICM Prophet milestone to Mott MacDonald and Boaz Brudner.</p>
                 </div>
                 
                 <div class="timeline-item">
                     <p class="label mb-2">November 2025</p>
-                    <h3 class="text-xl font-medium mb-3">Denver AI Strategy</h3>
-                    <p class="body-md">Strategic meeting with Keith's team shaping AI vision for water products. Challenged backwards development approaches.</p>
+                    <h3 class="text-xl font-medium mb-3">W3F Denver AI Strategy</h3>
+                    <p class="body-md">Water 3 Forum strategic sessions with Keith's team shaping AI vision for water products. Represented Customer Success in defining AI direction.</p>
                 </div>
             </div>
         </div>
     </section>
     
-    <!-- Calendar Heatmap -->
+    <!-- Calendar Activity -->
     <section class="section-gradient-alt px-6" id="calendar">
-        <div class="max-w-5xl mx-auto">
+        <div class="max-w-6xl mx-auto">
             <div class="section-header reveal">
                 <p class="label mb-4">Activity</p>
                 <h2 class="display-lg mb-4">Work Calendar</h2>
-                <p class="body-md">Intensity throughout FY26 — darker indicates more activity</p>
+                <p class="body-md">Monthly event distribution from Outlook calendar data</p>
             </div>
             
-            <div class="glass-card p-8 reveal">
-                <div id="calendarHeatmap" class="min-w-full overflow-x-auto"></div>
+            <div class="reveal">
+                <div id="calendarChart" class="min-w-full" style="height: 280px;"></div>
                 
-                <div class="grid grid-cols-3 gap-8 mt-12 pt-8 border-t border-[var(--border-subtle)]">
+                <div class="grid grid-cols-3 gap-8 mt-12 pt-8">
                     <div class="text-center">
-                        <div class="stat-value text-3xl">~420</div>
-                        <p class="text-sm text-[var(--text-tertiary)] mt-2">Meetings</p>
+                        <div class="stat-value text-3xl">859</div>
+                        <p class="text-sm text-[var(--text-tertiary)] mt-2">Events Attended</p>
                     </div>
                     <div class="text-center">
-                        <div class="stat-value text-3xl">~180</div>
-                        <p class="text-sm text-[var(--text-tertiary)] mt-2">Active Days</p>
+                        <div class="stat-value text-3xl">72</div>
+                        <p class="text-sm text-[var(--text-tertiary)] mt-2">Monthly Average</p>
                     </div>
                     <div class="text-center">
-                        <div class="stat-value text-3xl">~5h</div>
-                        <p class="text-sm text-[var(--text-tertiary)] mt-2">Daily Average</p>
+                        <div class="stat-value text-3xl">117</div>
+                        <p class="text-sm text-[var(--text-tertiary)] mt-2">Peak Month (Jan)</p>
                     </div>
                 </div>
                 
                 <div class="mt-8 p-6 rounded-xl bg-[var(--bg-tertiary)]">
                     <p class="label mb-4">Peak Periods</p>
                     <div class="space-y-3 text-sm text-[var(--text-secondary)]">
-                        <p><span class="text-[var(--text-primary)] font-medium">Feb–Mar:</span> Airtable development + Artelia crisis</p>
-                        <p><span class="text-[var(--text-primary)] font-medium">Jul–Aug:</span> ICM Prophet research + Tiger Team launch</p>
-                        <p><span class="text-[var(--text-primary)] font-medium">Oct–Nov:</span> Prophet presentations + Denver meeting</p>
+                        <p><span class="text-[var(--text-primary)] font-medium">Jan (117):</span> Airtable system launch + Mott MacDonald initiatives</p>
+                        <p><span class="text-[var(--text-primary)] font-medium">Oct (100):</span> Barcelona EBCS + ICM Prophet milestone + Hackathon</p>
+                        <p><span class="text-[var(--text-primary)] font-medium">Jul (93):</span> AI strategy development + Tiger Team formation</p>
+                    </div>
+                </div>
+                
+                <div class="mt-6 p-6 rounded-xl bg-[var(--bg-tertiary)]">
+                    <p class="label mb-4">Key Events</p>
+                    <div class="grid md:grid-cols-2 gap-4 text-sm text-[var(--text-secondary)]">
+                        <div><span class="text-[var(--accent)]">Oct 6-9:</span> Barcelona EBCS — cross-team collaboration, AI brainstorming</div>
+                        <div><span class="text-[var(--accent)]">Nov 13-14:</span> W3F Denver — CS representative shaping AI strategy</div>
+                        <div><span class="text-[var(--accent)]">Oct 21:</span> ICM Prophet milestone — concept proven</div>
+                        <div><span class="text-[var(--accent)]">Oct 17-24:</span> InfoWorks Hackathon — strategic guidance</div>
                     </div>
                 </div>
             </div>
@@ -643,7 +698,7 @@
     
     <!-- Major Initiatives -->
     <section class="section-gradient px-6" id="initiatives">
-        <div class="max-w-5xl mx-auto">
+        <div class="max-w-6xl mx-auto">
             <div class="section-header reveal">
                 <p class="label mb-4">Deep Dive</p>
                 <h2 class="display-lg mb-4">Major Initiatives</h2>
@@ -652,7 +707,7 @@
             
             <div class="grid md:grid-cols-2 gap-6">
                 <!-- Airtable -->
-                <div class="initiative-card glass-card p-8 reveal" onclick="toggleInitiative(this)">
+                <div class="initiative-card glass-card p-8 reveal" style="border-left: 3px solid #00d4ff;" onclick="toggleInitiative(this)">
                     <div class="flex justify-between items-start mb-6">
                         <div>
                             <p class="label mb-2">Infrastructure</p>
@@ -686,11 +741,11 @@
                                 <div class="grid grid-cols-2 gap-4">
                                     <div>
                                         <div class="text-2xl font-semibold">16</div>
-                                        <p class="text-xs text-[var(--text-tertiary)]">Global specialists</p>
+                                        <p class="text-sm text-[var(--text-tertiary)]">Global specialists</p>
                                     </div>
                                     <div>
                                         <div class="text-2xl font-semibold">215</div>
-                                        <p class="text-xs text-[var(--text-tertiary)]">Cases handled</p>
+                                        <p class="text-sm text-[var(--text-tertiary)]">Activation and Onboarding cases</p>
                                     </div>
                                 </div>
                             </div>
@@ -699,7 +754,7 @@
                 </div>
                 
                 <!-- ICM Prophet -->
-                <div class="initiative-card glass-card p-8 reveal" onclick="toggleInitiative(this)">
+                <div class="initiative-card glass-card p-8 reveal" style="border-left: 3px solid #a855f7;" onclick="toggleInitiative(this)">
                     <div class="flex justify-between items-start mb-6">
                         <div>
                             <p class="label mb-2">AI Vision</p>
@@ -721,15 +776,15 @@
                             
                             <div class="grid grid-cols-2 gap-4">
                                 <div class="p-4 rounded-xl bg-[var(--bg-tertiary)]">
-                                    <p class="text-xs text-[var(--text-tertiary)] mb-2">Customer Support</p>
-                                    <ul class="text-xs text-[var(--text-secondary)] space-y-1">
+                                    <p class="text-sm text-[var(--text-tertiary)] mb-2">Customer Support</p>
+                                    <ul class="text-sm text-[var(--text-secondary)] space-y-1">
                                         <li>• Auto Ruby scripts</li>
                                         <li>• Natural language queries</li>
                                     </ul>
                                 </div>
                                 <div class="p-4 rounded-xl bg-[var(--bg-tertiary)]">
-                                    <p class="text-xs text-[var(--text-tertiary)] mb-2">Internal Tools</p>
-                                    <ul class="text-xs text-[var(--text-secondary)] space-y-1">
+                                    <p class="text-sm text-[var(--text-tertiary)] mb-2">Internal Tools</p>
+                                    <ul class="text-sm text-[var(--text-secondary)] space-y-1">
                                         <li>• Analysis tools</li>
                                         <li>• Model troubleshooting</li>
                                     </ul>
@@ -741,7 +796,7 @@
                                 <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
                                     <li>• Demo to Mott MacDonald (Newcastle)</li>
                                     <li>• Endorsed by Boaz Brudner</li>
-                                    <li>• Applied to TechX conference</li>
+                                    <li>• W3F Denver strategy sessions</li>
                                 </ul>
                             </div>
                         </div>
@@ -749,7 +804,7 @@
                 </div>
                 
                 <!-- Proactive Licensing -->
-                <div class="initiative-card glass-card p-8 reveal" onclick="toggleInitiative(this)">
+                <div class="initiative-card glass-card p-8 reveal" style="border-left: 3px solid #f59e0b;" onclick="toggleInitiative(this)">
                     <div class="flex justify-between items-start mb-6">
                         <div>
                             <p class="label mb-2">Risk Mitigation</p>
@@ -779,9 +834,9 @@
                                 </ul>
                             </div>
                             
-                            <div class="p-4 rounded-xl bg-[var(--bg-tertiary)] border-l-2 border-[var(--accent)]">
-                                <p class="text-sm font-medium mb-2">Artelia Crisis</p>
-                                <p class="text-xs text-[var(--text-secondary)]">
+                            <div class="p-4 rounded-xl border-l-3" style="border-left: 3px solid #ef4444; background: linear-gradient(90deg, rgba(239, 68, 68, 0.08) 0%, transparent 100%);">
+                                <p class="text-sm font-medium mb-2" style="color: #ef4444;">Artelia Crisis</p>
+                                <p class="text-sm text-[var(--text-secondary)]">
                                     National Director escalation. All ICM users blocked. Resolved in 30 minutes. 
                                     Prevented huge financial consequences.
                                 </p>
@@ -791,7 +846,7 @@
                 </div>
                 
                 <!-- AI Capabilities -->
-                <div class="initiative-card glass-card p-8 reveal" onclick="toggleInitiative(this)">
+                <div class="initiative-card glass-card p-8 reveal" style="border-left: 3px solid #00a693;" onclick="toggleInitiative(this)">
                     <div class="flex justify-between items-start mb-6">
                         <div>
                             <p class="label mb-2">Capability Building</p>
@@ -824,7 +879,7 @@
                             </div>
                             
                             <div class="p-4 rounded-xl bg-gradient-to-r from-[var(--accent)]/10 to-transparent">
-                                <p class="text-xs text-[var(--text-tertiary)] mb-1">FY27 Vision</p>
+                                <p class="text-sm text-[var(--text-tertiary)] mb-1">2026 Vision</p>
                                 <p class="text-sm text-[var(--text-secondary)]">
                                     Integrating multiple data sources to surface knowledge for CS teams—multiplying team productivity.
                                 </p>
@@ -834,7 +889,7 @@
                 </div>
                 
                 <!-- ICM Live -->
-                <div class="initiative-card glass-card p-8 reveal" onclick="toggleInitiative(this)">
+                <div class="initiative-card glass-card p-8 reveal" style="border-left: 3px solid #3b82f6;" onclick="toggleInitiative(this)">
                     <div class="flex justify-between items-start mb-6">
                         <div>
                             <p class="label mb-2">Training</p>
@@ -865,8 +920,8 @@
                             </div>
                             
                             <div class="p-4 rounded-xl bg-[var(--bg-tertiary)]">
-                                <p class="text-xs text-[var(--accent)] mb-2">Strategic Recommendation</p>
-                                <p class="text-xs text-[var(--text-secondary)]">
+                                <p class="text-sm font-medium text-[var(--accent)] mb-2">Strategic Recommendation</p>
+                                <p class="text-sm text-[var(--text-secondary)]">
                                     Pivot to Exchange and Prophet-based solutions where customers create custom dashboards. 
                                     Monetise through consultancy.
                                 </p>
@@ -876,7 +931,7 @@
                 </div>
                 
                 <!-- Support -->
-                <div class="initiative-card glass-card p-8 reveal" onclick="toggleInitiative(this)">
+                <div class="initiative-card glass-card p-8 reveal" style="border-left: 3px solid #6b7280;" onclick="toggleInitiative(this)">
                     <div class="flex justify-between items-start mb-6">
                         <div>
                             <p class="label mb-2">Documentation</p>
@@ -884,32 +939,24 @@
                         </div>
                         <span class="expand-icon">+</span>
                     </div>
-                    <p class="body-md">9 KCS articles and complex case support via calls.</p>
+                    <p class="body-md">9 KCS articles authored and complex case support via calls.</p>
                     
                     <div class="initiative-details">
                         <div class="border-t border-[var(--border-subtle)] pt-6 mt-6 space-y-6">
                             <div>
-                                <p class="text-sm font-medium text-[var(--accent)] mb-3">KCS Articles</p>
-                                <ul class="space-y-1 text-xs text-[var(--text-secondary)]">
-                                    <li>• Simulations Interrupted on Shared PCs</li>
-                                    <li>• Service Account Impersonation Failures</li>
-                                    <li>• Hybrid AD/Azure Workstation Access</li>
-                                    <li>• 2D Simulation GPU Requirements</li>
-                                    <li>• Concurrent Simulations Best Practices</li>
-                                    <li>• Results .tmp File Issues</li>
-                                    <li>• Timezone Handling in TSDs</li>
-                                    <li>• Cloud Upload CRYPT_E Errors</li>
-                                    <li>• GPU Cards for 2D Simulations</li>
+                                <p class="text-sm font-medium text-[var(--accent)] mb-3">Support Approach</p>
+                                <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
+                                    <li>• Complex cases resolved via calls, not basic Salesforce</li>
+                                    <li>• Internal support to CS, Sales, and Product teams</li>
+                                    <li>• Sensitive Innovyze installations handled</li>
+                                    <li>• 9 KCS articles addressing complex technical issues</li>
                                 </ul>
                             </div>
                             
-                            <div>
-                                <p class="text-sm font-medium text-[var(--accent)] mb-3">Approach</p>
-                                <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
-                                    <li>• Complex cases via calls, not basic SF</li>
-                                    <li>• Internal support to CS, Sales, Product</li>
-                                    <li>• Sensitive Innovyze installations</li>
-                                </ul>
+                            <div class="p-4 rounded-xl bg-[var(--bg-tertiary)]">
+                                <p class="text-sm text-[var(--text-tertiary)]">
+                                    Full list of KCS articles in dedicated section below
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -920,7 +967,7 @@
     
     <!-- Skills -->
     <section class="section-gradient-alt px-6" id="skills">
-        <div class="max-w-5xl mx-auto">
+        <div class="max-w-6xl mx-auto">
             <div class="section-header reveal">
                 <p class="label mb-4">Growth</p>
                 <h2 class="display-lg">Skills Development</h2>
@@ -928,196 +975,294 @@
             
             <div class="grid md:grid-cols-2 gap-8">
                 <div class="glass-card p-8 reveal">
-                    <canvas id="skillsChart" height="300"></canvas>
+                    <p class="label text-[var(--accent)] mb-6">Developed This Year</p>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="w-2 h-2 rounded-full bg-[var(--accent)]"></div>
+                                <p class="text-lg font-medium">AI/ML Tool Development</p>
+                            </div>
+                            <p class="text-sm text-[var(--text-secondary)] ml-5">Prompt engineering, agent design, confidence frameworks, production deployment</p>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="w-2 h-2 rounded-full bg-[var(--accent)]"></div>
+                                <p class="text-lg font-medium">Airtable Database Design</p>
+                            </div>
+                            <p class="text-sm text-[var(--text-secondary)] ml-5">Interface design, automation workflows, statistical dashboards, status taxonomy</p>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="w-2 h-2 rounded-full bg-[var(--accent)]"></div>
+                                <p class="text-lg font-medium">Strategic Systems Thinking</p>
+                            </div>
+                            <p class="text-sm text-[var(--text-secondary)] ml-5">Identifying systemic inefficiencies, proactive solutions, product viability assessment</p>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="space-y-4 reveal">
-                    <div class="glass-card p-6">
-                        <p class="text-sm font-medium text-[var(--accent)] mb-2">AI/ML Development</p>
-                        <p class="text-sm text-[var(--text-secondary)]">Prompt engineering, agent design, confidence frameworks, production deployment</p>
-                    </div>
-                    <div class="glass-card p-6">
-                        <p class="text-sm font-medium text-[var(--accent)] mb-2">Airtable Design</p>
-                        <p class="text-sm text-[var(--text-secondary)]">Interface design, automation workflows, statistical dashboards</p>
-                    </div>
-                    <div class="glass-card p-6">
-                        <p class="text-sm font-medium text-[var(--accent)] mb-2">Strategic Thinking</p>
-                        <p class="text-sm text-[var(--text-secondary)]">Identifying systemic inefficiencies, proactive solutions, product viability assessment</p>
-                    </div>
-                    <div class="glass-card p-6">
-                        <p class="text-sm font-medium text-[var(--accent)] mb-2">Personal Resilience</p>
-                        <p class="text-sm text-[var(--text-secondary)]">Stabilised mental health through challenging personal circumstances—enabling all other work</p>
+                <div class="glass-card p-8 reveal">
+                    <p class="label mb-6">Established Strengths</p>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="w-2 h-2 rounded-full bg-[var(--text-tertiary)]"></div>
+                                <p class="text-lg font-medium text-[var(--text-secondary)]">Problem Solving</p>
+                            </div>
+                            <p class="text-sm text-[var(--text-tertiary)] ml-5">Complex licensing resolution, crisis management, technical troubleshooting</p>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="w-2 h-2 rounded-full bg-[var(--text-tertiary)]"></div>
+                                <p class="text-lg font-medium text-[var(--text-secondary)]">Technical Analysis</p>
+                            </div>
+                            <p class="text-sm text-[var(--text-tertiary)] ml-5">Deep product knowledge, infrastructure understanding, system diagnostics</p>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-3 mb-2">
+                                <div class="w-2 h-2 rounded-full bg-[var(--text-tertiary)]"></div>
+                                <p class="text-lg font-medium text-[var(--text-secondary)]">Customer Communication</p>
+                            </div>
+                            <p class="text-sm text-[var(--text-tertiary)] ml-5">Complex case resolution via calls, technical documentation, cross-team collaboration</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
     
-    <!-- KPI Progress -->
+    <!-- KPI Progress - Honest Assessment -->
     <section class="section-gradient px-6">
-        <div class="max-w-5xl mx-auto">
+        <div class="max-w-6xl mx-auto">
             <div class="section-header reveal">
                 <p class="label mb-4">Metrics</p>
                 <h2 class="display-lg">KPI Progress</h2>
+                <p class="body-md mt-4">Honest assessment based on 5 distinct KPI domains spanning 2-3 typical full-time roles</p>
             </div>
             
-            <div class="space-y-8 reveal">
-                <div>
-                    <div class="flex justify-between mb-3">
-                        <span class="text-sm">Licensing Systems Support</span>
-                        <span class="text-sm font-medium text-[var(--accent)]">100%</span>
+            <div class="space-y-6 reveal">
+                <div class="glass-card p-6">
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-base font-medium">AI and MCP Strategy and Support</span>
+                        <span class="text-sm font-medium px-3 py-1 rounded-full bg-[#34c759]/20 text-[#34c759]">Exceeded</span>
                     </div>
                     <div class="progress-track">
                         <div class="progress-fill" style="width: 0%" data-width="100"></div>
                     </div>
-                    <p class="text-xs text-[var(--text-tertiary)] mt-2">Complex Thales cases, quarterly reporting, emergency licences, AI automation</p>
+                    <p class="text-sm text-[var(--text-secondary)] mt-3 leading-relaxed">Prophet vision complete and endorsed by Boaz Brudner. Tiger Team created and leading. 5 Copilot tools built. W3F Denver strategy sessions as CS representative.</p>
                 </div>
                 
-                <div>
-                    <div class="flex justify-between mb-3">
-                        <span class="text-sm">Activation & Onboarding</span>
-                        <span class="text-sm font-medium text-[var(--accent)]">95%</span>
-                    </div>
-                    <div class="progress-track">
-                        <div class="progress-fill" style="width: 0%" data-width="95"></div>
-                    </div>
-                    <p class="text-xs text-[var(--text-tertiary)] mt-2">Airtable system built, 215 cases handled</p>
-                </div>
-                
-                <div>
-                    <div class="flex justify-between mb-3">
-                        <span class="text-sm">AI & MCP Strategy</span>
-                        <span class="text-sm font-medium text-[var(--accent)]">90%</span>
+                <div class="glass-card p-6">
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-base font-medium">Support for Existing Licensing Systems</span>
+                        <span class="text-sm font-medium px-3 py-1 rounded-full bg-[var(--accent)]/20 text-[var(--accent)]">Strong</span>
                     </div>
                     <div class="progress-track">
                         <div class="progress-fill" style="width: 0%" data-width="90"></div>
                     </div>
-                    <p class="text-xs text-[var(--text-tertiary)] mt-2">Prophet vision complete, Tiger Team leading, tools built</p>
+                    <p class="text-sm text-[var(--text-secondary)] mt-3 leading-relaxed">Complex Thales cases handled (Severn Trent, Tideway, Artelia crisis). Quarterly reporting implemented. Routine work delegated to team.</p>
                 </div>
                 
-                <div>
-                    <div class="flex justify-between mb-3">
-                        <span class="text-sm">Support & Documentation</span>
-                        <span class="text-sm font-medium text-[var(--accent)]">100%</span>
+                <div class="glass-card p-6">
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-base font-medium">Activation and On-Boarding</span>
+                        <span class="text-sm font-medium px-3 py-1 rounded-full bg-[var(--accent)]/20 text-[var(--accent)]">Strong</span>
                     </div>
                     <div class="progress-track">
-                        <div class="progress-fill" style="width: 0%" data-width="100"></div>
+                        <div class="progress-fill" style="width: 0%" data-width="85"></div>
                     </div>
-                    <p class="text-xs text-[var(--text-tertiary)] mt-2">9 KCS articles, complex case support</p>
+                    <p class="text-sm text-[var(--text-secondary)] mt-3 leading-relaxed">Airtable system built for 16 global specialists. 215 cases handled. Focus reduced since October due to competing priorities.</p>
                 </div>
                 
-                <div>
-                    <div class="flex justify-between mb-3">
-                        <span class="text-sm">ICM Live Training</span>
-                        <span class="text-sm font-medium text-[var(--text-tertiary)]">75%</span>
+                <div class="glass-card p-6">
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-base font-medium">Senior IT Support Engineer</span>
+                        <span class="text-sm font-medium px-3 py-1 rounded-full bg-[var(--text-tertiary)]/20 text-[var(--text-secondary)]">Maintained</span>
                     </div>
                     <div class="progress-track">
-                        <div class="progress-fill" style="width: 0%" data-width="75"></div>
+                        <div class="progress-fill" style="width: 0%" data-width="80"></div>
                     </div>
-                    <p class="text-xs text-[var(--text-tertiary)] mt-2">20+ videos produced, deliberately deprioritised</p>
+                    <p class="text-sm text-[var(--text-secondary)] mt-3 leading-relaxed">Transitioned routine work to team. Retained complex/escalated cases requiring senior expertise. Internal support maintained.</p>
+                </div>
+                
+                <div class="glass-card p-6">
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-base font-medium">Lead ICM Live Support</span>
+                        <span class="text-sm font-medium px-3 py-1 rounded-full bg-[#ff9500]/20 text-[#ff9500]">Deprioritized</span>
+                    </div>
+                    <div class="progress-track">
+                        <div class="progress-fill" style="width: 0%" data-width="50"></div>
+                    </div>
+                    <p class="text-sm text-[var(--text-secondary)] mt-3 leading-relaxed">20+ training videos produced but not published. Strategic recommendation: pivot to Exchange/Prophet. Product viability uncertain.</p>
                 </div>
             </div>
         </div>
     </section>
     
-    <!-- Plaudits -->
-    <section class="section-gradient-alt px-6" id="plaudits">
-        <div class="max-w-5xl mx-auto">
+    <!-- KCS Articles -->
+    <section class="section-gradient-alt px-6" id="kcs">
+        <div class="max-w-6xl mx-auto">
             <div class="section-header reveal">
-                <p class="label mb-4">Feedback</p>
-                <h2 class="display-lg">Recognition</h2>
+                <p class="label mb-4">Documentation</p>
+                <h2 class="display-lg">KCS Articles</h2>
             </div>
             
-            <div class="grid md:grid-cols-2 gap-6">
-                <div class="plaudit-card glass-card p-8 reveal">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="avatar accent">GC</div>
+            <div class="glass-card p-8 reveal">
+                <p class="body-md mb-6">9 knowledge base articles authored addressing complex technical issues:</p>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="p-4 rounded-xl bg-[var(--bg-tertiary)]">
+                        <p class="text-sm text-[var(--text-primary)]">Simulations Interrupted on Shared PCs</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-[var(--bg-tertiary)]">
+                        <p class="text-sm text-[var(--text-primary)]">Service Account Impersonation Failures</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-[var(--bg-tertiary)]">
+                        <p class="text-sm text-[var(--text-primary)]">Hybrid AD/Azure Workstation Access</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-[var(--bg-tertiary)]">
+                        <p class="text-sm text-[var(--text-primary)]">2D Simulation GPU Requirements</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-[var(--bg-tertiary)]">
+                        <p class="text-sm text-[var(--text-primary)]">Concurrent Simulations Best Practices</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-[var(--bg-tertiary)]">
+                        <p class="text-sm text-[var(--text-primary)]">Results .tmp File Issues</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-[var(--bg-tertiary)]">
+                        <p class="text-sm text-[var(--text-primary)]">Timezone Handling in TSDs</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-[var(--bg-tertiary)]">
+                        <p class="text-sm text-[var(--text-primary)]">Cloud Upload CRYPT_E Errors</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-[var(--bg-tertiary)]">
+                        <p class="text-sm text-[var(--text-primary)]">GPU Cards for 2D Simulations</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Recognition -->
+    <section class="section-gradient px-6" id="plaudits">
+        <div class="max-w-6xl mx-auto">
+            <div class="section-header reveal">
+                <p class="label mb-4">Recognition</p>
+                <h2 class="display-lg">Applause Awards</h2>
+            </div>
+            
+            <!-- Featured Applause - Mel Meng (most detailed) -->
+            <div class="glass-card p-10 mb-8 reveal accent-border-left">
+                <div class="text-4xl text-[var(--accent)] opacity-40 mb-4">"</div>
+                <p class="text-xl leading-relaxed text-[var(--text-primary)] mb-6">
+                    Daniel consistently goes above and beyond, investing significant time and energy into advancing AI initiatives. 
+                    His efforts have created a culture of learning and cross-pollination that benefits everyone.
+                </p>
+                <div class="flex items-center justify-between flex-wrap gap-4">
+                    <div class="flex items-center gap-3">
+                        <div class="avatar accent">MM</div>
                         <div>
-                            <p class="font-medium">Guillaume Chazal</p>
-                            <p class="text-xs text-[var(--text-tertiary)]">Artelia Account Team</p>
-                            <p class="text-xs text-[var(--accent)] mt-1">🏆 Applause Award</p>
+                            <p class="text-sm font-medium text-[var(--text-primary)]">Mel Meng</p>
+                            <p class="text-xs text-[var(--text-tertiary)]">AI Trailblazer and Collaboration Catalyst</p>
                         </div>
                     </div>
-                    <p class="quote text-sm">
-                        "Thanks again for your help with this critical case. ARTELIA was stuck with their token flex licences 
-                        migration and all ICM users were unable to work. Your quick actions not only solved the issue but also 
-                        prevented huge financial consequences."
+                    <div class="text-right">
+                        <p class="text-xs font-medium text-[var(--accent)]">Brave Award</p>
+                        <p class="text-xs text-[var(--text-tertiary)]">December 2025</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Other Applause Awards -->
+            <div class="grid md:grid-cols-2 gap-6 mb-12">
+                <div class="glass-card p-8 reveal accent-border-left">
+                    <div class="text-3xl text-[var(--accent)] opacity-40 mb-3">"</div>
+                    <p class="text-lg leading-relaxed text-[var(--text-primary)] mb-5">
+                        Your quick actions not only solved the issue but also prevented huge financial consequences.
                     </p>
+                    <div class="flex items-center justify-between flex-wrap gap-4">
+                        <div class="flex items-center gap-3">
+                            <div class="avatar accent">GC</div>
+                            <div>
+                                <p class="text-sm font-medium">Guillaume Chazal</p>
+                                <p class="text-xs text-[var(--text-tertiary)]">Artelia Licensing Crisis</p>
+                            </div>
+                        </div>
+                        <p class="text-xs text-[var(--accent)]">Mar 2025</p>
+                    </div>
                 </div>
                 
-                <div class="plaudit-card glass-card p-8 reveal">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="avatar accent">NH</div>
+                <div class="glass-card p-8 reveal accent-border-left">
+                    <div class="text-3xl text-[var(--accent)] opacity-40 mb-3">"</div>
+                    <p class="text-lg leading-relaxed text-[var(--text-primary)] mb-5">
+                        Recognition for Tiger Team leadership and Prophet technical vision development.
+                    </p>
+                    <div class="flex items-center justify-between flex-wrap gap-4">
+                        <div class="flex items-center gap-3">
+                            <div class="avatar accent">RD</div>
+                            <div>
+                                <p class="text-sm font-medium">Robert Dickinson</p>
+                                <p class="text-xs text-[var(--text-tertiary)]">Technical Excellence</p>
+                            </div>
+                        </div>
+                        <p class="text-xs text-[var(--accent)]">Ingenious · Aug 2025</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Stakeholder Feedback -->
+            <div class="section-header reveal">
+                <p class="label mb-4">Stakeholder Feedback</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-5 reveal">
+                <div class="glass-card p-6">
+                    <p class="text-base leading-relaxed text-[var(--text-primary)] mb-4">
+                        "This is exactly the proactive approach we need."
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="avatar">NH</div>
                         <div>
-                            <p class="font-medium">Nicole Hathorn</p>
-                            <p class="text-xs text-[var(--text-tertiary)]">CS Leadership</p>
+                            <p class="text-sm font-medium">Nicole Hathorn</p>
+                            <p class="text-xs text-[var(--text-tertiary)]">Licensing Risk Mitigation</p>
                         </div>
                     </div>
-                    <p class="quote text-sm">
-                        "That would be amazing! This is exactly the proactive approach we need."
-                    </p>
-                    <p class="text-xs text-[var(--text-tertiary)] mt-4">Re: ICMLive Licence Monitoring Tool</p>
                 </div>
                 
-                <div class="plaudit-card glass-card p-8 reveal">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="avatar accent">MG</div>
+                <div class="glass-card p-6">
+                    <p class="text-base leading-relaxed text-[var(--text-primary)] mb-4">
+                        "This all sounds perfect... It's exactly what we needed to avoid surprises."
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="avatar">MG</div>
                         <div>
-                            <p class="font-medium">Melissa Guezmir</p>
-                            <p class="text-xs text-[var(--text-tertiary)]">Customer Success</p>
+                            <p class="text-sm font-medium">Melissa Guezmir</p>
+                            <p class="text-xs text-[var(--text-tertiary)]">PV Thales Plan</p>
                         </div>
                     </div>
-                    <p class="quote text-sm">
-                        "This all sounds perfect. Thank you for your efforts. It's exactly what we needed to avoid surprises."
-                    </p>
-                    <p class="text-xs text-[var(--text-tertiary)] mt-4">Re: Thales Licence Risk Mitigation</p>
                 </div>
                 
-                <div class="plaudit-card glass-card p-8 reveal">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="avatar accent">RF</div>
+                <div class="glass-card p-6">
+                    <p class="text-base leading-relaxed text-[var(--text-primary)] mb-4">
+                        "I appreciate your frankness on the current status of ICM Live... Your input helps us shape the next steps."
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="avatar">VK</div>
                         <div>
-                            <p class="font-medium">Ryan Farmer</p>
-                            <p class="text-xs text-[var(--text-tertiary)]">Mott MacDonald</p>
+                            <p class="text-sm font-medium">Venu Kandiah</p>
+                            <p class="text-xs text-[var(--text-tertiary)]">Omaha RTC-DSS Evaluation</p>
                         </div>
                     </div>
-                    <p class="quote text-sm">
+                </div>
+                
+                <div class="glass-card p-6">
+                    <p class="text-base leading-relaxed text-[var(--text-primary)] mb-4">
                         "Amazing thank you :) This will help us move forward with the tool approval."
                     </p>
-                    <p class="text-xs text-[var(--text-tertiary)] mt-4">Re: Automated Surface Water Separation Tool</p>
-                </div>
-                
-                <div class="plaudit-card glass-card p-8 reveal">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="avatar accent">VK</div>
+                    <div class="flex items-center gap-3">
+                        <div class="avatar">RF</div>
                         <div>
-                            <p class="font-medium">Venu Kandiah</p>
-                            <p class="text-xs text-[var(--text-tertiary)]">Strategic Accounts</p>
-                        </div>
-                    </div>
-                    <p class="quote text-sm">
-                        "I appreciate your frankness on the current status of ICM Live and capabilities. Your input helps us 
-                        shape the next steps."
-                    </p>
-                    <p class="text-xs text-[var(--text-tertiary)] mt-4">Re: Omaha RTC-DSS Evaluation</p>
-                </div>
-                
-                <div class="plaudit-card glass-card p-8 reveal">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="avatar">⭐</div>
-                        <div>
-                            <p class="font-medium">Customer CSAT</p>
-                            <p class="text-xs text-[var(--text-tertiary)]">Multiple Responses</p>
-                        </div>
-                    </div>
-                    <div class="space-y-4">
-                        <div>
-                            <p class="text-xs text-[var(--accent)]">Johnathan Hubbard</p>
-                            <p class="quote text-sm">"Was patient and explained things as we went along."</p>
-                        </div>
-                        <div>
-                            <p class="text-xs text-[var(--accent)]">Guillermo Alonso Navajo</p>
-                            <p class="quote text-sm">"Provided extra documentation for my problem."</p>
+                            <p class="text-sm font-medium">Ryan Farmer</p>
+                            <p class="text-xs text-[var(--text-tertiary)]">Mott MacDonald · Automation Tool</p>
                         </div>
                     </div>
                 </div>
@@ -1126,8 +1271,8 @@
     </section>
     
     <!-- ORBIT -->
-    <section class="section-gradient px-6">
-        <div class="max-w-5xl mx-auto">
+    <section class="section-gradient-alt px-6">
+        <div class="max-w-6xl mx-auto">
             <div class="section-header reveal">
                 <p class="label mb-4">Culture</p>
                 <h2 class="display-lg">ORBIT Codes</h2>
@@ -1136,22 +1281,30 @@
             <div class="grid md:grid-cols-2 gap-6 mb-8">
                 <div class="orbit-card best glass-card p-8 reveal">
                     <p class="label text-[var(--accent)] mb-2">Exhibit Best</p>
-                    <h3 class="text-3xl font-semibold gradient-text mb-4">Ingenious</h3>
-                    <p class="text-sm text-[var(--text-tertiary)] mb-6">We reimagine what is possible</p>
-                    <p class="text-sm text-[var(--text-secondary)]">
-                        Novel solutions through emerging technologies. ICM Prophet represents entirely new product paradigm; 
-                        Airtable created structure where none existed; AI tools across multiple domains; security vulnerability 
-                        discovery through AI analysis.
+                    <h3 class="text-3xl font-semibold gradient-text mb-3">Ingenious</h3>
+                    <p class="text-base text-[var(--text-tertiary)] mb-5">We reimagine what is possible</p>
+                    <div class="p-4 rounded-lg bg-[var(--bg-tertiary)] mb-6">
+                        <p class="text-sm font-medium text-[var(--accent)] mb-1">Great Behavior</p>
+                        <p class="text-sm text-[var(--text-secondary)]">"Thinks creatively by introducing new ideas, methods, or products"</p>
+                    </div>
+                    <p class="text-base text-[var(--text-secondary)] leading-relaxed">
+                        ICM Prophet represents entirely new product paradigm for AI-powered hydraulic modelling. 
+                        Airtable infrastructure created structure where none existed. Multiple AI tools built 
+                        across CS domains.
                     </p>
                 </div>
                 
                 <div class="orbit-card best glass-card p-8 reveal">
                     <p class="label text-[var(--accent)] mb-2">Exhibit Best</p>
-                    <h3 class="text-3xl font-semibold gradient-text mb-4">Relentless</h3>
-                    <p class="text-sm text-[var(--text-tertiary)] mb-6">We're unstoppable in pursuit of results</p>
-                    <p class="text-sm text-[var(--text-secondary)]">
-                        Results pursued with focus despite obstacles. Prophet developed despite limited buy-in; persisted with 
-                        licensing improvements; quarterly reporting before crises; complete Airtable system serving 16 global specialists.
+                    <h3 class="text-3xl font-semibold gradient-text mb-3">Relentless</h3>
+                    <p class="text-base text-[var(--text-tertiary)] mb-5">We're unstoppable in the pursuit of results</p>
+                    <div class="p-4 rounded-lg bg-[var(--bg-tertiary)] mb-6">
+                        <p class="text-sm font-medium text-[var(--accent)] mb-1">Great Behavior</p>
+                        <p class="text-sm text-[var(--text-secondary)]">"Pursues results with focus and consistent effort despite obstacles or setbacks"</p>
+                    </div>
+                    <p class="text-base text-[var(--text-secondary)] leading-relaxed">
+                        Prophet developed despite limited product leadership buy-in. Persisted with licensing improvements 
+                        despite internal friction. Proactively built quarterly reporting before crises occurred.
                     </p>
                 </div>
             </div>
@@ -1159,33 +1312,42 @@
             <div class="grid md:grid-cols-2 gap-6">
                 <div class="orbit-card growth glass-card p-8 reveal">
                     <p class="label mb-2">Growth Area</p>
-                    <h3 class="text-2xl font-semibold text-[var(--text-tertiary)] mb-4">Optimistic</h3>
-                    <p class="text-sm text-[var(--text-tertiary)] mb-4">We believe in better</p>
-                    <p class="text-sm text-[var(--text-secondary)] mb-6">
+                    <h3 class="text-2xl font-semibold text-[var(--text-tertiary)] mb-3">Optimistic</h3>
+                    <p class="text-base text-[var(--text-tertiary)] mb-5">We believe in better</p>
+                    <div class="p-4 rounded-lg bg-[var(--bg-tertiary)] mb-5">
+                        <p class="text-sm text-[var(--text-tertiary)] mb-1">Not-yet-great Behavior</p>
+                        <p class="text-sm text-[var(--text-secondary)]">"Fails to communicate and stay aligned with shared goals"</p>
+                    </div>
+                    <p class="text-base text-[var(--text-secondary)] leading-relaxed mb-6">
                         Struggled to maintain optimism when faced with organisational resistance to AI transformation. 
-                        Gap between possible and ready-to-implement created frustration.
+                        Gap between what's possible and what's ready-to-implement created frustration.
                     </p>
-                    <div class="p-4 rounded-xl bg-[var(--bg-tertiary)]">
-                        <p class="text-xs text-[var(--accent)] mb-2">Commitment</p>
-                        <p class="text-xs text-[var(--text-secondary)]">
-                            Focus on solutions within my control whilst building strategic capabilities. Share progress 
-                            more frequently.
+                    <div class="p-5 rounded-xl bg-[var(--bg-tertiary)]">
+                        <p class="text-sm font-medium text-[var(--accent)] mb-2">Commitment</p>
+                        <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
+                            Focus on solutions within CS control whilst building strategic capabilities. Share progress 
+                            more frequently to build optimism in others.
                         </p>
                     </div>
                 </div>
                 
                 <div class="orbit-card growth glass-card p-8 reveal">
                     <p class="label mb-2">Growth Area</p>
-                    <h3 class="text-2xl font-semibold text-[var(--text-tertiary)] mb-4">Trusted</h3>
-                    <p class="text-sm text-[var(--text-tertiary)] mb-4">We earn trust through every interaction</p>
-                    <p class="text-sm text-[var(--text-secondary)] mb-6">
-                        Struggled with consistent deadline delivery. ICM Live training, case volume, and AI strategy docs 
-                        slipped—though with legitimate business reasons.
+                    <h3 class="text-2xl font-semibold text-[var(--text-tertiary)] mb-3">Trusted</h3>
+                    <p class="text-base text-[var(--text-tertiary)] mb-5">We earn and build trust through every interaction</p>
+                    <div class="p-4 rounded-lg bg-[var(--bg-tertiary)] mb-5">
+                        <p class="text-sm text-[var(--text-tertiary)] mb-1">Not-yet-great Behavior</p>
+                        <p class="text-sm text-[var(--text-secondary)]">"Does not proactively communicate with key stakeholders when schedules or deliverables change"</p>
+                    </div>
+                    <p class="text-base text-[var(--text-secondary)] leading-relaxed mb-6">
+                        Struggled with consistent deadline delivery on deprioritised tasks. ICM Live training and 
+                        AI strategy docs slipped—though with legitimate business reasons.
                     </p>
-                    <div class="p-4 rounded-xl bg-[var(--bg-tertiary)]">
-                        <p class="text-xs text-[var(--accent)] mb-2">Commitment</p>
-                        <p class="text-xs text-[var(--text-secondary)]">
-                            Rigorous project tracking. Proactive timeline communication. Formally document priority shifts.
+                    <div class="p-5 rounded-xl bg-[var(--bg-tertiary)]">
+                        <p class="text-sm font-medium text-[var(--accent)] mb-2">Commitment</p>
+                        <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
+                            Rigorous project tracking. Proactive timeline communication before deadlines pass. 
+                            Formally document priority shifts with stakeholders.
                         </p>
                     </div>
                 </div>
@@ -1194,13 +1356,13 @@
     </section>
     
     <!-- Closing -->
-    <section class="section-gradient-alt px-6">
+    <section class="section-gradient px-6">
         <div class="max-w-3xl mx-auto text-center reveal">
             <p class="label mb-6">Looking Forward</p>
-            <h2 class="display-lg mb-8">FY27</h2>
+            <h2 class="display-lg mb-8">2026</h2>
             <p class="body-lg mb-8">
-                FY26 focused on foundational investments: Airtable serves 16 specialists, ICM Prophet provides complete 
-                product strategy, proactive licensing prevents work stoppages. AI tools position us for FY27's vision 
+                2025 focused on foundational investments: Airtable serves 16 specialists, ICM Prophet provides complete 
+                product strategy, proactive licensing prevents work stoppages. AI tools position us for 2026's vision 
                 of integrating data sources.
             </p>
             <p class="body-md mb-16">
@@ -1216,14 +1378,30 @@
     </section>
     
     <!-- Footer -->
-    <footer class="py-12 px-6">
-        <div class="max-w-5xl mx-auto text-center">
+    <footer class="py-20 px-6">
+        <div class="max-w-6xl mx-auto text-center">
             <p class="text-sm text-[var(--text-tertiary)]">Daniel Moreira · Systems Engineer · InfoWorks ICM</p>
-            <p class="text-xs text-[var(--text-tertiary)] mt-2">FY26 Calibration Review · Autodesk</p>
+            <p class="text-xs text-[var(--text-tertiary)] mt-2">2025 Calibration Review · Autodesk</p>
         </div>
     </footer>
     
     <script>
+        // Configuration constants
+        const ANIMATION = {
+            counterDuration: 2000,
+            barDuration: 800,
+            barDelay: 50,
+            progressDelay: 200
+        };
+        
+        const CHART_CONFIG = {
+            width: 900,
+            height: 280,
+            margin: { top: 30, right: 20, bottom: 40, left: 40 }
+        };
+        
+        const CHART_FONT = "'Satoshi', sans-serif";
+        
         // Scroll Progress
         window.addEventListener('scroll', () => {
             const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
@@ -1241,189 +1419,211 @@
             });
         });
         
-        // Reveal on scroll
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-        
-        document.querySelectorAll('.reveal, .timeline-item, .animate-in').forEach(el => {
-            revealObserver.observe(el);
-        });
-        
         // Animated counters
         function animateCounter(el) {
             const target = parseInt(el.dataset.target);
-            const duration = 2000;
             const start = performance.now();
             
             function update(now) {
-                const progress = Math.min((now - start) / duration, 1);
+                const progress = Math.min((now - start) / ANIMATION.counterDuration, 1);
                 const eased = 1 - Math.pow(1 - progress, 4);
                 el.textContent = Math.floor(eased * target);
-                if (progress < 1) requestAnimationFrame(update);
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                }
             }
             
             requestAnimationFrame(update);
         }
         
-        const counterObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && entry.target.textContent === '0') {
-                    animateCounter(entry.target);
-                }
-            });
-        });
-        
-        document.querySelectorAll('[data-target]').forEach(el => counterObserver.observe(el));
-        
         // Initiative toggle
         function toggleInitiative(card) {
             card.classList.toggle('expanded');
             const icon = card.querySelector('.expand-icon');
-            icon.textContent = card.classList.contains('expanded') ? '+' : '+';
+            icon.textContent = card.classList.contains('expanded') ? '−' : '+';
         }
         
-        // Progress bars
-        const progressObserver = new IntersectionObserver((entries) => {
+        // Calendar bar chart
+        function createCalendarChart() {
+            const container = document.getElementById('calendarChart');
+            if (!container || container.querySelector('svg')) return;
+            
+            const monthlyData = [
+                { month: 'Jan', events: 117, isPeak: true },
+                { month: 'Feb', events: 87, isPeak: false },
+                { month: 'Mar', events: 60, isPeak: false },
+                { month: 'Apr', events: 76, isPeak: false },
+                { month: 'May', events: 82, isPeak: false },
+                { month: 'Jun', events: 77, isPeak: false },
+                { month: 'Jul', events: 93, isPeak: true },
+                { month: 'Aug', events: 68, isPeak: false },
+                { month: 'Sep', events: 77, isPeak: false },
+                { month: 'Oct', events: 100, isPeak: true },
+                { month: 'Nov', events: 79, isPeak: false },
+                { month: 'Dec', events: 67, isPeak: false }
+            ];
+            
+            const { width, height, margin } = CHART_CONFIG;
+            const chartWidth = width - margin.left - margin.right;
+            const chartHeight = height - margin.top - margin.bottom;
+            
+            const svg = d3.select('#calendarChart')
+                .append('svg')
+                .attr('viewBox', `0 0 ${width} ${height}`)
+                .attr('preserveAspectRatio', 'xMidYMid meet')
+                .style('width', '100%')
+                .style('height', 'auto');
+            
+            const chart = svg.append('g')
+                .attr('transform', `translate(${margin.left},${margin.top})`);
+            
+            const xScale = d3.scaleBand()
+                .domain(monthlyData.map(d => d.month))
+                .range([0, chartWidth])
+                .padding(0.3);
+            
+            const yScale = d3.scaleLinear()
+                .domain([0, 130])
+                .range([chartHeight, 0]);
+            
+            // X axis
+            chart.append('g')
+                .attr('transform', `translate(0,${chartHeight})`)
+                .call(d3.axisBottom(xScale).tickSize(0))
+                .selectAll('text')
+                .attr('fill', '#a1a1a6')
+                .attr('font-size', '11px')
+                .attr('font-weight', '500')
+                .attr('font-family', CHART_FONT);
+            
+            chart.selectAll('.domain').attr('stroke', 'rgba(255,255,255,0.1)');
+            
+            // Y axis
+            chart.append('g')
+                .call(d3.axisLeft(yScale).ticks(5).tickSize(-chartWidth))
+                .selectAll('text')
+                .attr('fill', '#8e8e93')
+                .attr('font-size', '10px')
+                .attr('font-weight', '500')
+                .attr('font-family', CHART_FONT);
+            
+            chart.selectAll('.tick line').attr('stroke', 'rgba(255,255,255,0.08)');
+            chart.select('.domain').remove();
+            
+            // Right border
+            chart.append('line')
+                .attr('x1', chartWidth)
+                .attr('y1', 0)
+                .attr('x2', chartWidth)
+                .attr('y2', chartHeight)
+                .attr('stroke', 'rgba(255,255,255,0.1)');
+            
+            // Define glow filter
+            const defs = svg.append('defs');
+            const filter = defs.append('filter')
+                .attr('id', 'glow')
+                .attr('x', '-50%')
+                .attr('y', '-50%')
+                .attr('width', '200%')
+                .attr('height', '200%');
+            filter.append('feGaussianBlur')
+                .attr('stdDeviation', '4')
+                .attr('result', 'coloredBlur');
+            const feMerge = filter.append('feMerge');
+            feMerge.append('feMergeNode').attr('in', 'coloredBlur');
+            feMerge.append('feMergeNode').attr('in', 'SourceGraphic');
+            
+            // Bars
+            chart.selectAll('.bar')
+                .data(monthlyData)
+                .enter()
+                .append('rect')
+                .attr('class', 'bar')
+                .attr('x', d => xScale(d.month))
+                .attr('y', chartHeight)
+                .attr('width', xScale.bandwidth())
+                .attr('height', 0)
+                .attr('rx', 4)
+                .attr('fill', d => d.isPeak ? '#00a693' : '#2d2d2f')
+                .attr('filter', d => d.isPeak ? 'url(#glow)' : 'none')
+                .transition()
+                .duration(ANIMATION.barDuration)
+                .delay((d, i) => i * ANIMATION.barDelay)
+                .attr('y', d => yScale(d.events))
+                .attr('height', d => chartHeight - yScale(d.events));
+            
+            // Peak labels
+            chart.selectAll('.label')
+                .data(monthlyData.filter(d => d.isPeak))
+                .enter()
+                .append('text')
+                .attr('x', d => xScale(d.month) + xScale.bandwidth() / 2)
+                .attr('y', d => yScale(d.events) - 8)
+                .attr('text-anchor', 'middle')
+                .attr('fill', '#00a693')
+                .attr('font-size', '11px')
+                .attr('font-weight', '500')
+                .attr('font-family', CHART_FONT)
+                .text(d => d.events);
+        }
+        
+        // Unified IntersectionObserver for all scroll-triggered effects
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                const el = entry.target;
+                
+                // Reveal animations
+                if (el.classList.contains('reveal') || el.classList.contains('timeline-item') || el.classList.contains('animate-in')) {
+                    el.classList.add('visible');
+                }
+                
+                // Counter animations
+                if (el.dataset.target && el.textContent === '0') {
+                    animateCounter(el);
+                }
+                
+                // Progress bar animations
+                if (el.classList.contains('progress-track')) {
+                    const fill = el.querySelector('.progress-fill');
+                    if (fill) {
+                        setTimeout(() => {
+                            fill.style.width = fill.dataset.width + '%';
+                        }, ANIMATION.progressDelay);
+                    }
+                }
+                
+                // Chart creation
+                if (el.id === 'calendarChart') {
+                    createCalendarChart();
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        // Register all observable elements
+        document.querySelectorAll('.reveal, .timeline-item, .animate-in, [data-target], .progress-track, #calendarChart')
+            .forEach(el => observer.observe(el));
+        
+        // Navigation active state tracking
+        const navObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    const fill = entry.target.querySelector('.progress-fill');
-                    setTimeout(() => {
-                        fill.style.width = fill.dataset.width + '%';
-                    }, 200);
-                }
-            });
-        });
-        
-        document.querySelectorAll('.progress-track').forEach(el => progressObserver.observe(el));
-        
-        // Skills chart
-        const ctx = document.getElementById('skillsChart').getContext('2d');
-        new Chart(ctx, {
-            type: 'radar',
-            data: {
-                labels: ['AI/ML', 'Airtable', 'Strategy', 'Communication', 'Problem Solving', 'Leadership'],
-                datasets: [{
-                    label: 'Skills',
-                    data: [95, 85, 88, 75, 90, 82],
-                    backgroundColor: 'rgba(0, 113, 227, 0.1)',
-                    borderColor: 'rgba(0, 113, 227, 0.8)',
-                    pointBackgroundColor: '#0071e3',
-                    pointBorderColor: '#0071e3',
-                    pointRadius: 4,
-                    borderWidth: 2
-                }]
-            },
-            options: {
-                scales: {
-                    r: {
-                        beginAtZero: true,
-                        max: 100,
-                        ticks: { display: false },
-                        grid: { color: 'rgba(255, 255, 255, 0.05)' },
-                        angleLines: { color: 'rgba(255, 255, 255, 0.05)' },
-                        pointLabels: { 
-                            color: '#86868b', 
-                            font: { size: 11, family: 'Inter' }
+                    const id = entry.target.id;
+                    document.querySelectorAll('.nav-link').forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === '#' + id) {
+                            link.classList.add('active');
                         }
-                    }
-                },
-                plugins: { legend: { display: false } }
-            }
-        });
-        
-        // Calendar heatmap
-        function createHeatmap() {
-            const container = document.getElementById('calendarHeatmap');
-            if (container.querySelector('svg')) return;
-            
-            const width = Math.min(container.offsetWidth, 900);
-            const cellSize = 12;
-            const cellGap = 3;
-            const height = cellSize * 7 + cellGap * 8 + 60;
-            
-            const svg = d3.select('#calendarHeatmap')
-                .append('svg')
-                .attr('width', width)
-                .attr('height', height);
-            
-            const startDate = new Date(2024, 1, 1);
-            const endDate = new Date(2025, 0, 31);
-            const peakMonths = [2, 3, 7, 8, 10, 11];
-            
-            const activityData = {};
-            for (let d = new Date(startDate); d <= endDate; d.setDate(d.getDate() + 1)) {
-                const dateStr = d.toISOString().split('T')[0];
-                const month = d.getMonth();
-                const day = d.getDay();
-                
-                if (day === 0 || day === 6) {
-                    activityData[dateStr] = Math.random() < 0.3 ? Math.floor(Math.random() * 3) : 0;
-                } else {
-                    activityData[dateStr] = peakMonths.includes(month) 
-                        ? Math.floor(Math.random() * 8) + 5 
-                        : Math.floor(Math.random() * 6) + 2;
-                }
-            }
-            
-            const colorScale = d3.scaleSequential()
-                .domain([0, 12])
-                .interpolator(t => t === 0 ? '#1d1d1f' : d3.interpolateRgb('#2d2d2f', '#0071e3')(t));
-            
-            const weeks = d3.timeWeeks(startDate, endDate);
-            const monthLabels = [];
-            
-            weeks.forEach((weekStart, weekIndex) => {
-                for (let i = 0; i < 7; i++) {
-                    const day = new Date(weekStart);
-                    day.setDate(day.getDate() + i);
-                    
-                    if (day >= startDate && day <= endDate) {
-                        const dateStr = day.toISOString().split('T')[0];
-                        const activity = activityData[dateStr] || 0;
-                        
-                        if (day.getDate() === 1 || (weekIndex === 0 && i === 0)) {
-                            monthLabels.push({
-                                month: day.toLocaleDateString('en-US', { month: 'short' }),
-                                x: weekIndex * (cellSize + cellGap)
-                            });
-                        }
-                        
-                        svg.append('rect')
-                            .attr('class', 'heatmap-cell')
-                            .attr('x', weekIndex * (cellSize + cellGap))
-                            .attr('y', i * (cellSize + cellGap) + 30)
-                            .attr('width', cellSize)
-                            .attr('height', cellSize)
-                            .attr('rx', 3)
-                            .attr('fill', colorScale(activity));
-                    }
+                    });
                 }
             });
-            
-            monthLabels.forEach(label => {
-                svg.append('text')
-                    .attr('x', label.x)
-                    .attr('y', 18)
-                    .attr('fill', '#6e6e73')
-                    .attr('font-size', '10px')
-                    .attr('font-family', 'Inter')
-                    .text(label.month);
-            });
-        }
+        }, { threshold: 0.3, rootMargin: '-80px 0px -50% 0px' });
         
-        const heatmapObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) createHeatmap();
-            });
+        // Observe sections with IDs that match nav links
+        document.querySelectorAll('section[id]').forEach(section => {
+            navObserver.observe(section);
         });
-        
-        const heatmapEl = document.getElementById('calendarHeatmap');
-        if (heatmapEl) heatmapObserver.observe(heatmapEl);
     </script>
 </body>
 </html>
+
