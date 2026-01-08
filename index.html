@@ -633,6 +633,14 @@
             background: var(--text-tertiary);
         }
         
+        /* Hide all chart axis lines */
+        #calendarChart .domain,
+        #calendarChart .tick line {
+            display: none !important;
+            stroke: none !important;
+            opacity: 0 !important;
+        }
+        
     </style>
 </head>
 <body>
@@ -1622,8 +1630,6 @@
                 .attr('font-weight', '500')
                 .attr('font-family', CHART_FONT);
             
-            chart.selectAll('.domain').attr('stroke', 'none');
-            
             // Y axis
             chart.append('g')
                 .call(d3.axisLeft(yScale).ticks(5).tickSize(0))
@@ -1633,9 +1639,11 @@
                 .attr('font-weight', '500')
                 .attr('font-family', CHART_FONT);
             
-            // Remove all tick lines and domain
+            // Remove all axis lines (domains), tick lines, and any borders
+            chart.selectAll('.domain').remove();
             chart.selectAll('.tick line').remove();
-            chart.select('.domain').remove();
+            svg.selectAll('.domain').remove();
+            svg.selectAll('.tick line').remove();
             
             // Define glow filter
             const defs = svg.append('defs');
