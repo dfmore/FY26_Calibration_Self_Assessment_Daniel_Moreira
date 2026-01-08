@@ -410,7 +410,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s var(--ease-out-expo);
+            transition: background 0.3s var(--ease-out-expo), color 0.3s var(--ease-out-expo);
             font-size: 1.125rem;
             font-weight: 300;
             color: var(--text-secondary);
@@ -421,11 +421,10 @@
             background: var(--accent);
             color: white;
             border-color: var(--accent);
-            transform: scale(1.05);
         }
         
         .initiative-card.expanded .expand-icon {
-            transform: rotate(45deg) scale(1.05);
+            transform: rotate(45deg);
         }
         
         /* Progress bars */
