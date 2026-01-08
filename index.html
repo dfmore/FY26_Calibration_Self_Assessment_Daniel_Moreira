@@ -1647,14 +1647,24 @@
                 .attr('font-family', CHART_FONT);
             
             // Force remove all axis lines (domains), tick lines, and any borders
-            chart.selectAll('.domain').remove();
-            chart.selectAll('.tick line').remove();
-            svg.selectAll('.domain').remove();
-            svg.selectAll('.tick line').remove();
+            function removeAllLines() {
+                chart.selectAll('.domain').remove();
+                chart.selectAll('.tick line').remove();
+                svg.selectAll('.domain').remove();
+                svg.selectAll('.tick line').remove();
+                chart.selectAll('path.domain').remove();
+                svg.selectAll('path.domain').remove();
+                chart.selectAll('line').filter(function() {
+                    return this.getAttribute('class') === null || this.getAttribute('class').includes('tick');
+                }).remove();
+            }
             
-            // Also remove any paths that might be axis lines
-            chart.selectAll('path.domain').remove();
-            svg.selectAll('path.domain').remove();
+            // Remove immediately
+            removeAllLines();
+            
+            // Remove again after a short delay to catch any lines created during transitions
+            setTimeout(removeAllLines, 100);
+            setTimeout(removeAllLines, 1000);
             
             // Define glow filter
             const defs = svg.append('defs');
