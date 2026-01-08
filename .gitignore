@@ -2,3 +2,6 @@
 *.md
 *.ics
 
+# Allow social-preview.png
+!social-preview.png
+
