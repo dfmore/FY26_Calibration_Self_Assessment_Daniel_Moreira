@@ -6,26 +6,24 @@
     <title>2025 Review — Daniel Moreira</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://d3js.org/d3.v7.min.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,600,700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --accent: #0071e3;
-            --accent-hover: #0077ED;
+            --accent: #00a693;
+            --accent-hover: #00bfa9;
             --bg-primary: #000000;
             --bg-secondary: #0d0d0d;
             --bg-tertiary: #1d1d1f;
             --bg-card: rgba(28, 28, 30, 0.8);
             --bg-glass: rgba(255, 255, 255, 0.03);
             --text-primary: #f5f5f7;
-            --text-secondary: #86868b;
-            --text-tertiary: #6e6e73;
+            --text-secondary: #a1a1a6;
+            --text-tertiary: #8e8e93;
             --border-subtle: rgba(255, 255, 255, 0.08);
             --border-light: rgba(255, 255, 255, 0.12);
             /* Gradients */
-            --gradient-accent: linear-gradient(135deg, #0071e3 0%, #34c759 100%);
-            --gradient-accent-blue: linear-gradient(135deg, var(--accent) 0%, #5ac8fa 100%);
+            --gradient-accent: linear-gradient(135deg, #00a693 0%, #00d4aa 100%);
+            --gradient-accent-blue: linear-gradient(135deg, var(--accent) 0%, #4dd0c4 100%);
             --gradient-stat: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
         }
         
@@ -35,16 +33,27 @@
         }
         
         body {
-            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.5;
             overflow-x: hidden;
         }
         
+        /* Background grain texture */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.025;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
         /* Gradient backgrounds */
         .hero-gradient {
-            background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0, 113, 227, 0.15), transparent);
+            background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0, 166, 147, 0.2), transparent);
         }
         
         .section-gradient {
@@ -74,8 +83,6 @@
         
         .glass-card:hover {
             border-color: var(--border-light);
-            transform: translateY(-2px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
         
         /* Typography - Normalized scale */
@@ -110,12 +117,12 @@
         .body-md {
             font-size: 0.9375rem;
             font-weight: 400;
-            line-height: 1.6;
+            line-height: 1.7;
             color: var(--text-secondary);
         }
         
         .label {
-            font-size: 0.8125rem;
+            font-size: 0.875rem;
             font-weight: 500;
             letter-spacing: 0.02em;
             text-transform: uppercase;
@@ -128,6 +135,21 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+        }
+        
+        /* Shimmer animation for AI Era headline */
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+        
+        .gradient-text.shimmer {
+            background: linear-gradient(90deg, #00a693 0%, #00d4aa 25%, #4dd0c4 50%, #00d4aa 75%, #00a693 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 4s ease-in-out infinite;
         }
         
         /* Navigation */
@@ -168,13 +190,19 @@
             color: var(--text-primary);
         }
         
+        .nav-link.active {
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 8px;
+        }
+        
         /* Scroll indicator */
         .scroll-indicator {
             position: fixed;
             top: 0;
             left: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--accent) 0%, #34c759 100%);
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent) 0%, #00d4aa 100%);
             z-index: 1001;
             transition: width 0.1s ease;
         }
@@ -203,13 +231,16 @@
             position: relative;
             padding-left: 32px;
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
         
         .timeline-item.visible {
             opacity: 1;
-            transform: translateY(0);
+        }
+        
+        @keyframes pulse-dot {
+            0%, 100% { box-shadow: 0 0 20px rgba(0, 166, 147, 0.5); }
+            50% { box-shadow: 0 0 30px rgba(0, 166, 147, 0.8); }
         }
         
         .timeline-item::before {
@@ -221,7 +252,8 @@
             height: 8px;
             background: var(--accent);
             border-radius: 50%;
-            box-shadow: 0 0 20px rgba(0, 113, 227, 0.5);
+            box-shadow: 0 0 20px rgba(0, 166, 147, 0.5);
+            animation: pulse-dot 3s ease-in-out infinite;
         }
         
         .timeline-item::after {
@@ -304,7 +336,7 @@
         
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, var(--accent) 0%, #34c759 100%);
+            background: linear-gradient(90deg, var(--accent) 0%, #00d4aa 100%);
             border-radius: 2px;
             transition: width 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
@@ -391,14 +423,12 @@
         }
         
         /* Animations */
-        @keyframes fadeInUp {
+        @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateY(40px);
             }
             to {
                 opacity: 1;
-                transform: translateY(0);
             }
         }
         
@@ -409,14 +439,14 @@
         
         .animate-in {
             opacity: 0;
-            animation: fadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+            animation: fadeIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
         }
         
-        .delay-100 { animation-delay: 0.1s; }
-        .delay-200 { animation-delay: 0.2s; }
-        .delay-300 { animation-delay: 0.3s; }
-        .delay-400 { animation-delay: 0.4s; }
-        .delay-500 { animation-delay: 0.5s; }
+        .delay-100 { animation-delay: 0.15s; }
+        .delay-200 { animation-delay: 0.3s; }
+        .delay-300 { animation-delay: 0.45s; }
+        .delay-400 { animation-delay: 0.6s; }
+        .delay-500 { animation-delay: 0.75s; }
         
         /* Utility classes */
         .accent-border-left {
@@ -439,18 +469,29 @@
         /* Scroll reveal */
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
         
         .reveal.visible {
             opacity: 1;
-            transform: translateY(0);
+            transform: none;
         }
         
         /* Footer */
         footer {
             border-top: 1px solid var(--border-subtle);
+            position: relative;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: -120px;
+            left: 0;
+            right: 0;
+            height: 120px;
+            background: linear-gradient(to bottom, transparent, var(--bg-primary));
+            pointer-events: none;
         }
         
         /* Custom scrollbar */
@@ -499,7 +540,7 @@
                 <p class="label mb-6">2025 Calibration Review</p>
                 <h1 class="display-xl mb-6">
                     Building for the<br>
-                    <span class="gradient-text">AI Era</span>
+                    <span class="gradient-text shimmer">AI Era</span>
                 </h1>
                 <p class="body-lg max-w-2xl mx-auto mb-4">
                     Foundational investments in AI-enabled capabilities and infrastructure 
@@ -615,10 +656,10 @@
                 <p class="body-md">Monthly event distribution from Outlook calendar data</p>
             </div>
             
-            <div class="glass-card p-8 reveal">
+            <div class="reveal">
                 <div id="calendarChart" class="min-w-full" style="height: 280px;"></div>
                 
-                <div class="grid grid-cols-3 gap-8 mt-12 pt-8 border-t border-[var(--border-subtle)]">
+                <div class="grid grid-cols-3 gap-8 mt-12 pt-8">
                     <div class="text-center">
                         <div class="stat-value text-3xl">859</div>
                         <p class="text-sm text-[var(--text-tertiary)] mt-2">Events Attended</p>
@@ -666,7 +707,7 @@
             
             <div class="grid md:grid-cols-2 gap-6">
                 <!-- Airtable -->
-                <div class="initiative-card glass-card p-8 reveal" onclick="toggleInitiative(this)">
+                <div class="initiative-card glass-card p-8 reveal" style="border-left: 3px solid #00d4ff;" onclick="toggleInitiative(this)">
                     <div class="flex justify-between items-start mb-6">
                         <div>
                             <p class="label mb-2">Infrastructure</p>
@@ -713,7 +754,7 @@
                 </div>
                 
                 <!-- ICM Prophet -->
-                <div class="initiative-card glass-card p-8 reveal" onclick="toggleInitiative(this)">
+                <div class="initiative-card glass-card p-8 reveal" style="border-left: 3px solid #a855f7;" onclick="toggleInitiative(this)">
                     <div class="flex justify-between items-start mb-6">
                         <div>
                             <p class="label mb-2">AI Vision</p>
@@ -763,7 +804,7 @@
                 </div>
                 
                 <!-- Proactive Licensing -->
-                <div class="initiative-card glass-card p-8 reveal" onclick="toggleInitiative(this)">
+                <div class="initiative-card glass-card p-8 reveal" style="border-left: 3px solid #f59e0b;" onclick="toggleInitiative(this)">
                     <div class="flex justify-between items-start mb-6">
                         <div>
                             <p class="label mb-2">Risk Mitigation</p>
@@ -793,8 +834,8 @@
                                 </ul>
                             </div>
                             
-                            <div class="p-4 rounded-xl bg-[var(--bg-tertiary)] border-l-2 border-[var(--accent)]">
-                                <p class="text-sm font-medium mb-2">Artelia Crisis</p>
+                            <div class="p-4 rounded-xl border-l-3" style="border-left: 3px solid #ef4444; background: linear-gradient(90deg, rgba(239, 68, 68, 0.08) 0%, transparent 100%);">
+                                <p class="text-sm font-medium mb-2" style="color: #ef4444;">Artelia Crisis</p>
                                 <p class="text-sm text-[var(--text-secondary)]">
                                     National Director escalation. All ICM users blocked. Resolved in 30 minutes. 
                                     Prevented huge financial consequences.
@@ -805,7 +846,7 @@
                 </div>
                 
                 <!-- AI Capabilities -->
-                <div class="initiative-card glass-card p-8 reveal" onclick="toggleInitiative(this)">
+                <div class="initiative-card glass-card p-8 reveal" style="border-left: 3px solid #00a693;" onclick="toggleInitiative(this)">
                     <div class="flex justify-between items-start mb-6">
                         <div>
                             <p class="label mb-2">Capability Building</p>
@@ -848,7 +889,7 @@
                 </div>
                 
                 <!-- ICM Live -->
-                <div class="initiative-card glass-card p-8 reveal" onclick="toggleInitiative(this)">
+                <div class="initiative-card glass-card p-8 reveal" style="border-left: 3px solid #3b82f6;" onclick="toggleInitiative(this)">
                     <div class="flex justify-between items-start mb-6">
                         <div>
                             <p class="label mb-2">Training</p>
@@ -890,7 +931,7 @@
                 </div>
                 
                 <!-- Support -->
-                <div class="initiative-card glass-card p-8 reveal" onclick="toggleInitiative(this)">
+                <div class="initiative-card glass-card p-8 reveal" style="border-left: 3px solid #6b7280;" onclick="toggleInitiative(this)">
                     <div class="flex justify-between items-start mb-6">
                         <div>
                             <p class="label mb-2">Documentation</p>
@@ -1337,7 +1378,7 @@
     </section>
     
     <!-- Footer -->
-    <footer class="py-12 px-6">
+    <footer class="py-20 px-6">
         <div class="max-w-6xl mx-auto text-center">
             <p class="text-sm text-[var(--text-tertiary)]">Daniel Moreira · Systems Engineer · InfoWorks ICM</p>
             <p class="text-xs text-[var(--text-tertiary)] mt-2">2025 Calibration Review · Autodesk</p>
@@ -1359,7 +1400,7 @@
             margin: { top: 30, right: 20, bottom: 40, left: 40 }
         };
         
-        const CHART_FONT = "'DM Sans', sans-serif";
+        const CHART_FONT = "'Satoshi', sans-serif";
         
         // Scroll Progress
         window.addEventListener('scroll', () => {
@@ -1387,7 +1428,9 @@
                 const progress = Math.min((now - start) / ANIMATION.counterDuration, 1);
                 const eased = 1 - Math.pow(1 - progress, 4);
                 el.textContent = Math.floor(eased * target);
-                if (progress < 1) requestAnimationFrame(update);
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                }
             }
             
             requestAnimationFrame(update);
@@ -1448,8 +1491,9 @@
                 .attr('transform', `translate(0,${chartHeight})`)
                 .call(d3.axisBottom(xScale).tickSize(0))
                 .selectAll('text')
-                .attr('fill', '#86868b')
+                .attr('fill', '#a1a1a6')
                 .attr('font-size', '11px')
+                .attr('font-weight', '500')
                 .attr('font-family', CHART_FONT);
             
             chart.selectAll('.domain').attr('stroke', 'rgba(255,255,255,0.1)');
@@ -1458,11 +1502,12 @@
             chart.append('g')
                 .call(d3.axisLeft(yScale).ticks(5).tickSize(-chartWidth))
                 .selectAll('text')
-                .attr('fill', '#6e6e73')
+                .attr('fill', '#8e8e93')
                 .attr('font-size', '10px')
+                .attr('font-weight', '500')
                 .attr('font-family', CHART_FONT);
             
-            chart.selectAll('.tick line').attr('stroke', 'rgba(255,255,255,0.05)');
+            chart.selectAll('.tick line').attr('stroke', 'rgba(255,255,255,0.08)');
             chart.select('.domain').remove();
             
             // Right border
@@ -1472,6 +1517,21 @@
                 .attr('x2', chartWidth)
                 .attr('y2', chartHeight)
                 .attr('stroke', 'rgba(255,255,255,0.1)');
+            
+            // Define glow filter
+            const defs = svg.append('defs');
+            const filter = defs.append('filter')
+                .attr('id', 'glow')
+                .attr('x', '-50%')
+                .attr('y', '-50%')
+                .attr('width', '200%')
+                .attr('height', '200%');
+            filter.append('feGaussianBlur')
+                .attr('stdDeviation', '4')
+                .attr('result', 'coloredBlur');
+            const feMerge = filter.append('feMerge');
+            feMerge.append('feMergeNode').attr('in', 'coloredBlur');
+            feMerge.append('feMergeNode').attr('in', 'SourceGraphic');
             
             // Bars
             chart.selectAll('.bar')
@@ -1484,7 +1544,8 @@
                 .attr('width', xScale.bandwidth())
                 .attr('height', 0)
                 .attr('rx', 4)
-                .attr('fill', d => d.isPeak ? '#0071e3' : '#2d2d2f')
+                .attr('fill', d => d.isPeak ? '#00a693' : '#2d2d2f')
+                .attr('filter', d => d.isPeak ? 'url(#glow)' : 'none')
                 .transition()
                 .duration(ANIMATION.barDuration)
                 .delay((d, i) => i * ANIMATION.barDelay)
@@ -1499,7 +1560,7 @@
                 .attr('x', d => xScale(d.month) + xScale.bandwidth() / 2)
                 .attr('y', d => yScale(d.events) - 8)
                 .attr('text-anchor', 'middle')
-                .attr('fill', '#0071e3')
+                .attr('fill', '#00a693')
                 .attr('font-size', '11px')
                 .attr('font-weight', '500')
                 .attr('font-family', CHART_FONT)
@@ -1542,6 +1603,26 @@
         // Register all observable elements
         document.querySelectorAll('.reveal, .timeline-item, .animate-in, [data-target], .progress-track, #calendarChart')
             .forEach(el => observer.observe(el));
+        
+        // Navigation active state tracking
+        const navObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.id;
+                    document.querySelectorAll('.nav-link').forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href') === '#' + id) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, { threshold: 0.3, rootMargin: '-80px 0px -50% 0px' });
+        
+        // Observe sections with IDs that match nav links
+        document.querySelectorAll('section[id]').forEach(section => {
+            navObserver.observe(section);
+        });
     </script>
 </body>
 </html>
