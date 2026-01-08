@@ -1620,30 +1620,41 @@
                 .domain([0, 130])
                 .range([chartHeight, 0]);
             
-            // X axis
+            // X axis - no lines, just labels
             chart.append('g')
                 .attr('transform', `translate(0,${chartHeight})`)
-                .call(d3.axisBottom(xScale).tickSize(0))
+                .call(d3.axisBottom(xScale)
+                    .tickSize(0)
+                    .tickSizeOuter(0)
+                    .tickSizeInner(0))
                 .selectAll('text')
                 .attr('fill', '#a1a1a6')
                 .attr('font-size', '11px')
                 .attr('font-weight', '500')
                 .attr('font-family', CHART_FONT);
             
-            // Y axis
+            // Y axis - no lines, just labels
             chart.append('g')
-                .call(d3.axisLeft(yScale).ticks(5).tickSize(0))
+                .call(d3.axisLeft(yScale)
+                    .ticks(5)
+                    .tickSize(0)
+                    .tickSizeOuter(0)
+                    .tickSizeInner(0))
                 .selectAll('text')
                 .attr('fill', '#8e8e93')
                 .attr('font-size', '10px')
                 .attr('font-weight', '500')
                 .attr('font-family', CHART_FONT);
             
-            // Remove all axis lines (domains), tick lines, and any borders
+            // Force remove all axis lines (domains), tick lines, and any borders
             chart.selectAll('.domain').remove();
             chart.selectAll('.tick line').remove();
             svg.selectAll('.domain').remove();
             svg.selectAll('.tick line').remove();
+            
+            // Also remove any paths that might be axis lines
+            chart.selectAll('path.domain').remove();
+            svg.selectAll('path.domain').remove();
             
             // Define glow filter
             const defs = svg.append('defs');
