@@ -423,7 +423,8 @@
             opacity: 0;
         }
         
-        .initiative-card.expanded .initiative-details {
+        .initiative-card.expanded .initiative-details,
+        .orbit-card.expanded .initiative-details {
             max-height: 500px;
             opacity: 1;
         }
@@ -458,13 +459,15 @@
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
         
-        .initiative-card:hover .expand-icon {
+        .initiative-card:hover .expand-icon,
+        .orbit-card:hover .expand-icon {
             background: var(--accent);
             color: white;
             border-color: var(--accent);
         }
         
-        .initiative-card.expanded .expand-icon {
+        .initiative-card.expanded .expand-icon,
+        .orbit-card.expanded .expand-icon {
             transform: rotate(45deg);
         }
         
