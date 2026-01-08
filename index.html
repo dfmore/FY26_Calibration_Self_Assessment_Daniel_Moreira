@@ -1413,76 +1413,108 @@
             </div>
             
             <div class="grid md:grid-cols-2 gap-6 mb-8">
-                <div class="orbit-card best glass-card p-8 reveal">
-                    <p class="label text-[var(--accent)] mb-2">Exhibit Best</p>
-                    <h3 class="text-3xl font-semibold gradient-text mb-3">Ingenious</h3>
-                    <p class="text-base text-[var(--text-tertiary)] mb-5">We reimagine what is possible</p>
-                    <div class="p-4 rounded-lg bg-[var(--bg-tertiary)] mb-6">
-                        <p class="text-sm font-medium text-[var(--accent)] mb-1">Great Behavior</p>
-                        <p class="text-sm text-[var(--text-secondary)]">"Thinks creatively by introducing new ideas, methods, or products"</p>
+                <div class="orbit-card best glass-card p-8 reveal cursor-pointer" onclick="toggleInitiative(this)">
+                    <div class="flex justify-between items-start mb-2">
+                        <div>
+                            <p class="label text-[var(--accent)] mb-2">Exhibit Best</p>
+                            <h3 class="text-3xl font-semibold gradient-text">Ingenious</h3>
+                        </div>
+                        <span class="expand-icon">+</span>
                     </div>
-                    <p class="text-base text-[var(--text-secondary)] leading-relaxed">
-                        ICM Prophet represents entirely new product paradigm for AI-powered hydraulic modelling. 
-                        Airtable infrastructure created structure where none existed. Multiple AI tools built 
-                        across CS domains.
-                    </p>
+                    <p class="text-base text-[var(--text-tertiary)] mb-5">We reimagine what is possible</p>
+                    
+                    <div class="initiative-details">
+                        <div class="p-4 rounded-lg bg-[var(--bg-tertiary)] mb-6">
+                            <p class="text-sm font-medium text-[var(--accent)] mb-1">Great Behavior</p>
+                            <p class="text-sm text-[var(--text-secondary)]">"Thinks creatively by introducing new ideas, methods, or products"</p>
+                        </div>
+                        <p class="text-base text-[var(--text-secondary)] leading-relaxed">
+                            ICM Prophet represents entirely new product paradigm for AI-powered hydraulic modelling. 
+                            Airtable infrastructure created structure where none existed. Multiple AI tools built 
+                            across CS domains.
+                        </p>
+                    </div>
                 </div>
                 
-                <div class="orbit-card best glass-card p-8 reveal">
-                    <p class="label text-[var(--accent)] mb-2">Exhibit Best</p>
-                    <h3 class="text-3xl font-semibold gradient-text mb-3">Relentless</h3>
-                    <p class="text-base text-[var(--text-tertiary)] mb-5">We're unstoppable in the pursuit of results</p>
-                    <div class="p-4 rounded-lg bg-[var(--bg-tertiary)] mb-6">
-                        <p class="text-sm font-medium text-[var(--accent)] mb-1">Great Behavior</p>
-                        <p class="text-sm text-[var(--text-secondary)]">"Pursues results with focus and consistent effort despite obstacles or setbacks"</p>
+                <div class="orbit-card best glass-card p-8 reveal cursor-pointer" onclick="toggleInitiative(this)">
+                    <div class="flex justify-between items-start mb-2">
+                        <div>
+                            <p class="label text-[var(--accent)] mb-2">Exhibit Best</p>
+                            <h3 class="text-3xl font-semibold gradient-text">Relentless</h3>
+                        </div>
+                        <span class="expand-icon">+</span>
                     </div>
-                    <p class="text-base text-[var(--text-secondary)] leading-relaxed">
-                        Prophet developed despite limited product leadership buy-in. Persisted with licensing improvements 
-                        despite internal friction. Proactively built quarterly reporting before crises occurred.
-                    </p>
+                    <p class="text-base text-[var(--text-tertiary)] mb-5">We're unstoppable in the pursuit of results</p>
+                    
+                    <div class="initiative-details">
+                        <div class="p-4 rounded-lg bg-[var(--bg-tertiary)] mb-6">
+                            <p class="text-sm font-medium text-[var(--accent)] mb-1">Great Behavior</p>
+                            <p class="text-sm text-[var(--text-secondary)]">"Pursues results with focus and consistent effort despite obstacles or setbacks"</p>
+                        </div>
+                        <p class="text-base text-[var(--text-secondary)] leading-relaxed">
+                            Prophet developed despite limited product leadership buy-in. Persisted with licensing improvements 
+                            despite internal friction. Proactively built quarterly reporting before crises occurred.
+                        </p>
+                    </div>
                 </div>
             </div>
             
             <div class="grid md:grid-cols-2 gap-6">
-                <div class="orbit-card growth glass-card p-8 reveal">
-                    <p class="label mb-2">Growth Area</p>
-                    <h3 class="text-2xl font-semibold text-[var(--text-tertiary)] mb-3">Optimistic</h3>
-                    <p class="text-base text-[var(--text-tertiary)] mb-5">We believe in better</p>
-                    <div class="p-4 rounded-lg bg-[var(--bg-tertiary)] mb-5">
-                        <p class="text-sm text-[var(--text-tertiary)] mb-1">Not-yet-great Behavior</p>
-                        <p class="text-sm text-[var(--text-secondary)]">"Fails to communicate and stay aligned with shared goals"</p>
+                <div class="orbit-card growth glass-card p-8 reveal cursor-pointer" onclick="toggleInitiative(this)">
+                    <div class="flex justify-between items-start mb-2">
+                        <div>
+                            <p class="label mb-2">Growth Area</p>
+                            <h3 class="text-2xl font-semibold text-[var(--text-tertiary)]">Optimistic</h3>
+                        </div>
+                        <span class="expand-icon">+</span>
                     </div>
-                    <p class="text-base text-[var(--text-secondary)] leading-relaxed mb-6">
-                        Struggled to maintain optimism when faced with organisational resistance to AI transformation. 
-                        Gap between what's possible and what's ready-to-implement created frustration.
-                    </p>
-                    <div class="p-5 rounded-xl bg-[var(--bg-tertiary)]">
-                        <p class="text-sm font-medium text-[var(--accent)] mb-2">Commitment</p>
-                        <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
-                            Focus on solutions within CS control whilst building strategic capabilities. Share progress 
-                            more frequently to build optimism in others.
+                    <p class="text-base text-[var(--text-tertiary)] mb-5">We believe in better</p>
+                    
+                    <div class="initiative-details">
+                        <div class="p-4 rounded-lg bg-[var(--bg-tertiary)] mb-5">
+                            <p class="text-sm text-[var(--text-tertiary)] mb-1">Not-yet-great Behavior</p>
+                            <p class="text-sm text-[var(--text-secondary)]">"Fails to communicate and stay aligned with shared goals"</p>
+                        </div>
+                        <p class="text-base text-[var(--text-secondary)] leading-relaxed mb-6">
+                            Struggled to maintain optimism when faced with organisational resistance to AI transformation. 
+                            Gap between what's possible and what's ready-to-implement created frustration.
                         </p>
+                        <div class="p-5 rounded-xl bg-[var(--bg-tertiary)]">
+                            <p class="text-sm font-medium text-[var(--accent)] mb-2">Commitment</p>
+                            <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
+                                Focus on solutions within CS control whilst building strategic capabilities. Share progress 
+                                more frequently to build optimism in others.
+                            </p>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="orbit-card growth glass-card p-8 reveal">
-                    <p class="label mb-2">Growth Area</p>
-                    <h3 class="text-2xl font-semibold text-[var(--text-tertiary)] mb-3">Trusted</h3>
-                    <p class="text-base text-[var(--text-tertiary)] mb-5">We earn and build trust through every interaction</p>
-                    <div class="p-4 rounded-lg bg-[var(--bg-tertiary)] mb-5">
-                        <p class="text-sm text-[var(--text-tertiary)] mb-1">Not-yet-great Behavior</p>
-                        <p class="text-sm text-[var(--text-secondary)]">"Does not proactively communicate with key stakeholders when schedules or deliverables change"</p>
+                <div class="orbit-card growth glass-card p-8 reveal cursor-pointer" onclick="toggleInitiative(this)">
+                    <div class="flex justify-between items-start mb-2">
+                        <div>
+                            <p class="label mb-2">Growth Area</p>
+                            <h3 class="text-2xl font-semibold text-[var(--text-tertiary)]">Trusted</h3>
+                        </div>
+                        <span class="expand-icon">+</span>
                     </div>
-                    <p class="text-base text-[var(--text-secondary)] leading-relaxed mb-6">
-                        Struggled with consistent deadline delivery on deprioritised tasks. ICM Live training and 
-                        AI strategy docs slipped—though with legitimate business reasons.
-                    </p>
-                    <div class="p-5 rounded-xl bg-[var(--bg-tertiary)]">
-                        <p class="text-sm font-medium text-[var(--accent)] mb-2">Commitment</p>
-                        <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
-                            Rigorous project tracking. Proactive timeline communication before deadlines pass. 
-                            Formally document priority shifts with stakeholders.
+                    <p class="text-base text-[var(--text-tertiary)] mb-5">We earn and build trust through every interaction</p>
+                    
+                    <div class="initiative-details">
+                        <div class="p-4 rounded-lg bg-[var(--bg-tertiary)] mb-5">
+                            <p class="text-sm text-[var(--text-tertiary)] mb-1">Not-yet-great Behavior</p>
+                            <p class="text-sm text-[var(--text-secondary)]">"Does not proactively communicate with key stakeholders when schedules or deliverables change"</p>
+                        </div>
+                        <p class="text-base text-[var(--text-secondary)] leading-relaxed mb-6">
+                            Struggled with consistent deadline delivery on deprioritised tasks. ICM Live training and 
+                            AI strategy docs slipped—though with legitimate business reasons.
                         </p>
+                        <div class="p-5 rounded-xl bg-[var(--bg-tertiary)]">
+                            <p class="text-sm font-medium text-[var(--accent)] mb-2">Commitment</p>
+                            <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
+                                Rigorous project tracking. Proactive timeline communication before deadlines pass. 
+                                Formally document priority shifts with stakeholders.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
