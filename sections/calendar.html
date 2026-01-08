@@ -1,0 +1,81 @@
+<!-- Calendar Activity -->
+<section class="section-gradient-alt px-6" id="calendar">
+    <div class="max-w-6xl mx-auto">
+        <div class="section-header reveal">
+            <p class="label mb-4">Activity</p>
+            <h2 class="display-lg mb-4">Work Calendar</h2>
+            <p class="body-md">Monthly event distribution from Outlook calendar data</p>
+        </div>
+        
+        <div class="reveal">
+            <!-- View Toggle Buttons -->
+            <div class="flex flex-wrap gap-2 mb-6 justify-center" role="tablist" aria-label="Chart view options">
+                <button data-view="categories" 
+                        id="btn-categories"
+                        role="tab"
+                        aria-selected="true"
+                        class="view-toggle-btn active px-4 py-2 rounded-full text-sm font-medium transition-all duration-300">
+                    By Category
+                </button>
+                <button data-view="tags" 
+                        id="btn-tags"
+                        role="tab"
+                        aria-selected="false"
+                        class="view-toggle-btn px-4 py-2 rounded-full text-sm font-medium transition-all duration-300">
+                    By Work Area
+                </button>
+                <button data-view="count" 
+                        id="btn-count"
+                        role="tab"
+                        aria-selected="false"
+                        class="view-toggle-btn px-4 py-2 rounded-full text-sm font-medium transition-all duration-300">
+                    Meeting Count
+                </button>
+            </div>
+
+            <!-- Chart Container with Tooltip -->
+            <div style="position: relative;" role="img" aria-label="Calendar activity chart">
+                <div id="calendarChart" class="min-w-full" style="height: 300px;"></div>
+                <div id="chartTooltip" style="position: absolute; opacity: 0; pointer-events: none; 
+                     background: rgba(0, 0, 0, 0.9); color: white; padding: 12px 16px; 
+                     border-radius: 8px; font-size: 13px; line-height: 1.6; 
+                     backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1);
+                     box-shadow: 0 8px 32px rgba(0,0,0,0.4); z-index: 1000; max-width: 280px;"
+                     role="tooltip"></div>
+            </div>
+            
+            <!-- Dynamic Stats (will update based on view) -->
+            <div class="grid grid-cols-3 gap-8 mt-6" id="dynamicStats">
+                <div class="text-center">
+                    <div class="stat-value text-3xl" id="stat1">305</div>
+                    <p class="text-sm text-[var(--text-tertiary)] mt-2" id="stat1-label">Work Meetings</p>
+                </div>
+                <div class="text-center">
+                    <div class="stat-value text-3xl" id="stat2">303</div>
+                    <p class="text-sm text-[var(--text-tertiary)] mt-2" id="stat2-label">Meeting Hours</p>
+                </div>
+                <div class="text-center">
+                    <div class="stat-value text-3xl" id="stat3">89</div>
+                    <p class="text-sm text-[var(--text-tertiary)] mt-2" id="stat3-label">Peak Month (Jan)</p>
+                </div>
+            </div>
+            
+            <!-- Dynamic Legend (will update based on view) -->
+            <div class="mt-8 p-6 rounded-xl bg-[var(--bg-tertiary)]" id="dynamicLegend">
+                <p class="label mb-4" id="legendTitle">Meeting Categories</p>
+                <div id="legendContent" class="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
+                    <!-- Content populated by JS -->
+                </div>
+            </div>
+            
+            <!-- Insights Panel (dynamic based on view) -->
+            <div class="mt-6 p-6 rounded-xl bg-[var(--bg-tertiary)]" id="insightsPanel">
+                <p class="label mb-4">Key Insights</p>
+                <div id="insightsContent" class="space-y-3 text-sm text-[var(--text-secondary)]">
+                    <!-- Content populated by JS -->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
