@@ -8,7 +8,7 @@
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
     <style>
         :root {
             --accent: #0071e3;
@@ -23,6 +23,10 @@
             --text-tertiary: #6e6e73;
             --border-subtle: rgba(255, 255, 255, 0.08);
             --border-light: rgba(255, 255, 255, 0.12);
+            /* Gradients */
+            --gradient-accent: linear-gradient(135deg, #0071e3 0%, #34c759 100%);
+            --gradient-accent-blue: linear-gradient(135deg, var(--accent) 0%, #5ac8fa 100%);
+            --gradient-stat: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
         }
         
         * {
@@ -31,7 +35,7 @@
         }
         
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
             background: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.5;
@@ -120,7 +124,7 @@
         
         /* Accent text gradient */
         .gradient-text {
-            background: linear-gradient(135deg, #0071e3 0%, #34c759 100%);
+            background: var(--gradient-accent);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -181,14 +185,14 @@
             font-weight: 600;
             letter-spacing: -0.03em;
             line-height: 1;
-            background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+            background: var(--gradient-stat);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
         
         .stat-value.accent {
-            background: linear-gradient(135deg, #0071e3 0%, #5ac8fa 100%);
+            background: var(--gradient-accent-blue);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -318,7 +322,7 @@
             top: 0;
             bottom: 0;
             width: 3px;
-            background: linear-gradient(180deg, var(--accent) 0%, #34c759 100%);
+            background: var(--gradient-accent);
             border-radius: 3px;
         }
         
@@ -337,7 +341,7 @@
         }
         
         .avatar.accent {
-            background: linear-gradient(135deg, var(--accent) 0%, #5ac8fa 100%);
+            background: var(--gradient-accent-blue);
             color: white;
         }
         
@@ -363,7 +367,7 @@
             left: 0;
             right: 0;
             height: 3px;
-            background: linear-gradient(90deg, var(--accent) 0%, #34c759 100%);
+            background: var(--gradient-accent);
         }
         
         .orbit-card.growth::before {
@@ -404,6 +408,7 @@
         }
         
         .animate-in {
+            opacity: 0;
             animation: fadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
         }
         
@@ -411,6 +416,16 @@
         .delay-200 { animation-delay: 0.2s; }
         .delay-300 { animation-delay: 0.3s; }
         .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+        
+        /* Utility classes */
+        .accent-border-left {
+            border-left: 3px solid var(--accent);
+        }
+        
+        .hidden-initial {
+            opacity: 0;
+        }
         
         /* Section spacing */
         section {
@@ -480,7 +495,7 @@
     <!-- Hero Section -->
     <section class="min-h-screen flex items-center justify-center hero-gradient pt-20 px-6" id="overview">
         <div class="max-w-6xl mx-auto text-center">
-            <div class="animate-in" style="opacity: 0;">
+            <div class="animate-in">
                 <p class="label mb-6">2025 Calibration Review</p>
                 <h1 class="display-xl mb-6">
                     Building for the<br>
@@ -497,30 +512,30 @@
             
             <!-- Key Metrics - Data-backed -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
-                <div class="glass-card p-6 animate-in delay-100" style="opacity: 0;">
+                <div class="glass-card p-6 animate-in delay-100">
                     <div class="stat-value accent" data-target="215">0</div>
                     <p class="text-sm text-[var(--text-secondary)] mt-3">Cases Handled</p>
-                    <p class="text-xs text-[var(--text-tertiary)] mt-1">141 Activation + 74 Onboarding</p>
+                    <p class="text-sm text-[var(--text-tertiary)] mt-1">141 Activation + 74 Onboarding</p>
                 </div>
-                <div class="glass-card p-6 animate-in delay-200" style="opacity: 0;">
+                <div class="glass-card p-6 animate-in delay-200">
                     <div class="stat-value accent" data-target="859">0</div>
                     <p class="text-sm text-[var(--text-secondary)] mt-3">Calendar Events</p>
-                    <p class="text-xs text-[var(--text-tertiary)] mt-1">Real Outlook Data</p>
+                    <p class="text-sm text-[var(--text-tertiary)] mt-1">Real Outlook Data</p>
                 </div>
-                <div class="glass-card p-6 animate-in delay-300" style="opacity: 0;">
+                <div class="glass-card p-6 animate-in delay-300">
                     <div class="stat-value accent" data-target="5">0</div>
                     <p class="text-sm text-[var(--text-secondary)] mt-3">AI Tools Built</p>
-                    <p class="text-xs text-[var(--text-tertiary)] mt-1">Production Ready</p>
+                    <p class="text-sm text-[var(--text-tertiary)] mt-1">Production Ready</p>
                 </div>
-                <div class="glass-card p-6 animate-in delay-400" style="opacity: 0;">
+                <div class="glass-card p-6 animate-in delay-400">
                     <div class="stat-value accent" data-target="16">0</div>
                     <p class="text-sm text-[var(--text-secondary)] mt-3">Global Users</p>
-                    <p class="text-xs text-[var(--text-tertiary)] mt-1">Airtable System</p>
+                    <p class="text-sm text-[var(--text-tertiary)] mt-1">Airtable System</p>
                 </div>
             </div>
             
             <!-- Executive Summary -->
-            <div class="glass-card p-10 mt-16 text-left animate-in" style="opacity: 0; animation-delay: 0.5s;">
+            <div class="glass-card p-10 mt-16 text-left animate-in delay-500">
                 <p class="label mb-4">Executive Summary</p>
                 <p class="body-md mb-6">
                     2025 focused on foundational investments in AI-enabled capabilities and infrastructure that will deliver 
@@ -685,11 +700,11 @@
                                 <div class="grid grid-cols-2 gap-4">
                                     <div>
                                         <div class="text-2xl font-semibold">16</div>
-                                        <p class="text-xs text-[var(--text-tertiary)]">Global specialists</p>
+                                        <p class="text-sm text-[var(--text-tertiary)]">Global specialists</p>
                                     </div>
                                     <div>
                                         <div class="text-2xl font-semibold">215</div>
-                                        <p class="text-xs text-[var(--text-tertiary)]">Activation and Onboarding cases</p>
+                                        <p class="text-sm text-[var(--text-tertiary)]">Activation and Onboarding cases</p>
                                     </div>
                                 </div>
                             </div>
@@ -720,15 +735,15 @@
                             
                             <div class="grid grid-cols-2 gap-4">
                                 <div class="p-4 rounded-xl bg-[var(--bg-tertiary)]">
-                                    <p class="text-xs text-[var(--text-tertiary)] mb-2">Customer Support</p>
-                                    <ul class="text-xs text-[var(--text-secondary)] space-y-1">
+                                    <p class="text-sm text-[var(--text-tertiary)] mb-2">Customer Support</p>
+                                    <ul class="text-sm text-[var(--text-secondary)] space-y-1">
                                         <li>• Auto Ruby scripts</li>
                                         <li>• Natural language queries</li>
                                     </ul>
                                 </div>
                                 <div class="p-4 rounded-xl bg-[var(--bg-tertiary)]">
-                                    <p class="text-xs text-[var(--text-tertiary)] mb-2">Internal Tools</p>
-                                    <ul class="text-xs text-[var(--text-secondary)] space-y-1">
+                                    <p class="text-sm text-[var(--text-tertiary)] mb-2">Internal Tools</p>
+                                    <ul class="text-sm text-[var(--text-secondary)] space-y-1">
                                         <li>• Analysis tools</li>
                                         <li>• Model troubleshooting</li>
                                     </ul>
@@ -780,7 +795,7 @@
                             
                             <div class="p-4 rounded-xl bg-[var(--bg-tertiary)] border-l-2 border-[var(--accent)]">
                                 <p class="text-sm font-medium mb-2">Artelia Crisis</p>
-                                <p class="text-xs text-[var(--text-secondary)]">
+                                <p class="text-sm text-[var(--text-secondary)]">
                                     National Director escalation. All ICM users blocked. Resolved in 30 minutes. 
                                     Prevented huge financial consequences.
                                 </p>
@@ -823,7 +838,7 @@
                             </div>
                             
                             <div class="p-4 rounded-xl bg-gradient-to-r from-[var(--accent)]/10 to-transparent">
-                                <p class="text-xs text-[var(--text-tertiary)] mb-1">2026 Vision</p>
+                                <p class="text-sm text-[var(--text-tertiary)] mb-1">2026 Vision</p>
                                 <p class="text-sm text-[var(--text-secondary)]">
                                     Integrating multiple data sources to surface knowledge for CS teams—multiplying team productivity.
                                 </p>
@@ -864,8 +879,8 @@
                             </div>
                             
                             <div class="p-4 rounded-xl bg-[var(--bg-tertiary)]">
-                                <p class="text-xs text-[var(--accent)] mb-2">Strategic Recommendation</p>
-                                <p class="text-xs text-[var(--text-secondary)]">
+                                <p class="text-sm font-medium text-[var(--accent)] mb-2">Strategic Recommendation</p>
+                                <p class="text-sm text-[var(--text-secondary)]">
                                     Pivot to Exchange and Prophet-based solutions where customers create custom dashboards. 
                                     Monetise through consultancy.
                                 </p>
@@ -898,7 +913,7 @@
                             </div>
                             
                             <div class="p-4 rounded-xl bg-[var(--bg-tertiary)]">
-                                <p class="text-xs text-[var(--text-tertiary)]">
+                                <p class="text-sm text-[var(--text-tertiary)]">
                                     Full list of KCS articles in dedicated section below
                                 </p>
                             </div>
@@ -987,57 +1002,57 @@
             <div class="space-y-6 reveal">
                 <div class="glass-card p-6">
                     <div class="flex justify-between items-center mb-3">
-                        <span class="text-sm font-medium">AI and MCP Strategy and Support</span>
-                        <span class="text-xs font-medium px-3 py-1 rounded-full bg-[#34c759]/20 text-[#34c759]">Exceeded</span>
+                        <span class="text-base font-medium">AI and MCP Strategy and Support</span>
+                        <span class="text-sm font-medium px-3 py-1 rounded-full bg-[#34c759]/20 text-[#34c759]">Exceeded</span>
                     </div>
                     <div class="progress-track">
                         <div class="progress-fill" style="width: 0%" data-width="100"></div>
                     </div>
-                    <p class="text-xs text-[var(--text-secondary)] mt-3">Prophet vision complete and endorsed by Boaz Brudner. Tiger Team created and leading. 5 Copilot tools built. W3F Denver strategy sessions as CS representative.</p>
+                    <p class="text-sm text-[var(--text-secondary)] mt-3 leading-relaxed">Prophet vision complete and endorsed by Boaz Brudner. Tiger Team created and leading. 5 Copilot tools built. W3F Denver strategy sessions as CS representative.</p>
                 </div>
                 
                 <div class="glass-card p-6">
                     <div class="flex justify-between items-center mb-3">
-                        <span class="text-sm font-medium">Support for Existing Licensing Systems</span>
-                        <span class="text-xs font-medium px-3 py-1 rounded-full bg-[var(--accent)]/20 text-[var(--accent)]">Strong</span>
+                        <span class="text-base font-medium">Support for Existing Licensing Systems</span>
+                        <span class="text-sm font-medium px-3 py-1 rounded-full bg-[var(--accent)]/20 text-[var(--accent)]">Strong</span>
                     </div>
                     <div class="progress-track">
                         <div class="progress-fill" style="width: 0%" data-width="90"></div>
                     </div>
-                    <p class="text-xs text-[var(--text-secondary)] mt-3">Complex Thales cases handled (Severn Trent, Tideway, Artelia crisis). Quarterly reporting implemented. Routine work delegated to team.</p>
+                    <p class="text-sm text-[var(--text-secondary)] mt-3 leading-relaxed">Complex Thales cases handled (Severn Trent, Tideway, Artelia crisis). Quarterly reporting implemented. Routine work delegated to team.</p>
                 </div>
                 
                 <div class="glass-card p-6">
                     <div class="flex justify-between items-center mb-3">
-                        <span class="text-sm font-medium">Activation and On-Boarding</span>
-                        <span class="text-xs font-medium px-3 py-1 rounded-full bg-[var(--accent)]/20 text-[var(--accent)]">Strong</span>
+                        <span class="text-base font-medium">Activation and On-Boarding</span>
+                        <span class="text-sm font-medium px-3 py-1 rounded-full bg-[var(--accent)]/20 text-[var(--accent)]">Strong</span>
                     </div>
                     <div class="progress-track">
                         <div class="progress-fill" style="width: 0%" data-width="85"></div>
                     </div>
-                    <p class="text-xs text-[var(--text-secondary)] mt-3">Airtable system built for 16 global specialists. 215 cases handled. Focus reduced since October due to competing priorities.</p>
+                    <p class="text-sm text-[var(--text-secondary)] mt-3 leading-relaxed">Airtable system built for 16 global specialists. 215 cases handled. Focus reduced since October due to competing priorities.</p>
                 </div>
                 
                 <div class="glass-card p-6">
                     <div class="flex justify-between items-center mb-3">
-                        <span class="text-sm font-medium">Senior IT Support Engineer</span>
-                        <span class="text-xs font-medium px-3 py-1 rounded-full bg-[var(--text-tertiary)]/20 text-[var(--text-secondary)]">Maintained</span>
+                        <span class="text-base font-medium">Senior IT Support Engineer</span>
+                        <span class="text-sm font-medium px-3 py-1 rounded-full bg-[var(--text-tertiary)]/20 text-[var(--text-secondary)]">Maintained</span>
                     </div>
                     <div class="progress-track">
                         <div class="progress-fill" style="width: 0%" data-width="80"></div>
                     </div>
-                    <p class="text-xs text-[var(--text-secondary)] mt-3">Transitioned routine work to team. Retained complex/escalated cases requiring senior expertise. Internal support maintained.</p>
+                    <p class="text-sm text-[var(--text-secondary)] mt-3 leading-relaxed">Transitioned routine work to team. Retained complex/escalated cases requiring senior expertise. Internal support maintained.</p>
                 </div>
                 
                 <div class="glass-card p-6">
                     <div class="flex justify-between items-center mb-3">
-                        <span class="text-sm font-medium">Lead ICM Live Support</span>
-                        <span class="text-xs font-medium px-3 py-1 rounded-full bg-[#ff9500]/20 text-[#ff9500]">Deprioritized</span>
+                        <span class="text-base font-medium">Lead ICM Live Support</span>
+                        <span class="text-sm font-medium px-3 py-1 rounded-full bg-[#ff9500]/20 text-[#ff9500]">Deprioritized</span>
                     </div>
                     <div class="progress-track">
                         <div class="progress-fill" style="width: 0%" data-width="50"></div>
                     </div>
-                    <p class="text-xs text-[var(--text-secondary)] mt-3">20+ training videos produced but not published. Strategic recommendation: pivot to Exchange/Prophet. Product viability uncertain.</p>
+                    <p class="text-sm text-[var(--text-secondary)] mt-3 leading-relaxed">20+ training videos produced but not published. Strategic recommendation: pivot to Exchange/Prophet. Product viability uncertain.</p>
                 </div>
             </div>
         </div>
@@ -1094,50 +1109,62 @@
                 <h2 class="display-lg">Applause Awards</h2>
             </div>
             
-            <!-- Formal Applause Awards -->
-            <div class="grid md:grid-cols-3 gap-6 mb-12">
-                <div class="plaudit-card glass-card p-6 reveal">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="avatar accent text-xl">🏆</div>
+            <!-- Featured Applause - Mel Meng (most detailed) -->
+            <div class="glass-card p-10 mb-8 reveal accent-border-left">
+                <div class="text-4xl text-[var(--accent)] opacity-40 mb-4">"</div>
+                <p class="text-xl leading-relaxed text-[var(--text-primary)] mb-6">
+                    Daniel consistently goes above and beyond, investing significant time and energy into advancing AI initiatives. 
+                    His efforts have created a culture of learning and cross-pollination that benefits everyone.
+                </p>
+                <div class="flex items-center justify-between flex-wrap gap-4">
+                    <div class="flex items-center gap-3">
+                        <div class="avatar accent">MM</div>
                         <div>
-                            <p class="text-base font-medium">Mel Meng</p>
-                            <p class="text-xs text-[var(--accent)]">Dec 2025 · Brave</p>
+                            <p class="text-sm font-medium text-[var(--text-primary)]">Mel Meng</p>
+                            <p class="text-xs text-[var(--text-tertiary)]">AI Trailblazer and Collaboration Catalyst</p>
                         </div>
                     </div>
-                    <p class="text-xs font-medium text-[var(--text-secondary)] mb-3">AI Trailblazer and Collaboration Catalyst</p>
-                    <p class="quote text-xs leading-relaxed">
-                        "Daniel consistently goes above and beyond, investing significant time and energy into advancing AI initiatives... 
-                        His efforts have created a culture of learning and cross-pollination that benefits everyone."
+                    <div class="text-right">
+                        <p class="text-xs font-medium text-[var(--accent)]">Brave Award</p>
+                        <p class="text-xs text-[var(--text-tertiary)]">December 2025</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Other Applause Awards -->
+            <div class="grid md:grid-cols-2 gap-6 mb-12">
+                <div class="glass-card p-8 reveal accent-border-left">
+                    <div class="text-3xl text-[var(--accent)] opacity-40 mb-3">"</div>
+                    <p class="text-lg leading-relaxed text-[var(--text-primary)] mb-5">
+                        Your quick actions not only solved the issue but also prevented huge financial consequences.
                     </p>
+                    <div class="flex items-center justify-between flex-wrap gap-4">
+                        <div class="flex items-center gap-3">
+                            <div class="avatar accent">GC</div>
+                            <div>
+                                <p class="text-sm font-medium">Guillaume Chazal</p>
+                                <p class="text-xs text-[var(--text-tertiary)]">Artelia Licensing Crisis</p>
+                            </div>
+                        </div>
+                        <p class="text-xs text-[var(--accent)]">Mar 2025</p>
+                    </div>
                 </div>
                 
-                <div class="plaudit-card glass-card p-6 reveal">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="avatar accent text-xl">🏆</div>
-                        <div>
-                            <p class="text-base font-medium">Robert Dickinson</p>
-                            <p class="text-xs text-[var(--accent)]">Aug 2025 · Ingenious</p>
-                        </div>
-                    </div>
-                    <p class="text-xs font-medium text-[var(--text-secondary)] mb-3">Technical Excellence</p>
-                    <p class="quote text-xs leading-relaxed">
+                <div class="glass-card p-8 reveal accent-border-left">
+                    <div class="text-3xl text-[var(--accent)] opacity-40 mb-3">"</div>
+                    <p class="text-lg leading-relaxed text-[var(--text-primary)] mb-5">
                         Recognition for Tiger Team leadership and Prophet technical vision development.
                     </p>
-                </div>
-                
-                <div class="plaudit-card glass-card p-6 reveal">
-                    <div class="flex items-center gap-3 mb-4">
-                        <div class="avatar accent text-xl">🏆</div>
-                        <div>
-                            <p class="text-base font-medium">Guillaume Chazal</p>
-                            <p class="text-xs text-[var(--accent)]">Mar 2025 · Artelia</p>
+                    <div class="flex items-center justify-between flex-wrap gap-4">
+                        <div class="flex items-center gap-3">
+                            <div class="avatar accent">RD</div>
+                            <div>
+                                <p class="text-sm font-medium">Robert Dickinson</p>
+                                <p class="text-xs text-[var(--text-tertiary)]">Technical Excellence</p>
+                            </div>
                         </div>
+                        <p class="text-xs text-[var(--accent)]">Ingenious · Aug 2025</p>
                     </div>
-                    <p class="text-xs font-medium text-[var(--text-secondary)] mb-3">Licensing Crisis Resolution</p>
-                    <p class="quote text-xs leading-relaxed">
-                        "Your quick actions not only solved the issue but also prevented huge financial consequences."
-                        National Director escalation resolved in 30 minutes.
-                    </p>
                 </div>
             </div>
             
@@ -1146,49 +1173,57 @@
                 <p class="label mb-4">Stakeholder Feedback</p>
             </div>
             
-            <div class="grid md:grid-cols-2 gap-4 reveal">
-                <div class="glass-card p-5">
-                    <div class="flex items-center gap-3 mb-3">
+            <div class="grid md:grid-cols-2 gap-5 reveal">
+                <div class="glass-card p-6">
+                    <p class="text-base leading-relaxed text-[var(--text-primary)] mb-4">
+                        "This is exactly the proactive approach we need."
+                    </p>
+                    <div class="flex items-center gap-3">
                         <div class="avatar">NH</div>
                         <div>
                             <p class="text-sm font-medium">Nicole Hathorn</p>
                             <p class="text-xs text-[var(--text-tertiary)]">Licensing Risk Mitigation</p>
                         </div>
                     </div>
-                    <p class="quote text-xs">"This is exactly the proactive approach we need."</p>
                 </div>
                 
-                <div class="glass-card p-5">
-                    <div class="flex items-center gap-3 mb-3">
+                <div class="glass-card p-6">
+                    <p class="text-base leading-relaxed text-[var(--text-primary)] mb-4">
+                        "This all sounds perfect... It's exactly what we needed to avoid surprises."
+                    </p>
+                    <div class="flex items-center gap-3">
                         <div class="avatar">MG</div>
                         <div>
                             <p class="text-sm font-medium">Melissa Guezmir</p>
                             <p class="text-xs text-[var(--text-tertiary)]">PV Thales Plan</p>
                         </div>
                     </div>
-                    <p class="quote text-xs">"This all sounds perfect... It's exactly what we needed to avoid surprises."</p>
                 </div>
                 
-                <div class="glass-card p-5">
-                    <div class="flex items-center gap-3 mb-3">
+                <div class="glass-card p-6">
+                    <p class="text-base leading-relaxed text-[var(--text-primary)] mb-4">
+                        "I appreciate your frankness on the current status of ICM Live... Your input helps us shape the next steps."
+                    </p>
+                    <div class="flex items-center gap-3">
                         <div class="avatar">VK</div>
                         <div>
                             <p class="text-sm font-medium">Venu Kandiah</p>
                             <p class="text-xs text-[var(--text-tertiary)]">Omaha RTC-DSS Evaluation</p>
                         </div>
                     </div>
-                    <p class="quote text-xs">"I appreciate your frankness on the current status of ICM Live... Your input helps us shape the next steps."</p>
                 </div>
                 
-                <div class="glass-card p-5">
-                    <div class="flex items-center gap-3 mb-3">
+                <div class="glass-card p-6">
+                    <p class="text-base leading-relaxed text-[var(--text-primary)] mb-4">
+                        "Amazing thank you :) This will help us move forward with the tool approval."
+                    </p>
+                    <div class="flex items-center gap-3">
                         <div class="avatar">RF</div>
                         <div>
                             <p class="text-sm font-medium">Ryan Farmer</p>
                             <p class="text-xs text-[var(--text-tertiary)]">Mott MacDonald · Automation Tool</p>
                         </div>
                     </div>
-                    <p class="quote text-xs">"Amazing thank you :) This will help us move forward with the tool approval."</p>
                 </div>
             </div>
         </div>
@@ -1205,13 +1240,13 @@
             <div class="grid md:grid-cols-2 gap-6 mb-8">
                 <div class="orbit-card best glass-card p-8 reveal">
                     <p class="label text-[var(--accent)] mb-2">Exhibit Best</p>
-                    <h3 class="text-3xl font-semibold gradient-text mb-4">Ingenious</h3>
-                    <p class="text-sm text-[var(--text-tertiary)] mb-4">We reimagine what is possible</p>
-                    <div class="p-3 rounded-lg bg-[var(--bg-tertiary)] mb-6">
-                        <p class="text-xs text-[var(--accent)]">Great Behavior</p>
-                        <p class="text-xs text-[var(--text-secondary)]">"Thinks creatively by introducing new ideas, methods, or products"</p>
+                    <h3 class="text-3xl font-semibold gradient-text mb-3">Ingenious</h3>
+                    <p class="text-base text-[var(--text-tertiary)] mb-5">We reimagine what is possible</p>
+                    <div class="p-4 rounded-lg bg-[var(--bg-tertiary)] mb-6">
+                        <p class="text-sm font-medium text-[var(--accent)] mb-1">Great Behavior</p>
+                        <p class="text-sm text-[var(--text-secondary)]">"Thinks creatively by introducing new ideas, methods, or products"</p>
                     </div>
-                    <p class="text-sm text-[var(--text-secondary)]">
+                    <p class="text-base text-[var(--text-secondary)] leading-relaxed">
                         ICM Prophet represents entirely new product paradigm for AI-powered hydraulic modelling. 
                         Airtable infrastructure created structure where none existed. Multiple AI tools built 
                         across CS domains.
@@ -1220,13 +1255,13 @@
                 
                 <div class="orbit-card best glass-card p-8 reveal">
                     <p class="label text-[var(--accent)] mb-2">Exhibit Best</p>
-                    <h3 class="text-3xl font-semibold gradient-text mb-4">Relentless</h3>
-                    <p class="text-sm text-[var(--text-tertiary)] mb-4">We're unstoppable in the pursuit of results</p>
-                    <div class="p-3 rounded-lg bg-[var(--bg-tertiary)] mb-6">
-                        <p class="text-xs text-[var(--accent)]">Great Behavior</p>
-                        <p class="text-xs text-[var(--text-secondary)]">"Pursues results with focus and consistent effort despite obstacles or setbacks"</p>
+                    <h3 class="text-3xl font-semibold gradient-text mb-3">Relentless</h3>
+                    <p class="text-base text-[var(--text-tertiary)] mb-5">We're unstoppable in the pursuit of results</p>
+                    <div class="p-4 rounded-lg bg-[var(--bg-tertiary)] mb-6">
+                        <p class="text-sm font-medium text-[var(--accent)] mb-1">Great Behavior</p>
+                        <p class="text-sm text-[var(--text-secondary)]">"Pursues results with focus and consistent effort despite obstacles or setbacks"</p>
                     </div>
-                    <p class="text-sm text-[var(--text-secondary)]">
+                    <p class="text-base text-[var(--text-secondary)] leading-relaxed">
                         Prophet developed despite limited product leadership buy-in. Persisted with licensing improvements 
                         despite internal friction. Proactively built quarterly reporting before crises occurred.
                     </p>
@@ -1236,19 +1271,19 @@
             <div class="grid md:grid-cols-2 gap-6">
                 <div class="orbit-card growth glass-card p-8 reveal">
                     <p class="label mb-2">Growth Area</p>
-                    <h3 class="text-2xl font-semibold text-[var(--text-tertiary)] mb-4">Optimistic</h3>
-                    <p class="text-sm text-[var(--text-tertiary)] mb-4">We believe in better</p>
-                    <div class="p-3 rounded-lg bg-[var(--bg-tertiary)] mb-4">
-                        <p class="text-xs text-[var(--text-tertiary)]">Not-yet-great Behavior</p>
-                        <p class="text-xs text-[var(--text-secondary)]">"Fails to communicate and stay aligned with shared goals"</p>
+                    <h3 class="text-2xl font-semibold text-[var(--text-tertiary)] mb-3">Optimistic</h3>
+                    <p class="text-base text-[var(--text-tertiary)] mb-5">We believe in better</p>
+                    <div class="p-4 rounded-lg bg-[var(--bg-tertiary)] mb-5">
+                        <p class="text-sm text-[var(--text-tertiary)] mb-1">Not-yet-great Behavior</p>
+                        <p class="text-sm text-[var(--text-secondary)]">"Fails to communicate and stay aligned with shared goals"</p>
                     </div>
-                    <p class="text-sm text-[var(--text-secondary)] mb-6">
+                    <p class="text-base text-[var(--text-secondary)] leading-relaxed mb-6">
                         Struggled to maintain optimism when faced with organisational resistance to AI transformation. 
                         Gap between what's possible and what's ready-to-implement created frustration.
                     </p>
-                    <div class="p-4 rounded-xl bg-[var(--bg-tertiary)]">
-                        <p class="text-xs text-[var(--accent)] mb-2">Commitment</p>
-                        <p class="text-xs text-[var(--text-secondary)]">
+                    <div class="p-5 rounded-xl bg-[var(--bg-tertiary)]">
+                        <p class="text-sm font-medium text-[var(--accent)] mb-2">Commitment</p>
+                        <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
                             Focus on solutions within CS control whilst building strategic capabilities. Share progress 
                             more frequently to build optimism in others.
                         </p>
@@ -1257,19 +1292,19 @@
                 
                 <div class="orbit-card growth glass-card p-8 reveal">
                     <p class="label mb-2">Growth Area</p>
-                    <h3 class="text-2xl font-semibold text-[var(--text-tertiary)] mb-4">Trusted</h3>
-                    <p class="text-sm text-[var(--text-tertiary)] mb-4">We earn and build trust through every interaction</p>
-                    <div class="p-3 rounded-lg bg-[var(--bg-tertiary)] mb-4">
-                        <p class="text-xs text-[var(--text-tertiary)]">Not-yet-great Behavior</p>
-                        <p class="text-xs text-[var(--text-secondary)]">"Does not proactively communicate with key stakeholders when schedules or deliverables change"</p>
+                    <h3 class="text-2xl font-semibold text-[var(--text-tertiary)] mb-3">Trusted</h3>
+                    <p class="text-base text-[var(--text-tertiary)] mb-5">We earn and build trust through every interaction</p>
+                    <div class="p-4 rounded-lg bg-[var(--bg-tertiary)] mb-5">
+                        <p class="text-sm text-[var(--text-tertiary)] mb-1">Not-yet-great Behavior</p>
+                        <p class="text-sm text-[var(--text-secondary)]">"Does not proactively communicate with key stakeholders when schedules or deliverables change"</p>
                     </div>
-                    <p class="text-sm text-[var(--text-secondary)] mb-6">
+                    <p class="text-base text-[var(--text-secondary)] leading-relaxed mb-6">
                         Struggled with consistent deadline delivery on deprioritised tasks. ICM Live training and 
                         AI strategy docs slipped—though with legitimate business reasons.
                     </p>
-                    <div class="p-4 rounded-xl bg-[var(--bg-tertiary)]">
-                        <p class="text-xs text-[var(--accent)] mb-2">Commitment</p>
-                        <p class="text-xs text-[var(--text-secondary)]">
+                    <div class="p-5 rounded-xl bg-[var(--bg-tertiary)]">
+                        <p class="text-sm font-medium text-[var(--accent)] mb-2">Commitment</p>
+                        <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
                             Rigorous project tracking. Proactive timeline communication before deadlines pass. 
                             Formally document priority shifts with stakeholders.
                         </p>
@@ -1310,6 +1345,22 @@
     </footer>
     
     <script>
+        // Configuration constants
+        const ANIMATION = {
+            counterDuration: 2000,
+            barDuration: 800,
+            barDelay: 50,
+            progressDelay: 200
+        };
+        
+        const CHART_CONFIG = {
+            width: 900,
+            height: 280,
+            margin: { top: 30, right: 20, bottom: 40, left: 40 }
+        };
+        
+        const CHART_FONT = "'DM Sans', sans-serif";
+        
         // Scroll Progress
         window.addEventListener('scroll', () => {
             const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
@@ -1327,27 +1378,13 @@
             });
         });
         
-        // Reveal on scroll
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-        
-        document.querySelectorAll('.reveal, .timeline-item, .animate-in').forEach(el => {
-            revealObserver.observe(el);
-        });
-        
         // Animated counters
         function animateCounter(el) {
             const target = parseInt(el.dataset.target);
-            const duration = 2000;
             const start = performance.now();
             
             function update(now) {
-                const progress = Math.min((now - start) / duration, 1);
+                const progress = Math.min((now - start) / ANIMATION.counterDuration, 1);
                 const eased = 1 - Math.pow(1 - progress, 4);
                 el.textContent = Math.floor(eased * target);
                 if (progress < 1) requestAnimationFrame(update);
@@ -1356,43 +1393,18 @@
             requestAnimationFrame(update);
         }
         
-        const counterObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && entry.target.textContent === '0') {
-                    animateCounter(entry.target);
-                }
-            });
-        });
-        
-        document.querySelectorAll('[data-target]').forEach(el => counterObserver.observe(el));
-        
         // Initiative toggle
         function toggleInitiative(card) {
             card.classList.toggle('expanded');
             const icon = card.querySelector('.expand-icon');
-            icon.textContent = card.classList.contains('expanded') ? '+' : '+';
+            icon.textContent = card.classList.contains('expanded') ? '−' : '+';
         }
         
-        // Progress bars
-        const progressObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const fill = entry.target.querySelector('.progress-fill');
-                    setTimeout(() => {
-                        fill.style.width = fill.dataset.width + '%';
-                    }, 200);
-                }
-            });
-        });
-        
-        document.querySelectorAll('.progress-track').forEach(el => progressObserver.observe(el));
-        
-        // Calendar bar chart - Real data from Outlook calendar
+        // Calendar bar chart
         function createCalendarChart() {
             const container = document.getElementById('calendarChart');
             if (!container || container.querySelector('svg')) return;
             
-            // Real monthly event counts from calendar.ics
             const monthlyData = [
                 { month: 'Jan', events: 117, isPeak: true },
                 { month: 'Feb', events: 87, isPeak: false },
@@ -1408,10 +1420,7 @@
                 { month: 'Dec', events: 67, isPeak: false }
             ];
             
-            // Fixed dimensions for consistent rendering
-            const width = 900;
-            const height = 280;
-            const margin = { top: 30, right: 20, bottom: 40, left: 40 };
+            const { width, height, margin } = CHART_CONFIG;
             const chartWidth = width - margin.left - margin.right;
             const chartHeight = height - margin.top - margin.bottom;
             
@@ -1425,7 +1434,6 @@
             const chart = svg.append('g')
                 .attr('transform', `translate(${margin.left},${margin.top})`);
             
-            // Scales
             const xScale = d3.scaleBand()
                 .domain(monthlyData.map(d => d.month))
                 .range([0, chartWidth])
@@ -1442,7 +1450,7 @@
                 .selectAll('text')
                 .attr('fill', '#86868b')
                 .attr('font-size', '11px')
-                .attr('font-family', 'Inter');
+                .attr('font-family', CHART_FONT);
             
             chart.selectAll('.domain').attr('stroke', 'rgba(255,255,255,0.1)');
             
@@ -1452,10 +1460,18 @@
                 .selectAll('text')
                 .attr('fill', '#6e6e73')
                 .attr('font-size', '10px')
-                .attr('font-family', 'Inter');
+                .attr('font-family', CHART_FONT);
             
             chart.selectAll('.tick line').attr('stroke', 'rgba(255,255,255,0.05)');
             chart.select('.domain').remove();
+            
+            // Right border
+            chart.append('line')
+                .attr('x1', chartWidth)
+                .attr('y1', 0)
+                .attr('x2', chartWidth)
+                .attr('y2', chartHeight)
+                .attr('stroke', 'rgba(255,255,255,0.1)');
             
             // Bars
             chart.selectAll('.bar')
@@ -1470,12 +1486,12 @@
                 .attr('rx', 4)
                 .attr('fill', d => d.isPeak ? '#0071e3' : '#2d2d2f')
                 .transition()
-                .duration(800)
-                .delay((d, i) => i * 50)
+                .duration(ANIMATION.barDuration)
+                .delay((d, i) => i * ANIMATION.barDelay)
                 .attr('y', d => yScale(d.events))
                 .attr('height', d => chartHeight - yScale(d.events));
             
-            // Value labels on peak bars
+            // Peak labels
             chart.selectAll('.label')
                 .data(monthlyData.filter(d => d.isPeak))
                 .enter()
@@ -1486,18 +1502,46 @@
                 .attr('fill', '#0071e3')
                 .attr('font-size', '11px')
                 .attr('font-weight', '500')
-                .attr('font-family', 'Inter')
+                .attr('font-family', CHART_FONT)
                 .text(d => d.events);
         }
         
-        const chartObserver = new IntersectionObserver((entries) => {
+        // Unified IntersectionObserver for all scroll-triggered effects
+        const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) createCalendarChart();
+                if (!entry.isIntersecting) return;
+                const el = entry.target;
+                
+                // Reveal animations
+                if (el.classList.contains('reveal') || el.classList.contains('timeline-item') || el.classList.contains('animate-in')) {
+                    el.classList.add('visible');
+                }
+                
+                // Counter animations
+                if (el.dataset.target && el.textContent === '0') {
+                    animateCounter(el);
+                }
+                
+                // Progress bar animations
+                if (el.classList.contains('progress-track')) {
+                    const fill = el.querySelector('.progress-fill');
+                    if (fill) {
+                        setTimeout(() => {
+                            fill.style.width = fill.dataset.width + '%';
+                        }, ANIMATION.progressDelay);
+                    }
+                }
+                
+                // Chart creation
+                if (el.id === 'calendarChart') {
+                    createCalendarChart();
+                }
             });
-        });
+        }, { threshold: 0.1 });
         
-        const chartEl = document.getElementById('calendarChart');
-        if (chartEl) chartObserver.observe(chartEl);
+        // Register all observable elements
+        document.querySelectorAll('.reveal, .timeline-item, .animate-in, [data-target], .progress-track, #calendarChart')
+            .forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
