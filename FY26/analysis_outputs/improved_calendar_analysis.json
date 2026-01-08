@@ -1,0 +1,293 @@
+{
+  "summary": {
+    "total_events": 984,
+    "work_relevant_events": 305,
+    "work_relevant_hours": 303.17,
+    "excluded_events": 679,
+    "excluded_hours": 795.25
+  },
+  "by_category": {
+    "breaks_personal_excluded": {
+      "count": 4,
+      "hours": 7.75,
+      "is_work_relevant": false,
+      "sample_events": [
+        {
+          "summary": "Declined: Christmas Lunch and Activity ",
+          "duration_hours": 5.0
+        },
+        {
+          "summary": "Tetra Tech - Voice of the customer exercise",
+          "duration_hours": 0.75
+        },
+        {
+          "summary": "Declined: Power BI lunch and learn Training",
+          "duration_hours": 1.0
+        },
+        {
+          "summary": "Declined: Power BI lunch and learn Training",
+          "duration_hours": 1.0
+        }
+      ]
+    },
+    "general_work_meetings": {
+      "count": 177,
+      "hours": 178.92,
+      "is_work_relevant": true,
+      "sample_events": [
+        {
+          "summary": "Meeting Invitation: Discussion on Berlin Wasser Simulation Licens",
+          "duration_hours": 0.5
+        },
+        {
+          "summary": "Kristian Hchel (BWB) - Autodesk Water: Support cal",
+          "duration_hours": 1.33
+        },
+        {
+          "summary": "Platform Builders Jam Takeover: Designing Autodesk's Agentic Future",
+          "duration_hours": 0.5
+        },
+        {
+          "summary": "ICMLive troubleshooting",
+          "duration_hours": 0.25
+        },
+        {
+          "summary": "Laura : Daniel : Carolyn - Water Dashboard enhancements",
+          "duration_hours": 0.5
+        }
+      ]
+    },
+    "non_meetings_excluded": {
+      "count": 597,
+      "hours": 713.75,
+      "is_work_relevant": false,
+      "sample_events": [
+        {
+          "summary": "Give staff reviews",
+          "duration_hours": 1.5
+        },
+        {
+          "summary": "Cleaner",
+          "duration_hours": 2.0
+        },
+        {
+          "summary": "Solicitors",
+          "duration_hours": 1.0
+        },
+        {
+          "summary": "Daniel PTO",
+          "duration_hours": 0.0
+        },
+        {
+          "summary": "MOT",
+          "duration_hours": 1.5
+        }
+      ]
+    },
+    "planning_strategy": {
+      "count": 27,
+      "hours": 29.0,
+      "is_work_relevant": true,
+      "sample_events": [
+        {
+          "summary": "AWI x WSP Legacy License Project Handover",
+          "duration_hours": 0.5
+        },
+        {
+          "summary": "Review of Azure to ICM Cloud workflow for Anglian Water",
+          "duration_hours": 0.5
+        },
+        {
+          "summary": "WSP Legacy Retirement Project",
+          "duration_hours": 0.5
+        },
+        {
+          "summary": "Domain Services Sprint Review",
+          "duration_hours": 0.75
+        },
+        {
+          "summary": "Alignment on CS Priorities and Monetisation Strategy",
+          "duration_hours": 1.0
+        }
+      ]
+    },
+    "training_learning": {
+      "count": 30,
+      "hours": 27.25,
+      "is_work_relevant": true,
+      "sample_events": [
+        {
+          "summary": "ChatGPT training and tips with OpenAI [Option 2]",
+          "duration_hours": 1.0
+        },
+        {
+          "summary": "Jamie Glover - Autodesk Water: Webinar [1h]",
+          "duration_hours": 1.0
+        },
+        {
+          "summary": "Jamie Glover - Autodesk Water: Webinar [1h]",
+          "duration_hours": 1.0
+        },
+        {
+          "summary": "6-month onboarding check-in/Renewal Risks",
+          "duration_hours": 0.5
+        },
+        {
+          "summary": "ICMLive Training - regular alignment with Content te",
+          "duration_hours": 0.5
+        }
+      ]
+    },
+    "free_time_transparent_excluded": {
+      "count": 70,
+      "hours": 73.25,
+      "is_work_relevant": false,
+      "sample_events": [
+        {
+          "summary": "Declined: Customer Success AI Essentials Series  Copilot Best Pr",
+          "duration_hours": 1.0
+        },
+        {
+          "summary": "Declined: Comprobacin licencias Ayesa para Training",
+          "duration_hours": 0.5
+        },
+        {
+          "summary": "Declined: Q4 Named Accounts Global All-Hands Meeting",
+          "duration_hours": 1.0
+        },
+        {
+          "summary": "Declined: Deep Dive Session for Bidding in ACC - Private Beta (US r",
+          "duration_hours": 1.0
+        },
+        {
+          "summary": "Canceled: Innovation Idea",
+          "duration_hours": 1.0
+        }
+      ]
+    },
+    "customer_external": {
+      "count": 41,
+      "hours": 49.0,
+      "is_work_relevant": true,
+      "sample_events": [
+        {
+          "summary": "Customer Success AI Essentials Series  Copilot Best Practices ",
+          "duration_hours": 1.0
+        },
+        {
+          "summary": "SAVE THE DATE: Emerging Business Q4 FY26 Town Hall - Hybrid (In-Per",
+          "duration_hours": 1.0
+        },
+        {
+          "summary": "Plan to Mitigate PV Thales License Expiry Risks",
+          "duration_hours": 0.5
+        },
+        {
+          "summary": "ICMLive into Info360 Insight",
+          "duration_hours": 1.0
+        },
+        {
+          "summary": "OnRamp <> Autodesk Water Activation Working Session",
+          "duration_hours": 1.0
+        }
+      ]
+    },
+    "internal_meetings_1on1_sync": {
+      "count": 28,
+      "hours": 17.75,
+      "is_work_relevant": true,
+      "sample_events": [
+        {
+          "summary": "Mike / Daniel catch up",
+          "duration_hours": 1.0
+        },
+        {
+          "summary": "Daniel / Mike check in",
+          "duration_hours": 0.5
+        },
+        {
+          "summary": "Catch up ",
+          "duration_hours": 0.5
+        },
+        {
+          "summary": "(Optional) Hackathon Check in",
+          "duration_hours": 0.5
+        },
+        {
+          "summary": "ICMLive weekly catch up",
+          "duration_hours": 0.5
+        }
+      ]
+    },
+    "personal_time_off": {
+      "count": 6,
+      "hours": 0.0,
+      "is_work_relevant": false,
+      "sample_events": [
+        {
+          "summary": "Declined: Tim Vacation - Christmas Holiday",
+          "duration_hours": 0.0
+        },
+        {
+          "summary": "Chaitanya - OOO",
+          "duration_hours": 0.0
+        },
+        {
+          "summary": "Andrea OOO",
+          "duration_hours": 0.0
+        },
+        {
+          "summary": "Andrea OOO - Backup: Shashi Verma",
+          "duration_hours": 0.0
+        },
+        {
+          "summary": "Tim Vacation (Half Term)",
+          "duration_hours": 0.0
+        }
+      ]
+    },
+    "work_admin_it": {
+      "count": 2,
+      "hours": 1.25,
+      "is_work_relevant": true,
+      "sample_events": [
+        {
+          "summary": "Infoworks ICM Cloud initial setup",
+          "duration_hours": 0.5
+        },
+        {
+          "summary": "InfoWorks ICM Cloud simulations + hub",
+          "duration_hours": 0.75
+        }
+      ]
+    },
+    "personal_appointments_excluded": {
+      "count": 1,
+      "hours": 0.5,
+      "is_work_relevant": false,
+      "sample_events": [
+        {
+          "summary": "INC2425750 Can't access my Outlook Personal bookings",
+          "duration_hours": 0.5
+        }
+      ]
+    },
+    "out_of_office": {
+      "count": 1,
+      "hours": 0.0,
+      "is_work_relevant": false,
+      "sample_events": [
+        {
+          "summary": "Daniel Moreira on leave",
+          "duration_hours": 0.0
+        }
+      ]
+    },
+    "uncategorized": {
+      "count": 0,
+      "hours": 0,
+      "is_work_relevant": true,
+      "sample_events": []
+    }
+  }
+}

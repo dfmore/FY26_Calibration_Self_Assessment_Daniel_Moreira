@@ -1,0 +1,450 @@
+{
+  "by_tag": {
+    "EBA AS/IS": {
+      "count": 27,
+      "hours": 27.25,
+      "months_active": [
+        "2025-01",
+        "2025-02",
+        "2025-03",
+        "2025-04",
+        "2025-05",
+        "2025-06",
+        "2025-07",
+        "2025-08",
+        "2025-12"
+      ],
+      "sample_events": [
+        {
+          "summary": "AWI x WSP Legacy License Project Handover",
+          "organizer": "Robyn Horan",
+          "duration_hours": 0.5
+        },
+        {
+          "summary": "Infoworks ICM Cloud initial setup",
+          "organizer": "Davie, Gayle",
+          "duration_hours": 0.5
+        },
+        {
+          "summary": "WSP- ICM Infrastructure Discussion 1",
+          "organizer": "Robyn Horan",
+          "duration_hours": 1.0
+        },
+        {
+          "summary": "MD\\, IFD\\, ICM data transfer",
+          "organizer": "Mike Reeves",
+          "duration_hours": 0.5
+        },
+        {
+          "summary": "AWI Technical Preparation for the new EBA",
+          "organizer": "Robyn Horan",
+          "duration_hours": 1.0
+        }
+      ]
+    },
+    "Onboarding": {
+      "count": 51,
+      "hours": 39.833333333333336,
+      "months_active": [
+        "2025-03",
+        "2025-04",
+        "2025-05",
+        "2025-06",
+        "2025-07",
+        "2025-08",
+        "2025-09",
+        "2025-10",
+        "2025-11",
+        "2025-12"
+      ],
+      "sample_events": [
+        {
+          "summary": "Review of Azure to ICM Cloud workflow for Anglian Water",
+          "organizer": "Matt Hare",
+          "duration_hours": 0.5
+        },
+        {
+          "summary": "WSP Legacy Retirement Project",
+          "organizer": "Robyn Horan",
+          "duration_hours": 0.5
+        },
+        {
+          "summary": "Laura : Daniel : Carolyn - Water Dashboard enhancements",
+          "organizer": "Laura Waters",
+          "duration_hours": 0.5
+        },
+        {
+          "summary": "Licences",
+          "organizer": "Paolo Teixeira",
+          "duration_hours": 0.83
+        },
+        {
+          "summary": "Jamie Glover - Autodesk Water: Webinar [1h]",
+          "organizer": "Daniel Moreira",
+          "duration_hours": 1.0
+        }
+      ]
+    },
+    "Informational meetings": {
+      "count": 76,
+      "hours": 67.58333333333333,
+      "months_active": [
+        "2024-12",
+        "2025-01",
+        "2025-02",
+        "2025-03",
+        "2025-04",
+        "2025-05",
+        "2025-07",
+        "2025-08",
+        "2025-09",
+        "2025-10",
+        "2025-11",
+        "2025-12"
+      ],
+      "sample_events": [
+        {
+          "summary": "Kristian Hchel (BWB) - Autodesk Water: Support cal",
+          "organizer": "Daniel Moreira",
+          "duration_hours": 1.33
+        },
+        {
+          "summary": "Customer Success AI Essentials Series  Copilot Best Practices ",
+          "organizer": "Mary Catherine Plunkett",
+          "duration_hours": 1.0
+        },
+        {
+          "summary": "Domain Services Sprint Review",
+          "organizer": "Nicola Nardino",
+          "duration_hours": 0.75
+        },
+        {
+          "summary": "Mike / Daniel catch up",
+          "organizer": "Mike Reeves",
+          "duration_hours": 1.0
+        },
+        {
+          "summary": "Q4 CSM All Hands - Option 1",
+          "organizer": "Chris Bittner",
+          "duration_hours": 1.0
+        }
+      ]
+    },
+    "AI": {
+      "count": 13,
+      "hours": 10.0,
+      "months_active": [
+        "2025-09",
+        "2025-10",
+        "2025-11"
+      ],
+      "sample_events": [
+        {
+          "summary": "Workflow Improvements ",
+          "organizer": "Carolyn Rose",
+          "duration_hours": 0.5
+        },
+        {
+          "summary": "Catch-up on ICM Prophet and align our vision for InfoWorks Conversa",
+          "organizer": "Nicola Nardino",
+          "duration_hours": 0.5
+        },
+        {
+          "summary": "Automation & AI: CS Tiger Team",
+          "organizer": "Daniel Moreira",
+          "duration_hours": 1.0
+        },
+        {
+          "summary": "[AWI x Motts] tool demo",
+          "organizer": "Robyn Horan",
+          "duration_hours": 1.0
+        },
+        {
+          "summary": "Discuss Gems conversion",
+          "organizer": "Andres Gonzalez",
+          "duration_hours": 0.5
+        }
+      ]
+    },
+    "Sales support": {
+      "count": 12,
+      "hours": 8.25,
+      "months_active": [
+        "2025-01",
+        "2025-02",
+        "2025-03",
+        "2025-06",
+        "2025-11"
+      ],
+      "sample_events": [
+        {
+          "summary": "Waterpas 2-weeks-in trial period",
+          "organizer": "Abe Feenstra",
+          "duration_hours": 1.0
+        },
+        {
+          "summary": "ICMLive into Info360 Insight",
+          "organizer": "Tim Medearis",
+          "duration_hours": 1.0
+        },
+        {
+          "summary": "Omaha RTC-DSS / ICM Live",
+          "organizer": "Venu Kandiah",
+          "duration_hours": 0.5
+        },
+        {
+          "summary": "Daniel and Venu connect on ICM Live",
+          "organizer": "Venu Kandiah",
+          "duration_hours": 0.5
+        },
+        {
+          "summary": "Alignment call Artelia PE/Infoworks",
+          "organizer": "Sylvain Legrand",
+          "duration_hours": 0.5
+        }
+      ]
+    },
+    "Non-EBA IS": {
+      "count": 15,
+      "hours": 9.75,
+      "months_active": [
+        "2025-01",
+        "2025-02",
+        "2025-03",
+        "2025-05",
+        "2025-06",
+        "2025-07",
+        "2025-09",
+        "2025-10"
+      ],
+      "sample_events": [
+        {
+          "summary": "ICMLive weekly catch up",
+          "organizer": "Daniel Moreira",
+          "duration_hours": 0.5
+        },
+        {
+          "summary": "ICMLive weekly catch up",
+          "organizer": "Daniel Moreira",
+          "duration_hours": 0.5
+        },
+        {
+          "summary": "Severn trent issue",
+          "organizer": "Sathish Sundarakumar",
+          "duration_hours": 0.5
+        },
+        {
+          "summary": "Vishal Bhatia - Autodesk Support - Daniel Moreira [1",
+          "organizer": "Daniel Moreira",
+          "duration_hours": 0.25
+        },
+        {
+          "summary": "ICMLive Catchup",
+          "organizer": "Mel (Yuanhang) Meng",
+          "duration_hours": 0.5
+        }
+      ]
+    },
+    "Support": {
+      "count": 9,
+      "hours": 6.0,
+      "months_active": [
+        "2025-02",
+        "2025-04",
+        "2025-07",
+        "2025-08",
+        "2025-09"
+      ],
+      "sample_events": [
+        {
+          "summary": "Claire and Mark catch up *extending for the 60 mins*",
+          "organizer": "Claire Underhill",
+          "duration_hours": 1.0
+        },
+        {
+          "summary": "Case number 24655287 follow up call ",
+          "organizer": "Robyn Horan",
+          "duration_hours": 0.75
+        },
+        {
+          "summary": "Johnathan Hubbard - Autodesk Water Infrastructure - ",
+          "organizer": "Daniel Moreira",
+          "duration_hours": 0.75
+        },
+        {
+          "summary": "Case: 24461411",
+          "organizer": "Innovyze.CS.Team",
+          "duration_hours": 0.75
+        },
+        {
+          "summary": "RE: Innovyze Case # 01310059: Innovyze Infoworks ICM 2025.2 User In",
+          "organizer": "Chaitanya Lakeshri",
+          "duration_hours": 0.5
+        }
+      ]
+    },
+    "Training": {
+      "count": 4,
+      "hours": 2.0,
+      "months_active": [
+        "2025-04",
+        "2025-05",
+        "2025-06"
+      ],
+      "sample_events": [
+        {
+          "summary": "ICMLive Training - regular alignment with Content te",
+          "organizer": "Daniel Moreira",
+          "duration_hours": 0.5
+        },
+        {
+          "summary": "ICMLive Training - regular alignment with Content te",
+          "organizer": "Daniel Moreira",
+          "duration_hours": 0.25
+        },
+        {
+          "summary": "ICMLive training - alignment with Content team",
+          "organizer": "Daniel Moreira",
+          "duration_hours": 0.5
+        },
+        {
+          "summary": "ICMLive - Using AI for Training",
+          "organizer": "Daniel Moreira",
+          "duration_hours": 0.75
+        }
+      ]
+    },
+    "": {
+      "count": 1,
+      "hours": 0.75,
+      "months_active": [
+        "2025-04"
+      ],
+      "sample_events": [
+        {
+          "summary": "Smith\\, Rob J - Autodesk Water Infrastructure: Activ",
+          "organizer": "Daniel Moreira",
+          "duration_hours": 0.75
+        }
+      ]
+    },
+    "Management tasks": {
+      "count": 1,
+      "hours": 1.0,
+      "months_active": [
+        "2025-02"
+      ],
+      "sample_events": [
+        {
+          "summary": "ICMLive & IWLive training alignment session #1",
+          "organizer": "Daniel Moreira",
+          "duration_hours": 1.0
+        }
+      ]
+    }
+  },
+  "untagged_count": 101,
+  "untagged_hours": 134.25,
+  "untagged_samples": [
+    {
+      "summary": "Meeting Invitation: Discussion on Berlin Wasser Simulation Licens",
+      "duration_hours": 0.5,
+      "organizer": "Paloma Akerman"
+    },
+    {
+      "summary": "ChatGPT training and tips with OpenAI [Option 2]",
+      "duration_hours": 1.0,
+      "organizer": "Employee Communications"
+    },
+    {
+      "summary": "Platform Builders Jam Takeover: Designing Autodesk's Agentic Future",
+      "duration_hours": 0.5,
+      "organizer": "Platform Builders Jam (PBJ)"
+    },
+    {
+      "summary": "ICMLive troubleshooting",
+      "duration_hours": 0.25,
+      "organizer": "Daniel Moreira"
+    },
+    {
+      "summary": "Daniel / Mike check in",
+      "duration_hours": 0.5,
+      "organizer": "Mike Reeves"
+    },
+    {
+      "summary": "Tetra Tech - Voice of the customer exercise",
+      "duration_hours": 0.75,
+      "organizer": "Mike Maylone"
+    },
+    {
+      "summary": "W3F - Day 2 [In-person]",
+      "duration_hours": 7.5,
+      "organizer": "Mike Maylone"
+    },
+    {
+      "summary": "W3F - Day 1 [In-person]",
+      "duration_hours": 8.5,
+      "organizer": "Mike Maylone"
+    },
+    {
+      "summary": "Autodesk Platform Service Offering Launch Internal Focus Hour AMER/",
+      "duration_hours": 1.0,
+      "organizer": "Go-to-Market Enablement"
+    },
+    {
+      "summary": "SIM server License issues-STW",
+      "duration_hours": 0.3333333333333333,
+      "organizer": "Sathish Sundarakumar"
+    },
+    {
+      "summary": "Case: 24871266",
+      "duration_hours": 1.0,
+      "organizer": "Alex Grist"
+    },
+    {
+      "summary": "Infoworks Workgroup Server Requirements - Infoworks WS Pro",
+      "duration_hours": 1.0,
+      "organizer": "Robyn Horan"
+    },
+    {
+      "summary": "Autodesk Water Overview",
+      "duration_hours": 1.0,
+      "organizer": "Diana Villa"
+    },
+    {
+      "summary": "Autodesk Estimate Deep Dive - Session 2 (Internal only)",
+      "duration_hours": 1.0,
+      "organizer": "Samira Tily"
+    },
+    {
+      "summary": "AWI CS Dinner",
+      "duration_hours": 2.0,
+      "organizer": "Carolyn Rose"
+    },
+    {
+      "summary": "w3f initiative (weekly)",
+      "duration_hours": 1.0,
+      "organizer": "Keith Muller"
+    },
+    {
+      "summary": "Defender Days Keynote |  How a hack works: AI and deepfakes",
+      "duration_hours": 1.0,
+      "organizer": "Trust Org Communications"
+    },
+    {
+      "summary": "Brandon Post Announcement AMA - APAC/AMER ",
+      "duration_hours": 1.0,
+      "organizer": "Brandon Lacourciere"
+    },
+    {
+      "summary": "Ridley\\, Chris - Autodesk Water: Support call [45min",
+      "duration_hours": 0.75,
+      "organizer": "Daniel Moreira"
+    },
+    {
+      "summary": "EMEA EBCS Dinner and Drinks Reception",
+      "duration_hours": 3.0,
+      "organizer": "Emma Dowey"
+    }
+  ]
+}
