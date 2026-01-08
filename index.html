@@ -83,19 +83,43 @@
             -webkit-backdrop-filter: blur(24px) saturate(140%);
             border: 1px solid var(--border-subtle);
             border-radius: 24px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-            transition: all 0.3s var(--ease-out-expo);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+            transition: border-color 0.4s var(--ease-out-expo), background 0.4s var(--ease-out-expo), min-height 0.5s var(--ease-out-expo);
+            position: relative;
+            overflow: hidden;
         }
+
+        /* Base heights for unexpanded cards to keep grid tidy */
+        #overview .initiative-card { min-height: 140px; }
+        #initiatives .initiative-card { min-height: 180px; }
+        .orbit-card { min-height: 180px; }
         
         .glass-card:hover {
             border-color: var(--border-light);
-            transform: translateY(-2px);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        /* Sophisticated reveal animation */
+        .reveal {
+            opacity: 0;
+            transition: opacity 1.2s var(--ease-out-expo);
         }
         
-        .glass-card:focus {
-            outline: 2px solid var(--focus-ring);
-            outline-offset: 2px;
+        .reveal.visible {
+            opacity: 1;
+        }
+
+        /* Ensure uniform height when expanded */
+        #overview .initiative-card.expanded {
+            min-height: 320px;
+        }
+
+        #initiatives .initiative-card.expanded {
+            min-height: 600px;
+        }
+
+        .orbit-card.expanded {
+            min-height: 450px;
         }
         
         /* Typography - Refined scale */
