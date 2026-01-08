@@ -14,17 +14,22 @@
             --bg-primary: #000000;
             --bg-secondary: #0d0d0d;
             --bg-tertiary: #1d1d1f;
-            --bg-card: rgba(28, 28, 30, 0.8);
+            --bg-card: rgba(28, 28, 30, 0.6);
             --bg-glass: rgba(255, 255, 255, 0.03);
-            --text-primary: #f5f5f7;
-            --text-secondary: #a1a1a6;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b5;
             --text-tertiary: #8e8e93;
-            --border-subtle: rgba(255, 255, 255, 0.08);
-            --border-light: rgba(255, 255, 255, 0.12);
+            --border-subtle: rgba(255, 255, 255, 0.06);
+            --border-light: rgba(255, 255, 255, 0.1);
             /* Gradients */
             --gradient-accent: linear-gradient(135deg, #00a693 0%, #00d4aa 100%);
             --gradient-accent-blue: linear-gradient(135deg, var(--accent) 0%, #4dd0c4 100%);
             --gradient-stat: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
+            /* Focus states */
+            --focus-ring: rgba(0, 166, 147, 0.4);
+            /* Easing curves */
+            --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease-in-out-expo: cubic-bezier(0.87, 0, 0.13, 1);
         }
         
         * {
@@ -74,23 +79,31 @@
         
         .glass-card {
             background: var(--bg-card);
-            backdrop-filter: blur(40px) saturate(150%);
-            -webkit-backdrop-filter: blur(40px) saturate(150%);
+            backdrop-filter: blur(24px) saturate(140%);
+            -webkit-backdrop-filter: blur(24px) saturate(140%);
             border: 1px solid var(--border-subtle);
-            border-radius: 20px;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            border-radius: 24px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s var(--ease-out-expo);
         }
         
         .glass-card:hover {
             border-color: var(--border-light);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
         }
         
-        /* Typography - Normalized scale */
+        .glass-card:focus {
+            outline: 2px solid var(--focus-ring);
+            outline-offset: 2px;
+        }
+        
+        /* Typography - Refined scale */
         .display-xl {
-            font-size: clamp(3rem, 8vw, 5rem);
+            font-size: clamp(2.5rem, 7vw, 4.5rem);
             font-weight: 600;
-            letter-spacing: -0.03em;
-            line-height: 1;
+            letter-spacing: -0.025em;
+            line-height: 1.05;
         }
         
         .display-lg {
@@ -108,9 +121,9 @@
         }
         
         .body-lg {
-            font-size: 1.125rem;
+            font-size: clamp(1rem, 2vw, 1.125rem);
             font-weight: 400;
-            line-height: 1.6;
+            line-height: 1.7;
             color: var(--text-secondary);
         }
         
@@ -122,9 +135,9 @@
         }
         
         .label {
-            font-size: 0.875rem;
+            font-size: 0.8125rem;
             font-weight: 500;
-            letter-spacing: 0.02em;
+            letter-spacing: 0.03em;
             text-transform: uppercase;
             color: var(--text-tertiary);
         }
@@ -137,19 +150,20 @@
             background-clip: text;
         }
         
-        /* Shimmer animation for AI Era headline */
+        /* Shimmer animation for AI Era headline - more subtle */
         @keyframes shimmer {
-            0% { background-position: -200% center; }
-            100% { background-position: 200% center; }
+            0%, 100% { background-position: 0% center; }
+            50% { background-position: 100% center; }
         }
         
         .gradient-text.shimmer {
-            background: linear-gradient(90deg, #00a693 0%, #00d4aa 25%, #4dd0c4 50%, #00d4aa 75%, #00a693 100%);
-            background-size: 200% auto;
+            background: linear-gradient(90deg, #00a693 0%, #00d4aa 30%, #4dd0c4 50%, #00d4aa 70%, #00a693 100%);
+            background-size: 300% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: shimmer 4s ease-in-out infinite;
+            animation: shimmer 8s ease-in-out infinite;
+            opacity: 0.95;
         }
         
         /* Navigation */
@@ -184,16 +198,90 @@
             color: var(--text-secondary);
             transition: color 0.2s ease;
             padding: 8px 12px;
+            border-radius: 8px;
         }
         
         .nav-link:hover {
             color: var(--text-primary);
         }
         
+        .nav-link:focus {
+            outline: 2px solid var(--focus-ring);
+            outline-offset: 2px;
+        }
+        
         .nav-link.active {
             color: var(--text-primary);
             background: rgba(255, 255, 255, 0.06);
-            border-radius: 8px;
+        }
+        
+        /* Mobile navigation */
+        .nav-mobile-toggle {
+            display: none;
+            width: 32px;
+            height: 32px;
+            flex-direction: column;
+            justify-content: space-around;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+        }
+        
+        .nav-mobile-toggle span {
+            width: 100%;
+            height: 2px;
+            background: var(--text-secondary);
+            border-radius: 2px;
+            transition: all 0.3s var(--ease-out-expo);
+        }
+        
+        .nav-mobile-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+        
+        .nav-mobile-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .nav-mobile-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(8px, -8px);
+        }
+        
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+        
+        @media (max-width: 768px) {
+            .nav-mobile-toggle {
+                display: flex;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 52px;
+                left: 0;
+                right: 0;
+                background: rgba(0, 0, 0, 0.95);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 24px;
+                transform: translateY(-100%);
+                transition: transform 0.3s var(--ease-out-expo);
+                border-bottom: 1px solid var(--border-subtle);
+                z-index: 999;
+            }
+            
+            .nav-links.open {
+                transform: translateY(0);
+            }
+            
+            .nav-link {
+                width: 100%;
+                padding: 12px;
+            }
         }
         
         /* Scroll indicator */
@@ -231,7 +319,7 @@
             position: relative;
             padding-left: 32px;
             opacity: 0;
-            transition: opacity 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: opacity 0.6s var(--ease-out-expo);
         }
         
         .timeline-item.visible {
@@ -277,6 +365,17 @@
             overflow: hidden;
         }
         
+        .initiative-card:focus {
+            outline: 2px solid var(--focus-ring);
+            outline-offset: 2px;
+        }
+        
+        @media (max-width: 768px) {
+            .initiative-card {
+                min-height: 44px; /* Better touch target */
+            }
+        }
+        
         .initiative-card::before {
             content: '';
             position: absolute;
@@ -296,7 +395,7 @@
         .initiative-details {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: max-height 0.5s var(--ease-out-expo);
         }
         
         .initiative-card.expanded .initiative-details {
@@ -304,26 +403,29 @@
         }
         
         .expand-icon {
-            width: 28px;
-            height: 28px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
-            background: var(--bg-tertiary);
+            background: rgba(255, 255, 255, 0.05);
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s ease;
-            font-size: 1.25rem;
+            transition: all 0.3s var(--ease-out-expo);
+            font-size: 1.125rem;
             font-weight: 300;
             color: var(--text-secondary);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
         
         .initiative-card:hover .expand-icon {
             background: var(--accent);
             color: white;
+            border-color: var(--accent);
+            transform: scale(1.05);
         }
         
         .initiative-card.expanded .expand-icon {
-            transform: rotate(45deg);
+            transform: rotate(45deg) scale(1.05);
         }
         
         /* Progress bars */
@@ -336,9 +438,16 @@
         
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, var(--accent) 0%, #00d4aa 100%);
+            background: linear-gradient(90deg, var(--accent) 0%, #00d4aa 50%, var(--accent) 100%);
+            background-size: 200% 100%;
             border-radius: 2px;
-            transition: width 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: width 1.2s var(--ease-out-expo);
+            animation: progress-shimmer 2s ease-in-out infinite;
+        }
+        
+        @keyframes progress-shimmer {
+            0%, 100% { background-position: 0% 0; }
+            50% { background-position: 100% 0; }
         }
         
         /* Plaudit cards */
@@ -439,7 +548,7 @@
         
         .animate-in {
             opacity: 0;
-            animation: fadeIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+            animation: fadeIn 0.8s var(--ease-out-expo) forwards;
         }
         
         .delay-100 { animation-delay: 0.15s; }
@@ -453,23 +562,35 @@
             border-left: 3px solid var(--accent);
         }
         
+        /* Initiative card border colors */
+        .initiative-card {
+            border-left: 3px solid transparent;
+        }
+        
+        .initiative-card.airtable { border-left-color: #00d4ff; }
+        .initiative-card.prophet { border-left-color: #a855f7; }
+        .initiative-card.licensing { border-left-color: #f59e0b; }
+        .initiative-card.ai-tools { border-left-color: #00a693; }
+        .initiative-card.icm-live { border-left-color: #3b82f6; }
+        .initiative-card.support { border-left-color: #6b7280; }
+        
         .hidden-initial {
             opacity: 0;
         }
         
-        /* Section spacing */
+        /* Section spacing - responsive */
         section {
-            padding: 80px 0;
+            padding: clamp(60px, 8vw, 120px) 0;
         }
         
         .section-header {
-            margin-bottom: 48px;
+            margin-bottom: clamp(32px, 5vw, 64px);
         }
         
         /* Scroll reveal */
         .reveal {
             opacity: 0;
-            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: opacity 0.6s var(--ease-out-expo), transform 0.6s var(--ease-out-expo);
         }
         
         .reveal.visible {
@@ -486,11 +607,11 @@
         footer::before {
             content: '';
             position: absolute;
-            top: -120px;
+            top: -80px;
             left: 0;
             right: 0;
-            height: 120px;
-            background: linear-gradient(to bottom, transparent, var(--bg-primary));
+            height: 80px;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.3) 50%, var(--bg-primary) 100%);
             pointer-events: none;
         }
         
@@ -522,7 +643,12 @@
     <nav>
         <div class="nav-inner">
             <span class="text-sm font-medium text-white">2025</span>
-            <div class="hidden md:flex items-center gap-2">
+            <button class="nav-mobile-toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-links hidden md:flex" id="navLinks">
                 <a href="#overview" class="nav-link">Overview</a>
                 <a href="#timeline" class="nav-link">Timeline</a>
                 <a href="#calendar" class="nav-link">Calendar</a>
@@ -707,7 +833,7 @@
             
             <div class="grid md:grid-cols-2 gap-6">
                 <!-- Airtable -->
-                <div class="initiative-card glass-card p-8 reveal" style="border-left: 3px solid #00d4ff;" onclick="toggleInitiative(this)">
+                <div class="initiative-card airtable glass-card p-8 reveal" onclick="toggleInitiative(this)">
                     <div class="flex justify-between items-start mb-6">
                         <div>
                             <p class="label mb-2">Infrastructure</p>
@@ -754,7 +880,7 @@
                 </div>
                 
                 <!-- ICM Prophet -->
-                <div class="initiative-card glass-card p-8 reveal" style="border-left: 3px solid #a855f7;" onclick="toggleInitiative(this)">
+                <div class="initiative-card prophet glass-card p-8 reveal" onclick="toggleInitiative(this)">
                     <div class="flex justify-between items-start mb-6">
                         <div>
                             <p class="label mb-2">AI Vision</p>
@@ -804,7 +930,7 @@
                 </div>
                 
                 <!-- Proactive Licensing -->
-                <div class="initiative-card glass-card p-8 reveal" style="border-left: 3px solid #f59e0b;" onclick="toggleInitiative(this)">
+                <div class="initiative-card licensing glass-card p-8 reveal" onclick="toggleInitiative(this)">
                     <div class="flex justify-between items-start mb-6">
                         <div>
                             <p class="label mb-2">Risk Mitigation</p>
@@ -834,7 +960,7 @@
                                 </ul>
                             </div>
                             
-                            <div class="p-4 rounded-xl border-l-3" style="border-left: 3px solid #ef4444; background: linear-gradient(90deg, rgba(239, 68, 68, 0.08) 0%, transparent 100%);">
+                            <div class="p-4 rounded-xl" style="border-left: 3px solid #ef4444; background: linear-gradient(90deg, rgba(239, 68, 68, 0.08) 0%, transparent 100%);">
                                 <p class="text-sm font-medium mb-2" style="color: #ef4444;">Artelia Crisis</p>
                                 <p class="text-sm text-[var(--text-secondary)]">
                                     National Director escalation. All ICM users blocked. Resolved in 30 minutes. 
@@ -846,7 +972,7 @@
                 </div>
                 
                 <!-- AI Capabilities -->
-                <div class="initiative-card glass-card p-8 reveal" style="border-left: 3px solid #00a693;" onclick="toggleInitiative(this)">
+                <div class="initiative-card ai-tools glass-card p-8 reveal" onclick="toggleInitiative(this)">
                     <div class="flex justify-between items-start mb-6">
                         <div>
                             <p class="label mb-2">Capability Building</p>
@@ -889,7 +1015,7 @@
                 </div>
                 
                 <!-- ICM Live -->
-                <div class="initiative-card glass-card p-8 reveal" style="border-left: 3px solid #3b82f6;" onclick="toggleInitiative(this)">
+                <div class="initiative-card icm-live glass-card p-8 reveal" onclick="toggleInitiative(this)">
                     <div class="flex justify-between items-start mb-6">
                         <div>
                             <p class="label mb-2">Training</p>
@@ -931,7 +1057,7 @@
                 </div>
                 
                 <!-- Support -->
-                <div class="initiative-card glass-card p-8 reveal" style="border-left: 3px solid #6b7280;" onclick="toggleInitiative(this)">
+                <div class="initiative-card support glass-card p-8 reveal" onclick="toggleInitiative(this)">
                     <div class="flex justify-between items-start mb-6">
                         <div>
                             <p class="label mb-2">Documentation</p>
@@ -1397,7 +1523,7 @@
         const CHART_CONFIG = {
             width: 900,
             height: 280,
-            margin: { top: 30, right: 20, bottom: 40, left: 40 }
+            margin: { top: 30, right: 50, bottom: 40, left: 50 }
         };
         
         const CHART_FONT = "'Satoshi', sans-serif";
@@ -1496,7 +1622,7 @@
                 .attr('font-weight', '500')
                 .attr('font-family', CHART_FONT);
             
-            chart.selectAll('.domain').attr('stroke', 'rgba(255,255,255,0.1)');
+            chart.selectAll('.domain').attr('stroke', 'none');
             
             // Y axis
             chart.append('g')
@@ -1544,7 +1670,9 @@
                 .attr('width', xScale.bandwidth())
                 .attr('height', 0)
                 .attr('rx', 4)
-                .attr('fill', d => d.isPeak ? '#00a693' : '#2d2d2f')
+                .attr('fill', d => d.isPeak ? '#00a693' : 'rgba(255, 255, 255, 0.08)')
+                .attr('stroke', d => d.isPeak ? 'rgba(0, 166, 147, 0.3)' : 'transparent')
+                .attr('stroke-width', 1)
                 .attr('filter', d => d.isPeak ? 'url(#glow)' : 'none')
                 .transition()
                 .duration(ANIMATION.barDuration)
@@ -1623,6 +1751,25 @@
         document.querySelectorAll('section[id]').forEach(section => {
             navObserver.observe(section);
         });
+        
+        // Mobile navigation toggle
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        if (navToggle && navLinks) {
+            navToggle.addEventListener('click', () => {
+                navLinks.classList.toggle('open');
+                navToggle.classList.toggle('active');
+            });
+            
+            // Close mobile menu when clicking a link
+            navLinks.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('open');
+                    navToggle.classList.remove('active');
+                });
+            });
+        }
     </script>
 </body>
 </html>
