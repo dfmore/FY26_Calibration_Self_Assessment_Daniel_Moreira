@@ -74,44 +74,44 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
         }
         
-        /* Typography */
+        /* Typography - Normalized scale */
         .display-xl {
-            font-size: clamp(4rem, 12vw, 8rem);
+            font-size: clamp(3rem, 8vw, 5rem);
             font-weight: 600;
-            letter-spacing: -0.04em;
-            line-height: 0.95;
+            letter-spacing: -0.03em;
+            line-height: 1;
         }
         
         .display-lg {
-            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-size: clamp(2rem, 4vw, 3rem);
             font-weight: 600;
-            letter-spacing: -0.03em;
-            line-height: 1.1;
+            letter-spacing: -0.02em;
+            line-height: 1.15;
         }
         
         .display-md {
-            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-size: clamp(1.25rem, 2.5vw, 1.75rem);
             font-weight: 500;
-            letter-spacing: -0.02em;
-            line-height: 1.2;
+            letter-spacing: -0.01em;
+            line-height: 1.25;
         }
         
         .body-lg {
-            font-size: 1.25rem;
+            font-size: 1.125rem;
             font-weight: 400;
             line-height: 1.6;
             color: var(--text-secondary);
         }
         
         .body-md {
-            font-size: 1rem;
+            font-size: 0.9375rem;
             font-weight: 400;
             line-height: 1.6;
             color: var(--text-secondary);
         }
         
         .label {
-            font-size: 0.75rem;
+            font-size: 0.8125rem;
             font-weight: 500;
             letter-spacing: 0.02em;
             text-transform: uppercase;
@@ -175,11 +175,11 @@
             transition: width 0.1s ease;
         }
         
-        /* Stats */
+        /* Stats - Normalized */
         .stat-value {
-            font-size: clamp(3rem, 8vw, 5rem);
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
             font-weight: 600;
-            letter-spacing: -0.04em;
+            letter-spacing: -0.03em;
             line-height: 1;
             background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%);
             -webkit-background-clip: text;
@@ -479,7 +479,7 @@
     
     <!-- Hero Section -->
     <section class="min-h-screen flex items-center justify-center hero-gradient pt-20 px-6" id="overview">
-        <div class="max-w-5xl mx-auto text-center">
+        <div class="max-w-6xl mx-auto text-center">
             <div class="animate-in" style="opacity: 0;">
                 <p class="label mb-6">2025 Calibration Review</p>
                 <h1 class="display-xl mb-6">
@@ -495,27 +495,27 @@
                 </p>
             </div>
             
-            <!-- Key Metrics -->
+            <!-- Key Metrics - Data-backed -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
-                <div class="glass-card p-8 animate-in delay-100" style="opacity: 0;">
-                    <div class="stat-value accent" data-target="16">0</div>
-                    <p class="text-sm text-[var(--text-secondary)] mt-3">Specialists Enabled</p>
-                    <p class="text-xs text-[var(--text-tertiary)] mt-1">Global A/O Team</p>
-                </div>
-                <div class="glass-card p-8 animate-in delay-200" style="opacity: 0;">
+                <div class="glass-card p-6 animate-in delay-100" style="opacity: 0;">
                     <div class="stat-value accent" data-target="215">0</div>
-                    <p class="text-sm text-[var(--text-secondary)] mt-3">Activation and Onboarding cases</p>
+                    <p class="text-sm text-[var(--text-secondary)] mt-3">Cases Handled</p>
                     <p class="text-xs text-[var(--text-tertiary)] mt-1">141 Activation + 74 Onboarding</p>
                 </div>
-                <div class="glass-card p-8 animate-in delay-300" style="opacity: 0;">
-                    <div class="stat-value accent" data-target="9">0</div>
-                    <p class="text-sm text-[var(--text-secondary)] mt-3">KCS Articles</p>
-                    <p class="text-xs text-[var(--text-tertiary)] mt-1">Knowledge Base</p>
+                <div class="glass-card p-6 animate-in delay-200" style="opacity: 0;">
+                    <div class="stat-value accent" data-target="859">0</div>
+                    <p class="text-sm text-[var(--text-secondary)] mt-3">Calendar Events</p>
+                    <p class="text-xs text-[var(--text-tertiary)] mt-1">Real Outlook Data</p>
                 </div>
-                <div class="glass-card p-8 animate-in delay-400" style="opacity: 0;">
-                    <div class="stat-value accent" data-target="75">0</div>
-                    <p class="text-sm text-[var(--text-secondary)] mt-3">% Efficiency Target</p>
-                    <p class="text-xs text-[var(--text-tertiary)] mt-1">False Positive Reduction</p>
+                <div class="glass-card p-6 animate-in delay-300" style="opacity: 0;">
+                    <div class="stat-value accent" data-target="5">0</div>
+                    <p class="text-sm text-[var(--text-secondary)] mt-3">AI Tools Built</p>
+                    <p class="text-xs text-[var(--text-tertiary)] mt-1">Production Ready</p>
+                </div>
+                <div class="glass-card p-6 animate-in delay-400" style="opacity: 0;">
+                    <div class="stat-value accent" data-target="16">0</div>
+                    <p class="text-sm text-[var(--text-secondary)] mt-3">Global Users</p>
+                    <p class="text-xs text-[var(--text-tertiary)] mt-1">Airtable System</p>
                 </div>
             </div>
             
@@ -539,7 +539,7 @@
     
     <!-- Timeline Section -->
     <section class="section-gradient px-6" id="timeline">
-        <div class="max-w-5xl mx-auto">
+        <div class="max-w-6xl mx-auto">
             <div class="section-header reveal">
                 <p class="label mb-4">Year in Review</p>
                 <h2 class="display-lg">2025 Timeline</h2>
@@ -593,7 +593,7 @@
     
     <!-- Calendar Activity -->
     <section class="section-gradient-alt px-6" id="calendar">
-        <div class="max-w-5xl mx-auto">
+        <div class="max-w-6xl mx-auto">
             <div class="section-header reveal">
                 <p class="label mb-4">Activity</p>
                 <h2 class="display-lg mb-4">Work Calendar</h2>
@@ -642,7 +642,7 @@
     
     <!-- Major Initiatives -->
     <section class="section-gradient px-6" id="initiatives">
-        <div class="max-w-5xl mx-auto">
+        <div class="max-w-6xl mx-auto">
             <div class="section-header reveal">
                 <p class="label mb-4">Deep Dive</p>
                 <h2 class="display-lg mb-4">Major Initiatives</h2>
@@ -911,7 +911,7 @@
     
     <!-- Skills -->
     <section class="section-gradient-alt px-6" id="skills">
-        <div class="max-w-5xl mx-auto">
+        <div class="max-w-6xl mx-auto">
             <div class="section-header reveal">
                 <p class="label mb-4">Growth</p>
                 <h2 class="display-lg">Skills Development</h2>
@@ -975,68 +975,69 @@
         </div>
     </section>
     
-    <!-- KPI Progress -->
+    <!-- KPI Progress - Honest Assessment -->
     <section class="section-gradient px-6">
-        <div class="max-w-5xl mx-auto">
+        <div class="max-w-6xl mx-auto">
             <div class="section-header reveal">
                 <p class="label mb-4">Metrics</p>
                 <h2 class="display-lg">KPI Progress</h2>
+                <p class="body-md mt-4">Honest assessment based on 5 distinct KPI domains spanning 2-3 typical full-time roles</p>
             </div>
             
-            <div class="space-y-8 reveal">
-                <div>
-                    <div class="flex justify-between mb-3">
-                        <span class="text-sm">Support for Existing Licensing Systems</span>
-                        <span class="text-sm font-medium text-[var(--accent)]">Achieved</span>
+            <div class="space-y-6 reveal">
+                <div class="glass-card p-6">
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-sm font-medium">AI and MCP Strategy and Support</span>
+                        <span class="text-xs font-medium px-3 py-1 rounded-full bg-[#34c759]/20 text-[#34c759]">Exceeded</span>
                     </div>
                     <div class="progress-track">
                         <div class="progress-fill" style="width: 0%" data-width="100"></div>
                     </div>
-                    <p class="text-xs text-[var(--text-tertiary)] mt-2">Complex Thales cases (Severn Trent, Tideway), quarterly expiry reporting, 30-day emergency licences, AI-powered EMS automation</p>
+                    <p class="text-xs text-[var(--text-secondary)] mt-3">Prophet vision complete and endorsed by Boaz Brudner. Tiger Team created and leading. 5 Copilot tools built. W3F Denver strategy sessions as CS representative.</p>
                 </div>
                 
-                <div>
-                    <div class="flex justify-between mb-3">
-                        <span class="text-sm">Senior IT Support Engineer</span>
-                        <span class="text-sm font-medium text-[var(--accent)]">Achieved</span>
+                <div class="glass-card p-6">
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-sm font-medium">Support for Existing Licensing Systems</span>
+                        <span class="text-xs font-medium px-3 py-1 rounded-full bg-[var(--accent)]/20 text-[var(--accent)]">Strong</span>
                     </div>
                     <div class="progress-track">
-                        <div class="progress-fill" style="width: 0%" data-width="100"></div>
+                        <div class="progress-fill" style="width: 0%" data-width="90"></div>
                     </div>
-                    <p class="text-xs text-[var(--text-tertiary)] mt-2">Cloud infrastructure support, remote simulations, CPA documentation, internal support to CS/Sales/Product</p>
+                    <p class="text-xs text-[var(--text-secondary)] mt-3">Complex Thales cases handled (Severn Trent, Tideway, Artelia crisis). Quarterly reporting implemented. Routine work delegated to team.</p>
                 </div>
                 
-                <div>
-                    <div class="flex justify-between mb-3">
-                        <span class="text-sm">Activation and On-Boarding</span>
-                        <span class="text-sm font-medium text-[var(--accent)]">Achieved</span>
+                <div class="glass-card p-6">
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-sm font-medium">Activation and On-Boarding</span>
+                        <span class="text-xs font-medium px-3 py-1 rounded-full bg-[var(--accent)]/20 text-[var(--accent)]">Strong</span>
                     </div>
                     <div class="progress-track">
-                        <div class="progress-fill" style="width: 0%" data-width="100"></div>
+                        <div class="progress-fill" style="width: 0%" data-width="85"></div>
                     </div>
-                    <p class="text-xs text-[var(--text-tertiary)] mt-2">Airtable system serving 16 global specialists, 215 Activation and Onboarding cases, 75% false-positive targeting initiated</p>
+                    <p class="text-xs text-[var(--text-secondary)] mt-3">Airtable system built for 16 global specialists. 215 cases handled. Focus reduced since October due to competing priorities.</p>
                 </div>
                 
-                <div>
-                    <div class="flex justify-between mb-3">
-                        <span class="text-sm">AI and MCP Strategy and Support</span>
-                        <span class="text-sm font-medium text-[var(--accent)]">Achieved</span>
+                <div class="glass-card p-6">
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-sm font-medium">Senior IT Support Engineer</span>
+                        <span class="text-xs font-medium px-3 py-1 rounded-full bg-[var(--text-tertiary)]/20 text-[var(--text-secondary)]">Maintained</span>
                     </div>
                     <div class="progress-track">
-                        <div class="progress-fill" style="width: 0%" data-width="100"></div>
+                        <div class="progress-fill" style="width: 0%" data-width="80"></div>
                     </div>
-                    <p class="text-xs text-[var(--text-tertiary)] mt-2">Prophet vision complete, Tiger Team leading, Copilot tools built, W3F Denver strategy sessions</p>
+                    <p class="text-xs text-[var(--text-secondary)] mt-3">Transitioned routine work to team. Retained complex/escalated cases requiring senior expertise. Internal support maintained.</p>
                 </div>
                 
-                <div>
-                    <div class="flex justify-between mb-3">
-                        <span class="text-sm">Lead ICM Live Support</span>
-                        <span class="text-sm font-medium text-[var(--text-tertiary)]">Partial</span>
+                <div class="glass-card p-6">
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-sm font-medium">Lead ICM Live Support</span>
+                        <span class="text-xs font-medium px-3 py-1 rounded-full bg-[#ff9500]/20 text-[#ff9500]">Deprioritized</span>
                     </div>
                     <div class="progress-track">
-                        <div class="progress-fill" style="width: 0%" data-width="75"></div>
+                        <div class="progress-fill" style="width: 0%" data-width="50"></div>
                     </div>
-                    <p class="text-xs text-[var(--text-tertiary)] mt-2">20+ training videos produced, strategic pivot to Exchange/Prophet recommended, ECS VMs managed</p>
+                    <p class="text-xs text-[var(--text-secondary)] mt-3">20+ training videos produced but not published. Strategic recommendation: pivot to Exchange/Prophet. Product viability uncertain.</p>
                 </div>
             </div>
         </div>
@@ -1044,7 +1045,7 @@
     
     <!-- KCS Articles -->
     <section class="section-gradient-alt px-6" id="kcs">
-        <div class="max-w-5xl mx-auto">
+        <div class="max-w-6xl mx-auto">
             <div class="section-header reveal">
                 <p class="label mb-4">Documentation</p>
                 <h2 class="display-lg">KCS Articles</h2>
@@ -1087,33 +1088,107 @@
     
     <!-- Recognition -->
     <section class="section-gradient px-6" id="plaudits">
-        <div class="max-w-5xl mx-auto">
+        <div class="max-w-6xl mx-auto">
             <div class="section-header reveal">
-                <p class="label mb-4">Formal Recognition</p>
-                <h2 class="display-lg">Applause Award</h2>
+                <p class="label mb-4">Recognition</p>
+                <h2 class="display-lg">Applause Awards</h2>
             </div>
             
-            <div class="max-w-2xl mx-auto">
-                <div class="plaudit-card glass-card p-10 reveal">
-                    <div class="flex items-center gap-4 mb-8">
-                        <div class="avatar accent text-2xl">🏆</div>
+            <!-- Formal Applause Awards -->
+            <div class="grid md:grid-cols-3 gap-6 mb-12">
+                <div class="plaudit-card glass-card p-6 reveal">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="avatar accent text-xl">🏆</div>
                         <div>
-                            <p class="text-xl font-medium">Guillaume Chazal</p>
-                            <p class="text-sm text-[var(--text-tertiary)]">Artelia Account Team</p>
-                            <p class="text-sm text-[var(--accent)] mt-1">Applause Award — March 2025</p>
+                            <p class="text-base font-medium">Mel Meng</p>
+                            <p class="text-xs text-[var(--accent)]">Dec 2025 · Brave</p>
                         </div>
                     </div>
-                    <p class="quote text-base leading-relaxed">
-                        "Thanks again for your help with this critical case. ARTELIA was stuck with their token flex licences 
-                        migration and all ICM users were unable to work. Your quick actions not only solved the issue but also 
-                        prevented huge financial consequences."
+                    <p class="text-xs font-medium text-[var(--text-secondary)] mb-3">AI Trailblazer and Collaboration Catalyst</p>
+                    <p class="quote text-xs leading-relaxed">
+                        "Daniel consistently goes above and beyond, investing significant time and energy into advancing AI initiatives... 
+                        His efforts have created a culture of learning and cross-pollination that benefits everyone."
                     </p>
-                    <div class="mt-6 p-4 rounded-xl bg-[var(--bg-tertiary)]">
-                        <p class="text-xs text-[var(--text-tertiary)]">
-                            <span class="text-[var(--accent)]">Context:</span> National Director-level escalation resolved in 30 minutes via call. 
-                            All ICM users were blocked from working. Critical licensing crisis prevented.
-                        </p>
+                </div>
+                
+                <div class="plaudit-card glass-card p-6 reveal">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="avatar accent text-xl">🏆</div>
+                        <div>
+                            <p class="text-base font-medium">Robert Dickinson</p>
+                            <p class="text-xs text-[var(--accent)]">Aug 2025 · Ingenious</p>
+                        </div>
                     </div>
+                    <p class="text-xs font-medium text-[var(--text-secondary)] mb-3">Technical Excellence</p>
+                    <p class="quote text-xs leading-relaxed">
+                        Recognition for Tiger Team leadership and Prophet technical vision development.
+                    </p>
+                </div>
+                
+                <div class="plaudit-card glass-card p-6 reveal">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="avatar accent text-xl">🏆</div>
+                        <div>
+                            <p class="text-base font-medium">Guillaume Chazal</p>
+                            <p class="text-xs text-[var(--accent)]">Mar 2025 · Artelia</p>
+                        </div>
+                    </div>
+                    <p class="text-xs font-medium text-[var(--text-secondary)] mb-3">Licensing Crisis Resolution</p>
+                    <p class="quote text-xs leading-relaxed">
+                        "Your quick actions not only solved the issue but also prevented huge financial consequences."
+                        National Director escalation resolved in 30 minutes.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Stakeholder Feedback -->
+            <div class="section-header reveal">
+                <p class="label mb-4">Stakeholder Feedback</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-4 reveal">
+                <div class="glass-card p-5">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="avatar">NH</div>
+                        <div>
+                            <p class="text-sm font-medium">Nicole Hathorn</p>
+                            <p class="text-xs text-[var(--text-tertiary)]">Licensing Risk Mitigation</p>
+                        </div>
+                    </div>
+                    <p class="quote text-xs">"This is exactly the proactive approach we need."</p>
+                </div>
+                
+                <div class="glass-card p-5">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="avatar">MG</div>
+                        <div>
+                            <p class="text-sm font-medium">Melissa Guezmir</p>
+                            <p class="text-xs text-[var(--text-tertiary)]">PV Thales Plan</p>
+                        </div>
+                    </div>
+                    <p class="quote text-xs">"This all sounds perfect... It's exactly what we needed to avoid surprises."</p>
+                </div>
+                
+                <div class="glass-card p-5">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="avatar">VK</div>
+                        <div>
+                            <p class="text-sm font-medium">Venu Kandiah</p>
+                            <p class="text-xs text-[var(--text-tertiary)]">Omaha RTC-DSS Evaluation</p>
+                        </div>
+                    </div>
+                    <p class="quote text-xs">"I appreciate your frankness on the current status of ICM Live... Your input helps us shape the next steps."</p>
+                </div>
+                
+                <div class="glass-card p-5">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="avatar">RF</div>
+                        <div>
+                            <p class="text-sm font-medium">Ryan Farmer</p>
+                            <p class="text-xs text-[var(--text-tertiary)]">Mott MacDonald · Automation Tool</p>
+                        </div>
+                    </div>
+                    <p class="quote text-xs">"Amazing thank you :) This will help us move forward with the tool approval."</p>
                 </div>
             </div>
         </div>
@@ -1121,7 +1196,7 @@
     
     <!-- ORBIT -->
     <section class="section-gradient-alt px-6">
-        <div class="max-w-5xl mx-auto">
+        <div class="max-w-6xl mx-auto">
             <div class="section-header reveal">
                 <p class="label mb-4">Culture</p>
                 <h2 class="display-lg">ORBIT Codes</h2>
@@ -1228,7 +1303,7 @@
     
     <!-- Footer -->
     <footer class="py-12 px-6">
-        <div class="max-w-5xl mx-auto text-center">
+        <div class="max-w-6xl mx-auto text-center">
             <p class="text-sm text-[var(--text-tertiary)]">Daniel Moreira · Systems Engineer · InfoWorks ICM</p>
             <p class="text-xs text-[var(--text-tertiary)] mt-2">2025 Calibration Review · Autodesk</p>
         </div>
@@ -1333,16 +1408,19 @@
                 { month: 'Dec', events: 67, isPeak: false }
             ];
             
-            const width = Math.min(container.offsetWidth, 900);
-            const height = 250;
-            const margin = { top: 30, right: 20, bottom: 40, left: 50 };
+            // Fixed dimensions for consistent rendering
+            const width = 900;
+            const height = 280;
+            const margin = { top: 30, right: 20, bottom: 40, left: 40 };
             const chartWidth = width - margin.left - margin.right;
             const chartHeight = height - margin.top - margin.bottom;
             
             const svg = d3.select('#calendarChart')
                 .append('svg')
-                .attr('width', width)
-                .attr('height', height);
+                .attr('viewBox', `0 0 ${width} ${height}`)
+                .attr('preserveAspectRatio', 'xMidYMid meet')
+                .style('width', '100%')
+                .style('height', 'auto');
             
             const chart = svg.append('g')
                 .attr('transform', `translate(${margin.left},${margin.top})`);
