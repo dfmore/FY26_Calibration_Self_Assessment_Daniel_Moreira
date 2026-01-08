@@ -9,7 +9,7 @@
     --accent-hover: #00bfa9;
     
     /* Background colors */
-    --bg-primary: #000000;
+    --bg-primary: #0a0a0b;
     --bg-secondary: #0d0d0d;
     --bg-tertiary: #1d1d1f;
     --bg-card: rgba(28, 28, 30, 0.6);
@@ -37,14 +37,14 @@
     --accent-orange-glow: rgba(255, 107, 0, 0.4);
     --gradient-orange: linear-gradient(135deg, #ff6b00 0%, #ff9500 100%);
     
-    /* Easing curves */
-    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    /* Easing curves - Weighted Easing for more "premium" feel */
+    --ease-out-expo: cubic-bezier(0.23, 1, 0.32, 1);
     
-    /* Animation durations */
-    --duration-fast: 0.2s;
-    --duration-normal: 0.3s;
-    --duration-slow: 0.5s;
-    --duration-reveal: 0.6s;
+    /* Animation durations - More deliberate and impactful */
+    --duration-fast: 0.25s;
+    --duration-normal: 0.4s;
+    --duration-slow: 0.7s;
+    --duration-reveal: 0.8s;
     --duration-counter: 2s;
     
     /* Spacing */

@@ -9,13 +9,15 @@
 
 .reveal {
     opacity: 0;
+    transform: translateY(24px) scale(0.98);
     transition: opacity var(--duration-reveal) var(--ease-out-expo), 
                 transform var(--duration-reveal) var(--ease-out-expo);
+    will-change: transform, opacity;
 }
 
 .reveal.visible {
     opacity: 1;
-    transform: none;
+    transform: translateY(0) scale(1);
 }
 
 /* Fade in animation */

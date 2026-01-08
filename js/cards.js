@@ -48,6 +48,9 @@ function handleCardKeyboard(event) {
     toggleCard(card);
 }
 
+// Cache for performance to avoid layout thrashing
+const cardRects = new Map();
+
 /**
  * Handle scale activation card hover
  * @param {MouseEvent} event - Mouse event
@@ -58,6 +61,9 @@ function handleScaleCardHover(event) {
     
     const card = event.target.closest('[data-scale-card="true"]');
     if (!card) return;
+    
+    // Cache the rect once on entry
+    cardRects.set(card, card.getBoundingClientRect());
     
     // Activate the card
     if (!hasClass(card, CLASSES.activated)) {
@@ -76,12 +82,25 @@ function handleScaleCardMouseMove(event) {
     const card = event.target.closest('[data-scale-card="true"]');
     if (!card) return;
     
-    const rect = card.getBoundingClientRect();
+    // Use cached rect or fallback
+    const rect = cardRects.get(card) || card.getBoundingClientRect();
     const x = ((event.clientX - rect.left) / rect.width) * 100;
     const y = ((event.clientY - rect.top) / rect.height) * 100;
     
     card.style.setProperty('--mouse-x', `${x}%`);
     card.style.setProperty('--mouse-y', `${y}%`);
+}
+
+/**
+ * Handle mouse leave on scale card to clear cache
+ * @param {MouseEvent} event - Mouse event
+ */
+function handleScaleCardLeave(event) {
+    if (!event.target || typeof event.target.closest !== 'function') return;
+    const card = event.target.closest('[data-scale-card="true"]');
+    if (card) {
+        cardRects.delete(card);
+    }
 }
 
 /**
@@ -94,6 +113,7 @@ export function initCards() {
     
     // Scale activation cards
     on(document, 'mouseenter', handleScaleCardHover, true);
+    on(document, 'mouseleave', handleScaleCardLeave, true);
     on(document, 'mousemove', handleScaleCardMouseMove);
 }
 

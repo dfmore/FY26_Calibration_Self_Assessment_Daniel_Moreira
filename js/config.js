@@ -126,25 +126,25 @@ export const viewConfigs = {
             '<span class="text-[var(--text-primary)] font-medium">EBA AS/IS (27 meetings)</span> — Enterprise Business Agreement technical support'
         ]
     },
-    count: {
-        keys: ['total'],
-        colors: { total: '#3b82f6' },
-        labels: { total: 'Meetings' },
+    hours: {
+        keys: ['hours'],
+        colors: { hours: '#00a693' },
+        labels: { hours: 'Hours' },
         dataSource: 'byCategory',
-        yMax: 100,
+        yMax: 120,
         stats: { 
-            stat1: '305', 
-            stat1Label: 'Total Meetings', 
-            stat2: '25', 
+            stat1: '764h', 
+            stat1Label: 'Total Hours', 
+            stat2: '63.7h', 
             stat2Label: 'Monthly Avg', 
-            stat3: '1.0h', 
-            stat3Label: 'Avg Duration' 
+            stat3: '106.3h', 
+            stat3Label: 'Peak (Oct)' 
         },
-        legendTitle: 'Meeting Count Distribution',
+        legendTitle: 'Meeting Hours Distribution',
         insights: [
-            '<span class="text-[var(--text-primary)] font-medium">January peak (89 meetings)</span> — Highest activity month with system launches',
-            '<span class="text-[var(--text-primary)] font-medium">Balanced distribution</span> — Consistent 20-40 meetings per month',
-            '<span class="text-[var(--text-primary)] font-medium">Efficient meetings</span> — Average 1 hour duration, focused discussions'
+            '<span class="text-[var(--text-primary)] font-medium">October peak (106.3h)</span> — Highest activity with AU preparation and Q4 planning',
+            '<span class="text-[var(--text-primary)] font-medium">January surge (98.5h)</span> — Year kickoff, Airtable launch, licensing crises',
+            '<span class="text-[var(--text-primary)] font-medium">Summer efficiency</span> — August lowest (36h) with focused deep work periods'
         ]
     }
 };

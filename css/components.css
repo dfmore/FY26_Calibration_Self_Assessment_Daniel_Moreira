@@ -41,18 +41,21 @@
     border: 1px solid var(--border-subtle);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-card);
-    transition: border-color 0.4s var(--ease-out-expo), 
-                background 0.4s var(--ease-out-expo), 
-                min-height 0.5s var(--ease-out-expo), 
-                box-shadow 0.4s var(--ease-out-expo),
-                transform 0.3s var(--ease-out-expo);
+    transition: border-color var(--duration-normal) var(--ease-out-expo), 
+                background var(--duration-normal) var(--ease-out-expo), 
+                min-height var(--duration-slow) var(--ease-out-expo), 
+                box-shadow var(--duration-normal) var(--ease-out-expo),
+                transform var(--duration-normal) var(--ease-out-expo);
     position: relative;
     overflow: hidden;
+    will-change: transform, opacity;
 }
 
 .glass-card:hover {
     border-color: var(--border-light);
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba(255, 255, 255, 0.05);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
 }
 
 
@@ -238,7 +241,7 @@ nav {
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--accent), transparent);
     opacity: 0;
-    transition: opacity var(--duration-normal) ease;
+    transition: opacity var(--duration-normal) var(--ease-out-expo);
 }
 
 .initiative-card:hover::before {
@@ -529,7 +532,8 @@ nav {
 .scale-activation-card {
     position: relative;
     overflow: hidden;
-    transition: border-color 1s var(--ease-out-expo), box-shadow 1s var(--ease-out-expo);
+    transition: border-color var(--duration-slow) var(--ease-out-expo), 
+                box-shadow var(--duration-slow) var(--ease-out-expo);
 }
 
 .scale-activation-card::before {

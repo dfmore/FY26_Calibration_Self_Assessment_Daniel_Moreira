@@ -153,13 +153,11 @@ function updateChart(view, isInitial) {
         .attr('font-family', CHART_FONT);
     
     // Prepare and render data based on view
-    if (view === 'count') {
-        const chartData = data.map(d => ({ 
-            ...d, 
-            total: d.general + d.customer + d.training + d.planning + d.oneOnOne 
-        }));
-        renderSimpleBars(chartData, config, duration, isInitial);
+    if (view === 'hours') {
+        // Hours view - simple bars showing hours per month
+        renderSimpleBars(data, config, duration, isInitial);
     } else {
+        // Categories and tags views - stacked bars
         const stack = d3.stack()
             .keys(config.keys)
             .order(d3.stackOrderNone)

@@ -45,27 +45,33 @@ export function animateProgressBar(track) {
  * @param {IntersectionObserverEntry[]} entries - Observer entries
  */
 function handleIntersection(entries) {
-    entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        
+    // Filter for elements that are actually entering the viewport
+    const intersectingEntries = entries.filter(entry => entry.isIntersecting);
+    
+    intersectingEntries.forEach((entry, index) => {
         const el = entry.target;
         
-        // Reveal animations
-        if (el.classList.contains(CLASSES.reveal) || 
-            el.classList.contains(CLASSES.timelineItem) || 
-            el.classList.contains(CLASSES.animateIn)) {
-            el.classList.add(CLASSES.visible);
-        }
+        // Apply staggered delay (100ms increments) for groups of elements entering together
+        const staggerDelay = intersectingEntries.length > 1 ? index * 100 : 0;
         
-        // Counter animations (only if not already animated)
-        if (el.dataset.target && el.textContent.trim() === '0') {
-            animateCounter(el);
-        }
-        
-        // Progress bar animations
-        if (el.classList.contains(CLASSES.progressTrack)) {
-            animateProgressBar(el);
-        }
+        setTimeout(() => {
+            // Reveal animations
+            if (el.classList.contains(CLASSES.reveal) || 
+                el.classList.contains(CLASSES.timelineItem) || 
+                el.classList.contains(CLASSES.animateIn)) {
+                el.classList.add(CLASSES.visible);
+            }
+            
+            // Counter animations (only if not already animated)
+            if (el.dataset.target && el.textContent.trim() === '0') {
+                animateCounter(el);
+            }
+            
+            // Progress bar animations
+            if (el.classList.contains(CLASSES.progressTrack)) {
+                animateProgressBar(el);
+            }
+        }, staggerDelay);
     });
 }
 
