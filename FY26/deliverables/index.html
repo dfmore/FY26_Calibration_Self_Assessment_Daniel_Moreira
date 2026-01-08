@@ -902,17 +902,17 @@
 
                 <div class="initiative-card glass-card p-6 reveal cursor-pointer" onclick="toggleInitiative(this)">
                     <div class="flex justify-between items-start mb-4">
-                        <div class="stat-value accent" data-target="859">0</div>
+                        <div class="stat-value accent" data-target="305">0</div>
                         <span class="expand-icon">+</span>
                     </div>
-                    <p class="text-sm text-[var(--text-secondary)]">Calendar Events</p>
+                    <p class="text-sm text-[var(--text-secondary)]">Work Meetings</p>
                     <div class="initiative-details">
                         <div class="border-t border-[var(--border-subtle)] pt-4 mt-4 text-left">
-                            <p class="text-xs text-[var(--text-tertiary)] mb-2 uppercase tracking-wider">Outlook Data</p>
+                            <p class="text-xs text-[var(--text-tertiary)] mb-2 uppercase tracking-wider">Actual Meetings</p>
                             <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
-                                <li>• 72 monthly average</li>
-                                <li>• 117 peak month (Jan)</li>
-                                <li>• High-density collaboration</li>
+                                <li>• 303 hours meeting time</li>
+                                <li>• 89 peak month (Jan)</li>
+                                <li>• High-touch collaboration</li>
                             </ul>
                         </div>
                     </div>
@@ -1048,11 +1048,6 @@
                             id="btn-tags"
                             class="view-toggle-btn px-4 py-2 rounded-full text-sm font-medium transition-all duration-300">
                         By Work Area
-                    </button>
-                    <button onclick="switchCalendarView('hours')" 
-                            id="btn-hours"
-                            class="view-toggle-btn px-4 py-2 rounded-full text-sm font-medium transition-all duration-300">
-                        Meeting Hours
                     </button>
                     <button onclick="switchCalendarView('count')" 
                             id="btn-count"
@@ -1955,20 +1950,6 @@
                     '<span class="text-[var(--text-primary)] font-medium">EBA AS/IS (27 meetings)</span> — Enterprise Business Agreement technical support'
                 ]
             },
-            hours: {
-                keys: ['hours'],
-                colors: { hours: '#00a693' },
-                labels: { hours: 'Hours' },
-                dataSource: 'byCategory',
-                yMax: 120,
-                stats: { stat1: '303h', stat1Label: 'Total Hours', stat2: '25h', stat2Label: 'Monthly Avg', stat3: '106h', stat3Label: 'Peak (Oct)' },
-                legendTitle: 'Meeting Hours Distribution',
-                insights: [
-                    '<span class="text-[var(--text-primary)] font-medium">October peak (106h)</span> — Barcelona EBCS, ICM Prophet milestone, Hackathon',
-                    '<span class="text-[var(--text-primary)] font-medium">January high (98h)</span> — Airtable launch, Mott MacDonald initiatives',
-                    '<span class="text-[var(--text-primary)] font-medium">Consistent engagement</span> — Active across all 13 months of FY26'
-                ]
-            },
             count: {
                 keys: ['total'],
                 colors: { total: '#3b82f6' },
@@ -2073,13 +2054,12 @@
             
             // Prepare data based on view
             let chartData;
-            if (view === 'hours') {
-                chartData = data.map(d => ({ ...d, hours: d.hours }));
-            } else if (view === 'count') {
+            if (view === 'count') {
                 chartData = data.map(d => ({ 
                     ...d, 
                     total: d.general + d.customer + d.training + d.planning + d.oneOnOne 
                 }));
+                renderSimpleBars(chartData, config, duration, isInitial);
             } else {
                 // Stacked data
                 const stack = d3.stack()
@@ -2087,12 +2067,6 @@
                     .order(d3.stackOrderNone)
                     .offset(d3.stackOffsetNone);
                 chartData = stack(data);
-            }
-            
-            // Render based on view type
-            if (view === 'hours' || view === 'count') {
-                renderSimpleBars(chartData, config, duration, isInitial);
-            } else {
                 renderStackedBars(chartData, config, duration, isInitial);
             }
             
