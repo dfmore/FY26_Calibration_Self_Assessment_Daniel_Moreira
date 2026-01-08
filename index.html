@@ -688,6 +688,61 @@
         .text-sm { font-size: 0.9375rem !important; }
         .text-xs { font-size: 0.8125rem !important; }
         
+        /* Scale Activation Card Styles */
+        .scale-activation-card {
+            position: relative;
+            overflow: hidden;
+            transition: border-color 1s var(--ease-out-expo), box-shadow 1s var(--ease-out-expo);
+        }
+
+        .scale-activation-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(0, 166, 147, 0.15) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            pointer-events: none;
+        }
+
+        .scale-activation-card:hover::before {
+            opacity: 1;
+        }
+
+        .scale-activation-card .sweep-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            filter: blur(1px);
+            opacity: 0;
+            z-index: 5;
+        }
+
+        .scale-activation-card.activated .sweep-line {
+            animation: data-sweep 1.2s var(--ease-out-expo) forwards;
+        }
+
+        .scale-activation-card.activated {
+            border-color: rgba(0, 166, 147, 0.4);
+            box-shadow: 0 0 50px rgba(0, 166, 147, 0.1);
+        }
+
+        .scale-activation-card.activated .scale-text {
+            color: var(--text-primary);
+            text-shadow: 0 0 20px rgba(0, 166, 147, 0.3);
+            transition: all 1s ease;
+        }
+
+        @keyframes data-sweep {
+            0% { top: -10%; opacity: 0; }
+            30% { opacity: 1; }
+            70% { opacity: 1; }
+            100% { top: 110%; opacity: 0; }
+        }
+
     </style>
 </head>
 <body>
@@ -1634,9 +1689,10 @@
                 opportunities to ensure foundational work gets the understanding it deserves.
             </p>
             
-            <div class="glass-card p-12">
-                <p class="display-md mb-4">Foundations complete.</p>
-                <p class="body-lg">Now we scale.</p>
+            <div class="glass-card p-12 scale-activation-card cursor-pointer group" onmouseenter="activateScale(this)">
+                <div class="sweep-line"></div>
+                <p class="display-md mb-4 relative z-10">Foundations complete.</p>
+                <p class="body-lg relative z-10 scale-text">Now we scale.</p>
             </div>
         </div>
     </section>
@@ -1899,6 +1955,21 @@
                 });
             });
         }
+
+        // Scale Card Activation and Mouse Tracking
+        function activateScale(card) {
+            if (!card.classList.contains('activated')) {
+                card.classList.add('activated');
+            }
+        }
+
+        document.querySelector('.scale-activation-card').addEventListener('mousemove', (e) => {
+            const rect = e.target.closest('.scale-activation-card').getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+            e.target.closest('.scale-activation-card').style.setProperty('--mouse-x', `${x}%`);
+            e.target.closest('.scale-activation-card').style.setProperty('--mouse-y', `${y}%`);
+        });
     </script>
 </body>
 </html>
