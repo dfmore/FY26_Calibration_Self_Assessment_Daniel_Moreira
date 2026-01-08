@@ -686,25 +686,76 @@
             
             <!-- Key Metrics - Data-backed -->
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
-                <div class="glass-card p-6 animate-in delay-100">
-                    <div class="stat-value accent" data-target="215">0</div>
-                    <p class="text-sm text-[var(--text-secondary)] mt-3">Cases Handled</p>
-                    <p class="text-sm text-[var(--text-tertiary)] mt-1">141 Activation + 74 Onboarding</p>
+                <div class="initiative-card glass-card p-6 reveal cursor-pointer" onclick="toggleInitiative(this)">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="stat-value accent" data-target="215">0</div>
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <p class="text-sm text-[var(--text-secondary)]">Cases Handled</p>
+                    <div class="initiative-details">
+                        <div class="border-t border-[var(--border-subtle)] pt-4 mt-4 text-left">
+                            <p class="text-xs text-[var(--text-tertiary)] mb-2 uppercase tracking-wider">Breakdown</p>
+                            <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
+                                <li>• 141 Activation cases</li>
+                                <li>• 74 Onboarding cases</li>
+                                <li>• Global support coverage</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="glass-card p-6 animate-in delay-200">
-                    <div class="stat-value accent" data-target="859">0</div>
-                    <p class="text-sm text-[var(--text-secondary)] mt-3">Calendar Events</p>
-                    <p class="text-sm text-[var(--text-tertiary)] mt-1">Real Outlook Data</p>
+
+                <div class="initiative-card glass-card p-6 reveal cursor-pointer" onclick="toggleInitiative(this)">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="stat-value accent" data-target="859">0</div>
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <p class="text-sm text-[var(--text-secondary)]">Calendar Events</p>
+                    <div class="initiative-details">
+                        <div class="border-t border-[var(--border-subtle)] pt-4 mt-4 text-left">
+                            <p class="text-xs text-[var(--text-tertiary)] mb-2 uppercase tracking-wider">Outlook Data</p>
+                            <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
+                                <li>• 72 monthly average</li>
+                                <li>• 117 peak month (Jan)</li>
+                                <li>• High-density collaboration</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="glass-card p-6 animate-in delay-300">
-                    <div class="stat-value accent" data-target="5">0</div>
-                    <p class="text-sm text-[var(--text-secondary)] mt-3">AI Tools Built</p>
-                    <p class="text-sm text-[var(--text-tertiary)] mt-1">Production Ready</p>
+
+                <div class="initiative-card glass-card p-6 reveal cursor-pointer" onclick="toggleInitiative(this)">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="stat-value accent" data-target="5">0</div>
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <p class="text-sm text-[var(--text-secondary)]">AI Tools Built</p>
+                    <div class="initiative-details">
+                        <div class="border-t border-[var(--border-subtle)] pt-4 mt-4 text-left">
+                            <p class="text-xs text-[var(--text-tertiary)] mb-2 uppercase tracking-wider">Production Ready</p>
+                            <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
+                                <li>• KCS Copilot</li>
+                                <li>• SF Copilot</li>
+                                <li>• Billing Search Tool</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="glass-card p-6 animate-in delay-400">
-                    <div class="stat-value accent" data-target="16">0</div>
-                    <p class="text-sm text-[var(--text-secondary)] mt-3">Global Users</p>
-                    <p class="text-sm text-[var(--text-tertiary)] mt-1">Airtable System</p>
+
+                <div class="initiative-card glass-card p-6 reveal cursor-pointer" onclick="toggleInitiative(this)">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="stat-value accent" data-target="16">0</div>
+                        <span class="expand-icon">+</span>
+                    </div>
+                    <p class="text-sm text-[var(--text-secondary)]">Global Users</p>
+                    <div class="initiative-details">
+                        <div class="border-t border-[var(--border-subtle)] pt-4 mt-4 text-left">
+                            <p class="text-xs text-[var(--text-tertiary)] mb-2 uppercase tracking-wider">Airtable System</p>
+                            <ul class="space-y-2 text-sm text-[var(--text-secondary)]">
+                                <li>• 16 global specialists</li>
+                                <li>• Unified tracking logic</li>
+                                <li>• Automated reporting</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
             
