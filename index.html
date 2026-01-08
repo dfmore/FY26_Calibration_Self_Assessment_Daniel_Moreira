@@ -94,6 +94,18 @@
         #initiatives .initiative-card { min-height: 180px; }
         .orbit-card { min-height: 180px; }
         
+        /* Alignment fix: Prevent cards from stretching to match expanded neighbors */
+        #overview .grid,
+        #initiatives .grid,
+        .orbit-card-container {
+            align-items: start;
+        }
+
+        .initiative-card, 
+        .orbit-card {
+            align-self: start;
+        }
+
         .glass-card:hover {
             border-color: var(--border-light);
             background: rgba(255, 255, 255, 0.04);
