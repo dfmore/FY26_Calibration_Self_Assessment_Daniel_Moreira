@@ -1633,6 +1633,8 @@
                 .attr('font-weight', '500')
                 .attr('font-family', CHART_FONT);
             
+            // Remove all tick lines and domain
+            chart.selectAll('.tick line').remove();
             chart.select('.domain').remove();
             
             // Define glow filter

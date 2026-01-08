@@ -1500,23 +1500,16 @@
             
             // Y axis
             chart.append('g')
-                .call(d3.axisLeft(yScale).ticks(5).tickSize(-chartWidth))
+                .call(d3.axisLeft(yScale).ticks(5).tickSize(0))
                 .selectAll('text')
                 .attr('fill', '#8e8e93')
                 .attr('font-size', '10px')
                 .attr('font-weight', '500')
                 .attr('font-family', CHART_FONT);
             
-            chart.selectAll('.tick line').attr('stroke', 'rgba(255,255,255,0.08)');
+            // Remove all tick lines and domain
+            chart.selectAll('.tick line').remove();
             chart.select('.domain').remove();
-            
-            // Right border
-            chart.append('line')
-                .attr('x1', chartWidth)
-                .attr('y1', 0)
-                .attr('x2', chartWidth)
-                .attr('y2', chartHeight)
-                .attr('stroke', 'rgba(255,255,255,0.1)');
             
             // Define glow filter
             const defs = svg.append('defs');
