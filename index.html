@@ -395,11 +395,28 @@
         .initiative-details {
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.5s var(--ease-out-expo);
+            transition: max-height 0.5s var(--ease-out-expo), opacity 0.5s var(--ease-out-expo);
+            opacity: 0;
         }
         
         .initiative-card.expanded .initiative-details {
-            max-height: 2000px;
+            max-height: 500px;
+            opacity: 1;
+        }
+
+        /* Ensure uniform height for metrics when expanded */
+        #overview .initiative-card.expanded {
+            min-height: 280px;
+        }
+
+        /* Ensure uniform height for initiatives when expanded */
+        #initiatives .initiative-card.expanded {
+            min-height: 450px;
+        }
+
+        /* Ensure uniform height for orbit when expanded */
+        .orbit-card.expanded {
+            min-height: 400px;
         }
         
         .expand-icon {
